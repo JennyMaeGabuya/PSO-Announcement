@@ -119,11 +119,8 @@ header('location:../index.php');
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
-<!-- Visit codeastro.com for more projects -->
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
+<!--Footer-->
+<?php include 'includes/footer.php'?>
 
 <style>
 #footer {

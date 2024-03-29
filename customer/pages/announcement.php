@@ -117,10 +117,8 @@ if (!isset($_SESSION['user_id'])) {
   </div><!-- End of content-ID -->
   </div><!--end-main-container-part-->
 
-  <!--Footer-part-->
-  <div class="row-fluid">
-    <div id="footer" class="span12"> <?php echo date("Y"); ?> &copy; Developed By Naseeb Bajracharya</a> </div>
-  </div>
+<!--Footer-->
+<?php include 'includes/footer.php'?>
 
   <style>
     #footer {
