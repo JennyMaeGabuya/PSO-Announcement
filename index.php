@@ -69,17 +69,6 @@ include('dbcon.php'); ?>
             }
         }
         ?>
-        <div class="pull-left">
-            <a href="customer/index.php">
-                <h6>Customer Login</h6>
-            </a>
-        </div>
-
-        <div class="pull-right">
-            <a href="staff/index.php">
-                <h6>Staff Login</h6>
-            </a>
-        </div>
 
     </div>
 

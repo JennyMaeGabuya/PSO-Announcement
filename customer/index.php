@@ -4,15 +4,12 @@ include('dbcon.php'); ?>
 <html lang="en">
 
 <head>
-    <title>Gym System Admin</title>
+    <title>Gym System Customer</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="css/matrix-style.css" />
     <link rel="stylesheet" href="css/matrix-login.css" />
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
-
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
 </head>
@@ -38,14 +35,9 @@ include('dbcon.php'); ?>
                     </div>
                 </div>
             </div>
-            <div class="form-actions">
-                <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Join Now!</a></span>
-                <span class="pull-right"><button type="submit" name="login" class="btn btn-success">Customer Login</button></span>
-            </div>
-            <div class="g">
-                <a href="../index.php">
-                    <h6>Go Back</h6>
-                </a>
+            
+            <div class="form-actions center">
+                <button type="submit" class="btn btn-block btn-large btn-success" title="Log In" name="login" value="Customer Login">Customer Login</button>
             </div>
 
             <?php
@@ -55,7 +47,7 @@ include('dbcon.php'); ?>
 
                 $password = md5($password);
 
-                $query         = mysqli_query($con, "SELECT * FROM members WHERE  password='$password' and username='$username'");
+                $query         = mysqli_query($con, "SELECT * FROM members WHERE  password='$password' and username='$username' and status='Active'");
                 $row        = mysqli_fetch_array($query);
                 $num_row     = mysqli_num_rows($query);
 
@@ -72,94 +64,6 @@ include('dbcon.php'); ?>
                 }
             }
             ?>
-        </form>
-        <form id="recoverform" action="../customer/pages/register-cust.php" method="POST" class="form-vertical">
-            <p class="normal_text">Enter your details below and we will send your details for further activation process.</p>
-
-
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on bg_lo"><i class="icon-pencil"></i></span><input type="text" name="fullname" placeholder="Fullname" />
-                </div>
-            </div>
-
-            <br>
-
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on bg_lo"><i class="icon-leaf"></i></span><input type="text" name="username" placeholder="@username" />
-                </div>
-            </div>
-
-            <br>
-
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on bg_lo"><i class="icon-asterisk"></i></span><input type="password" name="password" placeholder="Password" />
-                </div>
-            </div>
-
-            <br>
-
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on bg_lo"><i class="icon-leaf"></i></span><input type="number" name="contact" placeholder="7878787878" />
-                </div>
-            </div>
-
-            <br>
-
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on bg_lo"><i class="icon-asterisk"></i></span><input type="text" name="address" placeholder="Address" />
-                </div>
-            </div>
-
-            <br>
-
-            <div class="controls">
-                <div class="main_input_box">
-                    <select name="gender" required="required" id="select">
-                        <option value="Male" selected="selected">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="controls">
-                <div class="main_input_box">
-                    <select name="plan" required="required" id="select">
-                        <option selected="true" disabled="disabled">Select Plans</option>
-                        <option value="1">One Month</option>
-                        <option value="3">Three Month</option>
-                        <option value="6">Six Month</option>
-                        <option value="12">One Year</option>
-                    </select>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="controls">
-                <div class="main_input_box">
-                    <select name="services" required="required" id="select">
-                        <option selected="true" disabled="disabled">Select Service</option>
-                        <option value="Fitness">Fitness</option>
-                        <option value="Sauna">Sauna</option>
-                        <option value="Cardio">Cardio</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-actions">
-                <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; Back to login</a></span>
-                <span class="pull-right"><button class="btn btn-info" type="SUBMIT">Submit Details</button></span>
-            </div>
-
-
         </form>
     </div>
 

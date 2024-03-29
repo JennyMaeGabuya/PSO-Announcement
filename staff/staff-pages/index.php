@@ -10,7 +10,7 @@ header('location:../index.php');
 
 <html lang="en">
 <head>
-<title>Gym System Staff A/C</title>
+<title>Inventory System | Staff</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -26,7 +26,7 @@ header('location:../index.php');
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Perfect Gym</a></h1>
+  <h1><a href="dashboard.html">PSO Inventory</a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -111,7 +111,7 @@ header('location:../index.php');
       <div class="span6">
         <div class="widget-box">
           <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
-            <h5>Gym Announcement</h5>
+            <h5>Product & Supply Office Announcements</h5>
           </div>
           <div class="widget-content nopadding collapse in" id="collapseG2">
             <ul class="recent-posts">

@@ -72,7 +72,7 @@ while($row=mysqli_fetch_array($result)){
                 <table class="">
                   <tbody>
                   <tr>
-                      <td><img src="../img/gym-logo.png" alt="Gym Logo" width="175"></td>
+                      <td><img src="../img/gym-logo.png" alt="Logo" width="175"></td>
                     </tr>
                     <tr>
                       <td><h4>Perfect GYM Club</h4></td>
