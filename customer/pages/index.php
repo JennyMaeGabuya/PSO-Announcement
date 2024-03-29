@@ -208,7 +208,7 @@ if (session_status() == PHP_SESSION_NONE) {
   <!--end-main-container-part-->
 
   <!--Footer-->
-  <?php include 'includes/footer.php' ?>
+  <?php include '../includes/footer.php' ?>
 
   <style>
     #footer {

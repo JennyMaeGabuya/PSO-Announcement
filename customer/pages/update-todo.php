@@ -112,7 +112,7 @@ if (!isset($_SESSION['user_id'])) {
   <!--end-main-container-part-->
 
   <!--Footer-->
-  <?php include 'includes/footer.php' ?>
+  <?php include '../includes/footer.php' ?>
 
   <style>
     #footer {

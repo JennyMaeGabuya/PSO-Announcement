@@ -88,6 +88,5 @@ include('dbcon.php'); ?>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/matrix.js"></script>
 </body>
-<!-- Visit codeastro.com for more projects -->
 
 </html>

@@ -55,7 +55,7 @@ include('dbcon.php'); ?>
 
                 $password = md5($password);
 
-                $query         = mysqli_query($con, "SELECT * FROM members WHERE  password='$password' and username='$username' and status='Active'");
+                $query         = mysqli_query($con, "SELECT * FROM members WHERE  password='$password' and username='$username'");
                 $row        = mysqli_fetch_array($query);
                 $num_row     = mysqli_num_rows($query);
 
