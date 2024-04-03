@@ -26,7 +26,7 @@ header('location:../index.php');
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">PSO Inventory</a></h1>
+  <h1>PSO Inventory</h1>
 </div>
 <!--close-Header-part--> 
 
@@ -71,7 +71,7 @@ header('location:../index.php');
     <div class="row-fluid">
     <div class="widget-box widget-plain">
       <div class="center">
-        <ul class="stat-boxes2">
+        <ul class="stat-boxes2" style="margin-left: 100px;">
           <li>
             <div class="left peity_bar_neutral"><span><span style="display: none;">2,4,9,7,12,10,12</span>
               <canvas width="60" height="24"></canvas>
@@ -79,22 +79,16 @@ header('location:../index.php');
             <div class="right"> <strong><?php include 'dashboard-usercount.php' ?></strong> Registered </div>
           </li>
           <li>
-            <div class="left peity_line_neutral"><span><span style="display: none;">10,15,8,14,13,10,10,15</span>
-              <canvas width="60" height="24"></canvas>
-              </span>17.8%</div>
-            <div class="right"> <strong>$<?php include 'income-count.php' ?></strong> Total Earnings </div>
-          </li>
-          <li>
             <div class="left peity_bar_bad"><span><span style="display: none;">3,5,6,16,8,10,6</span>
               <canvas width="60" height="24"></canvas>
               </span>-40%</div>
-            <div class="right"> <strong><?php include 'actions/count-trainers.php' ?></strong> Active Trainers</div>
+            <div class="right"> <strong><?php include 'actions/count-trainers.php' ?></strong> Useful Life near Due</div>
           </li>
           <li>
             <div class="left peity_line_good"><span><span style="display: none;">12,6,9,23,14,10,17</span>
               <canvas width="60" height="24"></canvas>
               </span>+5%</div>
-            <div class="right"> <strong><?php include 'actions/count-equipments.php' ?></strong>Equipments </div>
+            <div class="right"> <strong><?php include 'actions/count-equipments.php' ?></strong>Products and Supply </div>
           </li>
           <li>
             <div class="left peity_bar_good"><span>12,6,9,23,14,10,13</span>+9%</div>
@@ -147,7 +141,7 @@ header('location:../index.php');
        
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-tasks"></i></span>
-            <h5>Customer's To-Do Lists</h5>
+            <h5>Request for Relocation</h5>
           </div>
           <div class="widget-content">
             <div class="todo">

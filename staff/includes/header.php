@@ -4,7 +4,7 @@
       <ul class="dropdown-menu">
         <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
         <li class="divider"></li>
-        <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
+        <li><a href="#"><i class="icon-check"></i> Change Password</a></li>
         <li class="divider"></li>
         <li><a href="../logout.php"><i class="icon-key"></i> Log Out</a></li>
       </ul>

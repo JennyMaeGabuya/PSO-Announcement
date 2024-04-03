@@ -1,13 +1,9 @@
 <?php
 session_start();
-// Check if the user is logged in, if not redirect to the login page
+//the isset function to check username is already loged in and stored on the session
 if(!isset($_SESSION['user_id'])){
-    header('location:../index.php');	
-    exit(); // Add exit after redirection to prevent further execution
+header('location:../index.php');	
 }
-
-// Define the $page variable before including sidebar.php
-$page = "announcement";
 ?>
 <!-- Visit codeastro.com for more projects -->
 <html lang="en">
@@ -33,9 +29,16 @@ $page = "announcement";
 </div>
 <!--close-Header-part--> 
 
-<!--top-Header-menu-->
+
+<!--top-Header-menu--><!-- Visit codeastro.com for more projects -->
 <?php include 'includes/topheader.php'?>
 <!--close-top-Header-menu-->
+<!--start-top-serch-->
+<!-- <div id="search">
+  <input type="hidden" placeholder="Search here..."/>
+  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+</div> -->
+<!--close-top-serch-->
 
 <!--sidebar-menu-->
 <?php include 'includes/sidebar.php'?>
@@ -50,47 +53,59 @@ $page = "announcement";
 <?php
 
 if(isset($_POST['message'])){
-    $message = $_POST["message"];    
-    $date = $_POST["date"];
+$message = $_POST["message"];    
+$date = $_POST["date"];
 
-    include 'dbcon.php';
-    //code after connection is successful
-    $qry = "insert into announcements(message,date) values ('$message','$date')";
-    $result = mysqli_query($conn,$qry); //query executes
+include 'dbcon.php';
+//code after connection is successfull
+$qry = "insert into announcements(message,date) values ('$message','$date')";
+$result = mysqli_query($conn,$qry); //query executes
 
-    if(!$result){
-        echo "<div class='container-fluid'>";
-        echo "<div class='row-fluid'>";
-        echo "<div class='span12'>";
-        echo "<div class='widget-box'>";
-        echo "<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
-        echo "<h5>Error Message</h5>";
-        echo "</div>";
-        echo "<div class='widget-content'>";
-        echo "<div class='error_ex'>";
-        echo "<h1 style='color:maroon;'>Error 404</h1>";
-        echo "<h3>Error occurred while entering your details</h3>";
-        echo "<p>Please Try Again</p>";
-        echo "<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-    } else {
-        echo "<script>location.href = 'index.php';</script>";
-    }
-
-} else {
-    echo "<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'>DASHBOARD</a></h3>";
+if(!$result){
+  echo"<div class='container-fluid'>";
+      echo"<div class='row-fluid'>";
+      echo"<div class='span12'>";
+      echo"<div class='widget-box'>";
+      echo"<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+          echo"<h5>Error Message</h5>";
+          echo"</div>";
+          echo"<div class='widget-content'>";
+              echo"<div class='error_ex'>";
+              echo"<h1 style='color:maroon;'>Error 404</h1>";
+              echo"<h3>Error occured while entering your details</h3>";
+              echo"<p>Please Try Again</p>";
+              echo"<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
+          echo"</div>";
+          echo"</div>";
+      echo"</div>";
+      echo"</div>";
+  echo"</div>";
+}else {
+    echo("<script>location.href = 'index.php';</script>");
 }
 
+}else{
+    echo"<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'> DASHBOARD </a></h3>";
+}
+
+
 ?>
-</form>
+                                    
+                                
+                                        
+                
+                                    </form>
+                                </div>
+</div></div>
 </div>
 
-<!--Footer-->
-<?php include 'includes/footer.php'?>
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
+</div>
 
 <style>
 #footer {
@@ -126,8 +141,10 @@ if(isset($_POST['message'])){
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:
   function goPage (newURL) {
+
       // if url is empty, skip the menu dividers and reset the menu selection to default
       if (newURL != "") {
+      
           // if url is "-", it is this page -- reset the menu:
           if (newURL == "-" ) {
               resetMenu();            

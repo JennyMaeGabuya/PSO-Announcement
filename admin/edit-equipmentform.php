@@ -198,8 +198,14 @@ header('location:../index.php');
 
 <!--end-main-container-part-->
 
-<!--Footer-->
-<?php include 'includes/footer.php'?>
+<!--Footer-part-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
+</div>
+
+
+<!-- Visit codeastro.com for more projects -->
 <!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script> 

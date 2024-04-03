@@ -64,19 +64,34 @@ $userid = $_SESSION['user_id'];
         <div class="span12">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
-              <h5>To-Do Lists</h5>
+              <h5>Request for Relocation of Product or Supply</h5>
             </div>
             <div class="widget-content nopadding">
               <form id="form-wizard" class="form-horizontal" action="add-to-do.php" method="POST">
                 <div id="form-wizard-1" class="step">
 
-                  <div class="control-group">
-                    <label class="control-label">Please Enter Your Task :</label>
+                <div class="control-group">
+                    <label class="control-label">Office Requesting :</label>
                     <div class="controls">
-                      <input type="text" class="span11" name="task_desc" placeholder="I'll be doing 12 set up and . . ." />
+                      <input type="text" class="span11" name="task_desc" placeholder="CECS Office . . ." />
                     </div>
                   </div>
 
+                  <div class="control-group">
+                    <label class="control-label">Enter where the product will be relocated :</label>
+                    <div class="controls">
+                      <input type="text" class="span11" name="task_desc" placeholder="To Library . . ." />
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label">Description :</label>
+                    <div class="controls">
+                      <input type="text" class="span11" name="task_desc" placeholder="As detailed as possible ..." />
+                    </div>
+                  </div>
+
+                  <!--comment
                   <div class="control-group">
                     <label class="control-label">Please Select a Status:</label>
                     <div class="controls">
@@ -86,10 +101,11 @@ $userid = $_SESSION['user_id'];
                       </select>
                     </div>
                   </div>
+                  --> 
 
                   <div class="form-actions">
                     <input type="hidden" name="userid" value="<?php echo $userid; ?>">
-                    <input id="add" class="btn btn-primary" type="submit" value="Add To List" />
+                    <input id="add" class="btn btn-primary" type="submit" value="Submit" />
                     <div id="status"></div>
                   </div>
                   <div id="submitted"></div>

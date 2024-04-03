@@ -129,8 +129,11 @@ if(!$result){
 
 <!--end-main-container-part-->
 
-<!--Footer-->
-<?php include 'includes/footer.php'?>
+<!--Footer-part-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
+</div>
 
 <style>
 #footer {

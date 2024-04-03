@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <html lang="en">
 
 <head>
-  <title>PSO Inventory System</title>
+  <title>PSO Inventory System | User</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -69,7 +69,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
   <!--Header-part-->
   <div id="header">
-    <h1><a href="index.php">Perfect Gym System</a></h1>
+    <h1>PSO Inventory System</h1>
   </div>
   <!--close-Header-part-->
 
@@ -107,37 +107,56 @@ if (session_status() == PHP_SESSION_NONE) {
 
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"><i class="icon-time"></i></span>
-              <h5>My To-Do List</h5>
+              <h5>Reminders</h5>
             </div>
-            <div class="widget-content nopadding">
+            <div class="widget-content nopadding collapse in" id="collapseG2">
+              <ul class="recent-posts">
+                <li>
 
-              <?php
-              include "dbcon.php";
-              include "session.php";
-              $qry = "SELECT * FROM todo WHERE user_id='" . $_SESSION['user_id'] . "'";
-              $result = mysqli_query($con, $qry);
+                  <?php
 
-              echo "<table class='table table-striped table-bordered'>
-              <thead>
-                <tr>
-                  <th>Description</th>
-                  <th>Status</th>
-                  <th>Opts</th>
-                </tr>
-              </thead>";
-              while ($row = mysqli_fetch_array($result)) {
-                echo "<tbody>
-                <tr>
-                  <td class='taskDesc'><a href='to-do.php'><i class='icon-plus-sign'></i></a>" . $row['task_desc'] . "</td>
-                  <td class='taskStatus'><span class='in-progress'>" . $row['task_status'] . "</span></td>
-                  <td class='taskOptions'><a href='update-todo.php?id=" . $row['id'] . "' class='tip-top' data-original-title='Update'><i class='icon-edit'></i></a>  <a href='actions/remove-todo.php?id=" . $row['id'] . "' class='tip-top' data-original-title='Done'><i class='icon-ok'></i></a></td>
-                </tr>
+                  include "dbcon.php";
 
-              </tbody>";
-              }
-              ?>
+                  // Calculate the date of one week ago
+                  $one_week_ago = date('Y-m-d', strtotime('-1 week'));
 
-              </table>
+                  // Retrieve the announcements from the last week and the newest one
+                  $qry = "SELECT * FROM announcements WHERE date >= '$one_week_ago' ORDER BY date DESC";
+                  $result = mysqli_query($con, $qry);
+
+                  $count = 0; // Initialize count variable
+                  while ($row = mysqli_fetch_array($result)) {
+                    // Increment count variable
+                    $count++;
+
+                    // Check if this is the newest announcement
+                    $class = ($count == 1) ? 'highlight' : '';
+
+                    // Start the div with the article-post class
+                    echo "<div class='article-post $class'>"; // Add the class here
+
+                    // Check if this is the highlighted announcement
+                    $messageStyle = ($class == 'highlight') ? 'font-weight: bold;' : '';
+
+                    // Start the div for user-thumb
+                    echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
+                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='http://localhost/gym%20system/img/demo/alert.png'> ";
+                    echo "</div>"; // Close the user-thumb div
+
+                    // Start the div for announcement content
+                    echo "<div style='overflow: hidden;'>"; // Adjust styling here
+                    echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
+                    echo "<p><a href='#' style='$messageStyle'>" . $row['message'] . "</a> </p>";
+                    echo "</div>"; // Close the announcement content div
+
+                    echo "</div>"; // Close the article-post div
+                  }
+
+                  ?>
+
+                  <a href="announcement.php"><button class="btn btn-warning btn-mini">View All</button></a>
+                </li>
+              </ul>
             </div>
           </div>
 

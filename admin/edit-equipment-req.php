@@ -126,9 +126,12 @@
 </div>
 
 <!--end-main-container-part-->
+<!-- Visit codeastro.com for more projects -->
+<!--Footer-part-->
 
-<!--Footer-->
-<?php include 'includes/footer.php'?>
+<div class="row-fluid">
+  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
+</div>
 
 <style>
 #footer {
