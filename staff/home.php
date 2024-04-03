@@ -113,7 +113,7 @@ session_start();
                 <b>
                     <h1 style="margin-bottom: 10px;">Login</h1>
                 </b>
-                <h3 style="margin-bottom: 15px; color: #E71B03;">Product and Supply Office</h3>
+                <h3 style="margin-bottom: 15px; color: #E71B03;">PSO Inventory System</h3>
             </div>
 
             <?php
