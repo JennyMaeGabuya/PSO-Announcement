@@ -89,7 +89,7 @@ include('dbcon.php'); ?>
         width: 110px;
         vertical-align: middle;
         margin-top: 12px;
-        animation: spinLogo 4s linear infinite;
+        animation: spinLogo 6s linear infinite;
     }
 
     @keyframes spinLogo {

@@ -51,7 +51,7 @@ session_start();
         .login-page {
             font-family: 'Times New Roman', Times, serif;
             background-color: rgba(255, 255, 255, .9);
-            border-radius: 8px;
+            border-radius: 7px;
             padding: 20px;
             transition: transform 0.5s;
         }
@@ -151,7 +151,7 @@ session_start();
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
