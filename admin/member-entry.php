@@ -79,12 +79,11 @@ header('location:../index.php');
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Gender :</label>
+              <label class="control-label">Account Status :</label>
               <div class="controls">
               <select name="gender" required="required" id="select">
-                  <option value="Male" selected="selected">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="Male" selected="selected">Active</option>
+                  <option value="Female">Inactive</option>
                 </select>
               </div>
             </div>

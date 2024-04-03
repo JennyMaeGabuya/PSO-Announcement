@@ -42,7 +42,7 @@ $result=mysqli_query($con,$qry);
                           ?>  
                      ]);  
                 var options = {  
-                      title: 'Percentage of Male and Female GYM Members',  
+                      title: 'Percentage of Active & Inactive Accounts',  
                       //is3D:true,  
                       pieHole: 0.0 
                      };  
