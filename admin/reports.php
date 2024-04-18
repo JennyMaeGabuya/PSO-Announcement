@@ -186,21 +186,9 @@ $result=mysqli_query($con,$qry);
 <!--sidebar-menu-->
 
 <div id="content">
-  <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="reports.php" class="current">Chart Representation</a> </div>
-    <h1 class="text-center">Earning and Expenses Report <i class="fas fa-chart-bar"></i></h1>
-  </div>
-  <div class="container-fluid">
-    
-    <div class="row-fluid">
-      <div class="span12">
-        <div id="top_y_div" style="width: 700px; height: 300px;"></div>
-      </div>
-    </div>
-  </div>
 
   <div id="content-header">
-    <h1 class="text-center">Registered Member's Report <i class="fas fa-chart-bar"></i></h1>
+    <h1 class="text-center">Active and Not Active Accounts Report <i class="fas fa-chart-bar"></i></h1>
   </div>
   <div class="container-fluid">
     
@@ -211,22 +199,21 @@ $result=mysqli_query($con,$qry);
     </div>
   </div>
 
-  <div id="content-header">
-    <h1 class="text-center">Services Report <i class="fas fa-chart-bar"></i></h1>
+  <div id="content-header" style="margin-top: 20px;">
+    <h1 class="text-center">Useful Life Statuses Report <i class="fas fa-chart-bar"></i></h1>
   </div>
   <div class="container-fluid">
     
     <div class="row-fluid">
       <div class="span12">
-        <div id="top_x_div" style="width: 1000px; height: 350px;"></div>
+                <div id="piechart" style="width: 800px; height: 450px; margin-left:auto; margin-right:auto;"></div>  
       </div>
     </div>
   </div>
+
+
+
 </div>
-
-
-  
-
 
 <!--end-main-container-part-->
 
