@@ -80,7 +80,7 @@ if (!$query) {
 
     <!--Header-part-->
     <div id="header">
-        <h1><a href="dashboard.html">PSO Inventory System | Announcements</a></h1>
+        <h1><a href="dashboard.html">PSO Inventory System</a></h1>
     </div>
 
     <?php include '../includes/header.php' ?>
@@ -94,7 +94,7 @@ if (!$query) {
         </div>
         <div class="container-fluid">
             <div class='widget-box'>
-                <div class='widget-content' style="font-size: 15px;;">
+                <div class='widget-content' style="font-size: 14px;;">
                     <?php
                     if ($id) {
                         echo "<table>";
@@ -117,7 +117,7 @@ if (!$query) {
                         echo "ID is not set!";
                     }
                     ?>
-                    <a class="btn btn-primary btn-sm" href="staff-announcement.php" role="button" style="margin: 10px; margin-left: 230px;">Back</a>
+                    <a class="btn btn-primary btn-sm" href="staff-announcement.php" role="button" style="margin: 10px; margin-left: 230px; font-size: 15px">Back</a>
                 </div>
             </div>
 

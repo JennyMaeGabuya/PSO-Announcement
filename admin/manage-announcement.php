@@ -60,41 +60,45 @@ if (!isset($_SESSION['user_id'])) {
 
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='fas fa-bullhorn'></i> </span>
-              <h5>Announcement table</h5>
+              <h5 style="color: black;">Announcement Table</h5>
             </div>
             <div class='widget-content nopadding'>
 
               <?php
               include "dbcon.php";
-              $qry = "SELECT * FROM announcements ORDER BY id DESC"; // Query modified to order by id in descending order
+              $qry = "SELECT * FROM announcements ORDER BY id DESC"; // Fetch data in descending order of id
               $result = mysqli_query($conn, $qry);
 
-              // Get the total number of rows
-              $totalRows = mysqli_num_rows($result);
-
               echo "<table class='table table-bordered table-hover'>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Message</th>
-            <th>Manage</th>
-        </tr>
-    </thead>";
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Message</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>";
 
-              $cnt = $totalRows; // Initialize $cnt with the total number of rows
+              $totalRows = mysqli_num_rows($result); // Get the total number of rows
+              $cnt = $totalRows; // Start with the total number of rows
 
               while ($row = mysqli_fetch_array($result)) {
-                echo "<tbody> 
-        <td><div class='text-center'>" . $cnt . "</div></td>
-        <td><div class='text-center'>" . $row['date'] . "</div></td>
-        <td><div class='text-center'>" . $row['message'] . "</div></td>
-        <td><div class='text-center'><a href='actions/remove-announcement.php?id=" . $row['id'] . "' style='color:#F66;' ><i class='fas fa-trash'></i> Remove</a></div></td>
-    </tbody>";
-                $cnt--; // Decrement $cnt for each row
-              }
-              ?>
+                // Truncate the message to the first 15 words
+                $message = implode(' ', array_slice(explode(' ', $row['message']), 0, 15));
+                $message = strlen($row['message']) > 15 ? $message . "..." : $message;
 
+                echo "<tr>
+            <td><div class='text-center'>" . $cnt . "</div></td>
+            <td><div class='text-center'>" . $row['date'] . "</div></td>
+            <td><div class='text-center'>" . $message . "</div></td>
+            <td><div class='text-center'><a href='actions/remove-announcement.php?id=" . $row['id'] . "' style='color:#F66;' ><i class='fas fa-trash'></i> Remove</a></div></td></tr>";
+                $cnt--; // Decrease the count for the next row
+              }
+
+              echo "</tbody>
+      </table>";
+              ?>
 
               </table>
             </div>

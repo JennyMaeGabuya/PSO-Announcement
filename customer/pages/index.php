@@ -174,7 +174,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
                   <?php
 
-                  include "dbcon.php";
+                  include "../dbcon.php";
 
                   // Calculate the date of one week ago
                   $one_week_ago = date('Y-m-d', strtotime('-1 week'));
@@ -197,6 +197,10 @@ if (session_status() == PHP_SESSION_NONE) {
                     // Check if this is the highlighted announcement
                     $messageStyle = ($class == 'highlight') ? 'font-weight: bold;' : '';
 
+                    // Truncate the message to the first 15 words and add "..."
+                    $message = implode(' ', array_slice(explode(' ', $row['message']), 0, 15));
+                    $message = strlen($row['message']) > 15 ? $message . "..." : $message;
+
                     // Start the div for user-thumb
                     echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
                     echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='http://localhost/gym%20system/img/demo/alert.png'> ";
@@ -205,7 +209,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     // Start the div for announcement content
                     echo "<div style='overflow: hidden;'>"; // Adjust styling here
                     echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
-                    echo "<p><a href='#' style='$messageStyle'>" . $row['message'] . "</a> </p>";
+                    echo "<p><a href='#' style='$messageStyle'>" . $message . "</a> </p>";
                     echo "</div>"; // Close the announcement content div
 
                     echo "</div>"; // Close the article-post div
@@ -216,6 +220,7 @@ if (session_status() == PHP_SESSION_NONE) {
                   <a href="announcement.php"><button class="btn btn-warning btn-mini">View All</button></a>
                 </li>
               </ul>
+
             </div>
           </div>
         </div> <!-- end of announcement -->

@@ -32,8 +32,37 @@ $result5 = mysqli_query($con, $qry);
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
   <style>
-    .custom-container {
-      width: 100%;
+    .highlight {
+      background-color: #FFFF99;
+      border: 1px solid #FFD700;
+    }
+
+    .zoom-img {
+      transition: transform 0.3s ease;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.1);
+    }
+
+    .user-thumb {
+      float: left;
+      margin-right: 10px;
+      background-color: transparent;
+    }
+
+    .article-post {
+      overflow: hidden;
+      padding-left: 10px;
+    }
+
+    .highlight {
+      color: black;
+      font-size: 18px;
+    }
+
+    .article-post:not(.highlight) {
+      padding: 10px;
     }
   </style>
 
@@ -62,7 +91,7 @@ $result5 = mysqli_query($con, $qry);
       chart.draw(data, options);
     }
   </script>
-  <!-- Visit codeastro.com for more projects -->
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load('current', {
@@ -250,7 +279,6 @@ $result5 = mysqli_query($con, $qry);
   <?php include 'includes/topheader.php' ?>
   <!--close-top-Header-menu-->
 
-  <!-- Visit codeastro.com for more projects -->
   <!--sidebar-menu-->
   <?php $page = 'dashboard';
   include 'includes/sidebar.php' ?>
@@ -328,25 +356,55 @@ $result5 = mysqli_query($con, $qry);
                 <h5>Product and Supply Office Announcements</h5>
               </div>
               <div class="widget-content nopadding collapse in" id="collapseG2">
-                <ul class="recent-posts">
-                  <li>
-                    <?php
-                    include "dbcon.php";
-                    $qry = "SELECT * FROM announcements";
-                    $result = mysqli_query($conn, $qry);
+                <?php
 
-                    while ($row = mysqli_fetch_array($result)) {
-                      echo "<div class='user-thumb'> <img width='70' height='40' alt='User' src='../img/demo/av1.jpg'> </div>";
-                      echo "<div class='article-post'>";
-                      echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
-                      echo "<p><a href='#'>" . $row['message'] . "</a> </p>";
-                    }
-                    echo "</div>";
-                    echo "</li>";
-                    ?>
-                    <a href="manage-announcement.php"><button class="btn btn-warning btn-mini">View All</button></a>
-                  </li>
+                include "../dbcon.php";
+
+                // Calculate the date of one week ago
+                $one_week_ago = date('Y-m-d', strtotime('-1 week'));
+
+                // Retrieve the announcements from the last week and the newest one
+                $qry = "SELECT * FROM announcements WHERE date >= '$one_week_ago' ORDER BY date DESC";
+                $result = mysqli_query($con, $qry);
+
+                $count = 0; // Initialize count variable
+                while ($row = mysqli_fetch_array($result)) {
+                  // Increment count variable
+                  $count++;
+
+                  // Check if this is the newest announcement
+                  $class = ($count == 1) ? 'highlight' : '';
+
+                  // Start the div with the article-post class
+                  echo "<div class='article-post $class'>"; // Add the class here
+
+                  // Check if this is the highlighted announcement
+                  $messageStyle = ($class == 'highlight') ? 'font-weight: bold;' : '';
+
+                  // Truncate the message to the first 15 words and add "..."
+                  $message = implode(' ', array_slice(explode(' ', $row['message']), 0, 15));
+                  $message = strlen($row['message']) > 15 ? $message . "..." : $message;
+
+                  // Start the div for user-thumb
+                  echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
+                  echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='http://localhost/gym%20system/img/demo/alert.png'> ";
+                  echo "</div>"; // Close the user-thumb div
+
+                  // Start the div for announcement content
+                  echo "<div style='overflow: hidden;'>"; // Adjust styling here
+                  echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
+                  echo "<p><a href='#' style='$messageStyle'>" . $message . "</a> </p>";
+                  echo "</div>"; // Close the announcement content div
+
+                  echo "</div>"; // Close the article-post div
+                }
+
+                ?>
+
+                <a href="manage-announcement.php"><button class="btn btn-warning btn-mini" style="margin: 10px;">View All</button></a>
+                </li>
                 </ul>
+
               </div>
             </div>
           </div>
