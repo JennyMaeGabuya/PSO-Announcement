@@ -137,7 +137,7 @@ include('dbcon.php'); ?>
                     </a>
                     <br>
                     <span style="display: inline-block; margin-left: 10px;">
-                        <h1>Product and Supply Office</h1>
+                        <h1>Property and Supply Office</h1>
                         <h2 style="color: #E71B03;">Inventory System</h2>
                     </span>
                 </div>

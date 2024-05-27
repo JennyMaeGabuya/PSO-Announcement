@@ -109,7 +109,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="widget-title"> <span class="icon"><i class="icon-time"></i></span>
               <h5>Reminders</h5>
             </div>
-            <div class="widget-content nopadding collapse in" id="collapseG2">
+            <div class="widget-content nopadding collapse in">
               <ul class="recent-posts">
                 <li>
 
@@ -164,11 +164,11 @@ if (session_status() == PHP_SESSION_NONE) {
 
         <div class="span6">
           <div class="widget-box">
-            <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2">
+            <div class="widget-title bg_ly" data-toggle="collapse">
               <span class="icon"><i class="icon-chevron-down"></i></span>
               <h5>Product & Supply Office Announcements</h5>
             </div>
-            <div class="widget-content nopadding collapse in" id="collapseG2">
+            <div class="widget-content nopadding collapse in">
               <ul class="recent-posts">
                 <li>
 

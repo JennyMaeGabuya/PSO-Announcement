@@ -13,6 +13,7 @@
 
     <li class="<?php if($page=='equipment'){ echo 'submenu active'; } else { echo 'submenu';}?>"> <a href="#"><i class="icon icon-cogs"></i> <span>Product and Supply</span> </a>
       <ul>
+        <li><a href="staff-announcement.php">Announcements</a></li>
         <li><a href="equipment.php">List of Product & Supply</a></li>
         <li><a href="equipment-entry.php">Add Product & Supply</a></li>
         <li><a href="remove-equipment.php">Remove Product & Supply</a></li>
