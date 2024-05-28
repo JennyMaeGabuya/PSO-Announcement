@@ -33,27 +33,12 @@ if (!$query) {
     <link href="../font-awesome/css/fontawesome.css" rel="stylesheet" />
     <link href="../font-awesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/jquery.gritter.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
     <style>
-        #content {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container-fluid {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
         .widget-box {
             background-color: white;
-        }
-
-        .widget-content {
-            padding: 0;
         }
 
         table {
@@ -117,7 +102,7 @@ if (!$query) {
                         echo "ID is not set!";
                     }
                     ?>
-                    <a class="btn btn-primary btn-sm" href="staff-announcement.php" role="button" style="margin: 10px; margin-left: 230px; font-size: 15px">Back</a>
+                    <a class="btn btn-primary btn-sm" href="staff-announcement.php" role="button" style="margin: 10px; margin-left: 220px; margin-bottom: 2px; margin-top: 15px; font-size: 15px">Back</a>
                 </div>
             </div>
 
