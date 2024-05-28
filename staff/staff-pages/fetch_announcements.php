@@ -21,10 +21,10 @@ $result = mysqli_query($conn, $qry);
 echo "<table class='table table-bordered table-hover announcement-table'>
         <thead>
             <tr>
-                <th>#</th>
-                <th>Date</th>
-                <th>Message</th>
-                <th>Action</th>
+                <th style='font-size: 13px;'><div class='text-center'>#</th>
+                <th style='font-size: 13px;'><div class='text-center'>Date</th>
+                <th style='font-size: 13px;'><div class='text-center'>Message</th>
+                <th style='font-size: 13px;'><div class='text-center'   >Action</th>
             </tr>
         </thead>
         <tbody>";
@@ -38,10 +38,10 @@ while ($row = mysqli_fetch_array($result)) {
     $message = strlen($row['message']) > 15 ? $message . "..." : $message;
 
     echo "<tr>
-            <td style='font-weight: bold;'><div class='text-center'>" . $cnt . "</div></td>
-            <td><div class='text-center'>" . $row['date'] . "</div></td>
-            <td><div class='text-center'>" . $message . "</div></td>
-            <td><div class='text-center'><a href='view-announcement.php?id=" . $row['id'] . "' style='color:#0080FF;' ><i class='fas fa-eye'></i> View</a></div></td>
+            <td style='font-weight: bold; font-size: 13px;'><div class='text-center'>" . $cnt . "</div></td>
+            <td style='font-size: 13px;'><div class='text-center'>" . $row['date'] . "</div></td>
+            <td style='font-size: 13px;'><div class='text-center'>" . $message . "</div></td>
+            <td style='font-size: 13px;'><div class='text-center'><a href='view-announcement.php?id=" . $row['id'] . "' style='color:#0080FF;' ><i class='fas fa-eye'></i> View</a></div></td>
           </tr>";
     $cnt--; // Decrease the count for the next row
 }

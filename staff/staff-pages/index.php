@@ -57,6 +57,13 @@ if (!isset($_SESSION['user_id'])) {
     .article-post:not(.highlight) {
       padding: 10px;
     }
+
+    #header h1 {
+  background: url("../img/header.png") no-repeat scroll 0 0 transparent;
+  height: 800px; /* Adjust the height as needed */
+  width: 250px; /* Adjust the width as needed */
+}
+
   </style>
 
 </head>
@@ -65,7 +72,7 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Header-part-->
   <div id="header">
-    <h1>PSO Inventory</h1>
+    <h1></h1>
   </div>
   <!--close-Header-part-->
 
@@ -178,7 +185,7 @@ if (!isset($_SESSION['user_id'])) {
 
                     // Start the div for user-thumb
                     echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
-                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='http://localhost/gym%20system/img/demo/alert.png'> ";
+                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/demo/av1.jpg'> ";
                     echo "</div>"; // Close the user-thumb div
 
                     // Start the div for announcement content

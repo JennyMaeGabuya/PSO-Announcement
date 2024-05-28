@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 <html lang="en">
 
 <head>
-    <title>Gym System Admin</title>
+    <title>Inventory | Announcements</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -25,22 +25,17 @@ if (!isset($_SESSION['user_id'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
-    <style>
-        * {
-            font-size: 13px; /* Adjust the font size as needed */
-        }
-    </style>
-
 </head>
 
 <body>
 
     <!--Header-part-->
     <div id="header">
-        <h1><a href="dashboard.html">PSO Inventory System | Announcements</a></h1>
+        <h1><a href="dashboard.html">PSO Inventory System</a></h1>
     </div>
     <!--close-Header-part-->
 
+    <?php $page = "announcement"; include '../includes/header.php'; ?>
     <!--sidebar-menu-->
     <?php $page = "announcement"; include '../includes/sidebar.php'; ?>
     <!--sidebar-menu-->
@@ -48,7 +43,7 @@ if (!isset($_SESSION['user_id'])) {
     <div id="content">
         <div id="content-header">
             <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a><a href="#" class="current">Announcements</a> </div>
-            <h1 class="text-center">Announcements</h1>
+            <h1 class="text-center">Announcements <i class='fas fa-bullhorn'></i></h1>
         </div>
         <div class="container-fluid">
             <hr>
