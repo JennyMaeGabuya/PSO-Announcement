@@ -6,23 +6,33 @@ include('dbcon.php');
 $error_message = "";
 
 if (isset($_POST['login'])) {
-    $username = mysqli_real_escape_string($con, $_POST['username']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
+    $username = isset($_POST['username']) ? mysqli_real_escape_string($con, $_POST['username']) : '';
+    $password = isset($_POST['password']) ? mysqli_real_escape_string($con, $_POST['password']) : '';
 
-    $password = md5($password);
+    if (!empty($username) && !empty($password)) { // Check if username and password are not empty
+        $password = md5($password);
 
-    $query = mysqli_query($con, "SELECT * FROM staffs WHERE password='$password' and username='$username'");
-    $row = mysqli_fetch_array($query);
-    $num_row = mysqli_num_rows($query);
+        $query = mysqli_query($con, "SELECT * FROM admin WHERE password='$password' and username='$username'");
+        $row = mysqli_fetch_array($query);
+        $num_row = mysqli_num_rows($query);
 
-    if ($num_row > 0) {
-        $_SESSION['user_id'] = $row['user_id'];
-        header('location:staff-pages/index.php');
-        exit(); // Make sure to exit after header redirection
+        if ($num_row > 0) {
+            $_SESSION['user_id'] = $row['user_id'];
+            header('location:admin/index.php');
+            exit(); // Make sure to exit after header redirection
+        } else {
+            // Set error message
+            $error_message = "<div class='alert alert-danger alert-dismissible text-center' role='alert' style='font-size: 16px;'>
+                Invalid Username and/or Password
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>";
+        }
     } else {
-        // Set error message
+        // Handle case where username or password is empty
         $error_message = "<div class='alert alert-danger alert-dismissible text-center' role='alert' style='font-size: 16px;'>
-            Invalid Username and/or Password
+            Username and/or Password cannot be empty
             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
             </button>
@@ -30,19 +40,19 @@ if (isset($_POST['login'])) {
     }
 } elseif (isset($_POST['change'])) {
     // Code for handling forgot password form submission
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : 0; // Corrected field name to 'id'
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
-    $designation = mysqli_real_escape_string($con, $_POST['designation']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
 
-    // Check if user_id, email, and designation match in the database
-    $query = mysqli_query($con, "SELECT * FROM staffs WHERE username='$username' AND email='$email' AND designation='$designation'");
+    // Check if user_id, email, and id match in the database
+    $query = mysqli_query($con, "SELECT * FROM admin WHERE username='$username' AND email='$email' AND user_id='$id'");
     $num_rows = mysqli_num_rows($query);
 
     if ($num_rows == 1) {
-        // Update password in the staffs table
+        // Update password in the admin table
         $hashedPassword = md5($password);
-        $updateQuery = "UPDATE staffs SET password='$hashedPassword' WHERE username='$username' AND email='$email' AND designation='$designation'";
+        $updateQuery = "UPDATE admin SET password='$hashedPassword' WHERE username='$username' AND email='$email' AND user_id='$id'";
         $result = mysqli_query($con, $updateQuery);
 
         if ($result) {
@@ -74,6 +84,12 @@ if (isset($_POST['login'])) {
 }
 ?>
 
+<script>
+    function closeAlert() {
+        document.querySelector('.alert').style.display = 'none';
+    }
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,14 +115,8 @@ if (isset($_POST['login'])) {
         .container {
             display: flex;
             width: 100%;
-        }
-
-        .background {
-            flex: 1;
-            background-image: url('../img/bsu_img.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
+            background-color: white;
+            ;
         }
 
         .login-container {
@@ -116,6 +126,14 @@ if (isset($_POST['login'])) {
             justify-content: center;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
+        }
+
+        .background {
+            flex: 1;
+            background-image: url('img/bsu_img.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
         }
 
         .login-page {
@@ -238,17 +256,17 @@ if (isset($_POST['login'])) {
             vertical-align: middle;
         }
     </style>
+
 </head>
 
 <body>
 
-    <div class="container" style="background-color: white;">
-        <div class="background"></div>
+    <div class="container">
         <div class="login-container">
             <div class="login-page">
                 <div class="text-center">
                     <b>
-                        <h1 style="margin-bottom: 10px;">Login</h1>
+                        <h1 style="margin-bottom: 10px;">Admin Login</h1>
                     </b>
                     <h3 style="margin-bottom: 15px; color: #E71B03;">PSO Inventory System</h3>
                 </div>
@@ -278,14 +296,12 @@ if (isset($_POST['login'])) {
                         <a href="#" class="btn btn-link" data-toggle="modal" data-target="#forgotPasswordModal" style="text-align: right; margin:-15px; margin-bottom: -10px;">Forgot Password?</a>
                     </div>
 
-
                     <div class="form-actions text-center">
-                        <button type="submit" class="btn btn-block btn-info" title="Log In" name="login" value="Staff Login" style="font-family: 'Times New Roman', Times, serif; border-radius: 5px; font-size: 18px; padding: 8px;">Login</button>
+                        <button type="submit" class="btn btn-block btn-info" title="Log In" name="login" value="Admin Login" style="font-family: 'Times New Roman', Times, serif; border-radius: 5px; font-size: 18px; padding: 8px;">Login</button>
                         <a href="index.php" class="btn btn-link" name="back" style="font-family: 'Times New Roman', Times, serif; font-size: 18px; padding: 10px; margin-bottom: -30px; margin-top: 2px;">Back</a>
                     </div>
 
                 </form>
-
 
                 <!-- Forgot Password -->
                 <div id="forgotPasswordModal" class="modal fade">
@@ -296,11 +312,11 @@ if (isset($_POST['login'])) {
                                 <h4 class="modal-title" style="font-size: 24px; color: #E71B03">Forgot Password?</h4>
                             </div>
                             <div class="modal-body">
-                                <p style="font-size: 18px; margin-bottom: 15px;">Enter your details below to reset your password.</p>
+                                <p style="font-size: 18px;">Enter your details below to reset your password.</p>
                                 <form class="form-login" name="forgot" method="post" style="font-family:'Times New Roman', Times, serif;">
+                                    <input type="text" name="id" placeholder="ID" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px;" required><br>
                                     <input type="text" name="username" placeholder="Username" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px;" required><br>
                                     <input type="email" name="email" placeholder="Email" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px;" required><br>
-                                    <input type="text" name="designation" placeholder="Designation" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px;" required><br>
                                     <input type="password" class="form-control" placeholder="New Password" id="password" name="password" style="font-size: 16px; width: 325px;" required><br>
                                     <input type="password" class="form-control unicase-form-control text-input" placeholder="Confirm Password" id="confirmpassword" name="confirmpassword" style="font-size: 16px; width: 325px;" required>
                                     <div class="modal-footer" style="background-color: white;">
@@ -315,9 +331,12 @@ if (isset($_POST['login'])) {
 
             </div>
         </div>
+        <div class="background"></div>
     </div>
 
-    <!-- Removed loading-overlay and loading-spinner as they are not used -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
 
     <script>
         function handleFocus(input) {
@@ -329,6 +348,10 @@ if (isset($_POST['login'])) {
                 input.parentElement.classList.remove('input-filled');
             }
         }
+
+        document.getElementById('loginLink').addEventListener('click', function(event) {
+            document.getElementById('loadingOverlay').style.display = 'block';
+        });
     </script>
 
     <script src="js/jquery.min.js"></script>
