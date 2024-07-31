@@ -5,11 +5,11 @@ if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
 }
 ?>
-<!-- Visit codeastro.com for more projects -->
+
 <html lang="en">
 
 <head>
-  <title>Gym System Admin</title>
+  <title>PSO Admin</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -28,12 +28,11 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Header-part-->
   <div id="header">
-    <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
+    <h1><a href="dashboard.html">PSO Admin</a></h1>
   </div>
   <!--close-Header-part-->
 
-
-  <!--top-Header-menu--><!-- Visit codeastro.com for more projects -->
+  <!--top-Header-menu-->
   <?php include 'includes/topheader.php' ?>
   <!--close-top-Header-menu-->
   <!--start-top-serch-->
@@ -109,15 +108,9 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Footer-part-->
 
-  <div class="row-fluid">
-    <div id="footer" class="span12"> <?php echo date("Y"); ?> &copy; Developed By Naseeb Bajracharya</a> </div>
-  </div>
-
-  <style>
-    #footer {
-      color: white;
-    }
-  </style>
+  <?php
+  include 'includes/footer.php';
+  ?>
 
   <!--end-Footer-part-->
 

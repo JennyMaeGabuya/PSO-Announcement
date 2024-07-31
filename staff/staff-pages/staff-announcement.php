@@ -31,13 +31,15 @@ if (!isset($_SESSION['user_id'])) {
 
     <!--Header-part-->
     <div id="header">
-        <h1><a href="dashboard.html">PSO Inventory System</a></h1>
+        <h1><a href="dashboard.html">PSO Staff</a></h1>
     </div>
     <!--close-Header-part-->
 
-    <?php $page = "announcement"; include '../includes/header.php'; ?>
+    <?php $page = "announcement";
+    include '../includes/header.php'; ?>
     <!--sidebar-menu-->
-    <?php $page = "announcement"; include '../includes/sidebar.php'; ?>
+    <?php $page = "announcement";
+    include '../includes/sidebar.php'; ?>
     <!--sidebar-menu-->
 
     <div id="content">
@@ -85,14 +87,11 @@ if (!isset($_SESSION['user_id'])) {
     <!--end-main-container-part-->
 
     <!--Footer-part-->
-    <div class="row-fluid">
-        <div id="footer" class="span12"> <?php echo date("Y"); ?> &copy; Developed By Naseeb Bajracharya </div>
-    </div>
-    <style>
-        #footer {
-            color: white;
-        }
-    </style>
+
+    <?php
+    include '../includes/footer.php';
+    ?>
+
     <!--end-Footer-part-->
 
     <script src="../js/excanvas.min.js"></script>

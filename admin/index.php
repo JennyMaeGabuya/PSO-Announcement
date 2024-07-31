@@ -12,7 +12,7 @@ $result3 = mysqli_query($con, $qry);
 $qry = "SELECT designation, count(*) as snumber FROM staffs GROUP BY designation";
 $result5 = mysqli_query($con, $qry);
 ?>
-<!-- Visit codeastro.com for more projects -->
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -118,8 +118,6 @@ $result5 = mysqli_query($con, $qry);
         <?php
         }
         ?>
-
-
       ]);
 
       var options = {
@@ -183,7 +181,6 @@ $result5 = mysqli_query($con, $qry);
         <?php
         }
         ?>
-
 
       ]);
 
@@ -270,7 +267,7 @@ $result5 = mysqli_query($con, $qry);
 
   <!--Header-part-->
   <div id="header">
-    <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
+    <h1><a href="dashboard.html">PSO Admin</a></h1>
   </div>
   <!--close-Header-part-->
 
@@ -448,26 +445,13 @@ $result5 = mysqli_query($con, $qry);
 
   <!--Footer-part-->
 
-  <div class="row-fluid">
-    <div id="footer" class="span12"> <?php echo date("Y"); ?> &copy; Developed By Naseeb Bajracharya</a> </div>
-  </div>
-
-  <style>
-    #footer {
-      color: white;
-    }
-
-    #piechart {
-      width: 800px;
-      height: 280px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
+  <?php
+  include 'includes/footer.php';
+  ?>
 
   <!--end-Footer-part-->
 
-  <script src="../js/excanvas.min.js"></script> <!-- Visit codeastro.com for more projects -->
+  <script src="../js/excanvas.min.js"></script>
   <script src="../js/jquery.min.js"></script>
   <script src="../js/jquery.ui.custom.js"></script>
   <script src="../js/bootstrap.min.js"></script>

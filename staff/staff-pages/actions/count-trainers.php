@@ -1,18 +1,17 @@
 <?php
 
-$servername="localhost";
-$uname="root";
-$pass="";
-$db="gymnsb";
+$servername = "localhost";
+$uname = "root";
+$pass = "";
+$db = "gymnsb";
 
-$conn=mysqli_connect($servername,$uname,$pass,$db);
+$conn = mysqli_connect($servername, $uname, $pass, $db);
 
-if(!$conn){
+if (!$conn) {
     die("Connection Failed");
 }
 
 $sql = "SELECT * FROM staffs WHERE designation='Trainer'";
-                $query = $conn->query($sql);
+$query = $conn->query($sql);
 
-                echo "$query->num_rows";
-?>
+echo "$query->num_rows";

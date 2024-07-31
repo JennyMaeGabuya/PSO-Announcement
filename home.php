@@ -314,11 +314,11 @@ if (isset($_POST['login'])) {
                             <div class="modal-body">
                                 <p style="font-size: 18px;">Enter your details below to reset your password.</p>
                                 <form class="form-login" name="forgot" method="post" style="font-family:'Times New Roman', Times, serif;">
-                                    <input type="text" name="id" placeholder="ID" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px;" required><br>
-                                    <input type="text" name="username" placeholder="Username" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px;" required><br>
-                                    <input type="email" name="email" placeholder="Email" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px;" required><br>
-                                    <input type="password" class="form-control" placeholder="New Password" id="password" name="password" style="font-size: 16px; width: 325px;" required><br>
-                                    <input type="password" class="form-control unicase-form-control text-input" placeholder="Confirm Password" id="confirmpassword" name="confirmpassword" style="font-size: 16px; width: 325px;" required>
+                                    <input type="text" name="id" placeholder="ID" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px; height: 30px;" required><br>
+                                    <input type="text" name="username" placeholder="Username" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px; height: 30px;" required><br>
+                                    <input type="email" name="email" placeholder="Email" autocomplete="off" class="form-control" style="font-size: 16px; width: 325px; height: 30px;" required><br>
+                                    <input type="password" class="form-control" placeholder="New Password" id="password" name="password" style="font-size: 16px; width: 325px; height: 30px;" required><br>
+                                    <input type="password" class="form-control unicase-form-control text-input" placeholder="Confirm Password" id="confirmpassword" name="confirmpassword" style="font-size: 16px; width: 325px; height: 30px;" required>
                                     <div class="modal-footer" style="background-color: white;">
                                         <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 16px;">Cancel</button>
                                         <button type="submit" class="btn btn-danger" name="change" onclick="return valid();" style="font-size: 16px;">Submit</button>

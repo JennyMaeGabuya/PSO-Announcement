@@ -59,11 +59,12 @@ if (!isset($_SESSION['user_id'])) {
     }
 
     #header h1 {
-  background: url("../img/header.png") no-repeat scroll 0 0 transparent;
-  height: 800px; /* Adjust the height as needed */
-  width: 250px; /* Adjust the width as needed */
-}
-
+      background: url("../img/header.png") no-repeat scroll 0 0 transparent;
+      height: 800px;
+      /* Adjust the height as needed */
+      width: 250px;
+      /* Adjust the width as needed */
+    }
   </style>
 
 </head>
@@ -251,15 +252,9 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Footer-part-->
 
-  <div class="row-fluid">
-    <div id="footer" class="span12"> <?php echo date("Y"); ?> &copy; Developed By Naseeb Bajracharya</a> </div>
-  </div>
-
-  <style>
-    #footer {
-      color: white;
-    }
-  </style>
+  <?php
+  include '../includes/footer.php';
+  ?>
 
   <!--end-Footer-part-->
 

@@ -5,12 +5,12 @@ if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
 }
 ?>
-<!-- Visit codeastro.com for more projects -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Gym System Admin</title>
+  <title>PSO Admin</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -28,10 +28,9 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Header-part-->
   <div id="header">
-    <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
+    <h1><a href="dashboard.html">PSO Admin</a></h1>
   </div>
   <!--close-Header-part-->
-  <!-- Visit codeastro.com for more projects -->
 
   <!--top-Header-menu-->
   <?php include 'includes/topheader.php' ?>
@@ -40,7 +39,7 @@ if (!isset($_SESSION['user_id'])) {
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> --><!-- Visit codeastro.com for more projects -->
+</div> -->
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
@@ -113,15 +112,9 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Footer-part-->
 
-  <div class="row-fluid">
-    <div id="footer" class="span12"> <?php echo date("Y"); ?> &copy; Developed By Naseeb Bajracharya</a> </div>
-  </div>
-
-  <style>
-    #footer {
-      color: white;
-    }
-  </style>
+  <?php
+  include 'includes/footer.php';
+  ?>
 
   <!--end-Footer-part-->
 

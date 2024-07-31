@@ -22,7 +22,7 @@ if (!$query) {
 <html lang="en">
 
 <head>
-    <title>Gym System Admin</title>
+    <title>PSO Staff</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -65,7 +65,7 @@ if (!$query) {
 
     <!--Header-part-->
     <div id="header">
-        <h1><a href="dashboard.html">PSO Inventory System</a></h1>
+        <h1><a href="dashboard.html">PSO Staff</a></h1>
     </div>
 
     <?php include '../includes/header.php' ?>

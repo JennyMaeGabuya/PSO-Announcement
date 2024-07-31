@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 <html lang="en">
 
 <head>
-    <title>Gym System</title>
+    <title>PSO Staff</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -28,7 +28,7 @@ if (!isset($_SESSION['user_id'])) {
 
     <!--Header-part-->
     <div id="header">
-        <h1><a href="dashboard.php">Perfect Gym</a></h1>
+        <h1><a href="dashboard.php">PSO Staff</a></h1>
     </div>
     <!--close-Header-part-->
 
@@ -213,16 +213,11 @@ if (!isset($_SESSION['user_id'])) {
 
     <!--Footer-part-->
 
-    <div class="row-fluid">
-        <div id="footer" class="span12"> <?php echo date("Y"); ?> &copy; Developed By Naseeb Bajracharya</a> </div>
-    </div>
+    <?php
+    include '../includes/footer.php';
+    ?>
 
     <style>
-        #footer {
-            color: white;
-        }
-
-
         body {
             -webkit-font-smoothing: antialiased;
             -webkit-text-size-adjust: none;
