@@ -12,7 +12,7 @@
       <ul class="dropdown-menu">
         <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
         <li class="divider"></li>
-        <li><a href="#"><i class="fas fa-cog"></i> Change Password</a></li>
+        <li><a href="change-password.php"><i class="fas fa-cog"></i> Change Password</a></li>
         <li class="divider"></li>
         <li><a href="../logout.php"><i class="fas fa-key"></i> Log Out</a></li>
       </ul>
