@@ -15,7 +15,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     <style>
         .sidebar {
-            padding-top: 50px;
+            padding-top: 20px;
         }
         .sidebar .nav > li > a {
             color: #333;
@@ -23,8 +23,7 @@
         .form-container {
             margin: 0 auto;
             padding: 35px;
-            padding-bottom:-50px;
-            max-width: 500px;
+            max-width: 600px;
             background-color: #f9f9f9;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -34,10 +33,10 @@
         }
         .form-container .form-group {
             margin-bottom: 20px;
-           
+            width: 100%;
         }
         .form-container input[type="password"] {
-            width: calc(100% - 22px);
+            width: calc(100% - 20px);
             padding: 10px;
             border-radius: 4px;
             border: 1px solid #ccc;
@@ -49,7 +48,8 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            float: right; /* Align to the right */
+            margin: 0 auto; /* Center the button */
+            display: block;
         }
         .form-container input[type="submit"]:hover {
             background-color: #0056b3;

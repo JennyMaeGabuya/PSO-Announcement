@@ -10,7 +10,7 @@
         <i class="fas fa-user-circle"></i> <span class="text">Welcome Admin</span><b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
-        <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
+        <li><a href="admin-profile.php"><i class="fas fa-user"></i> My Profile</a></li>
         <li class="divider"></li>
         <li><a href="change-password.php"><i class="fas fa-cog"></i> Change Password</a></li>
         <li class="divider"></li>
