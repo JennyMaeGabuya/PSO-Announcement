@@ -1,3 +1,6 @@
+<div id="header">
+  <img src="../img/header_logo.png" alt="Logo" style="width: 190px; height: 110px;">
+</div>
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav right">
     <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="fas fa-user-circle"></i> <span class="text">Welcome Admin</span><b class="caret"></b></a>
@@ -13,3 +16,10 @@
     <li class=""><a title="" href="../logout.php"><i class="fas fa-power-off"></i> <span class="text">Logout</span></a></li>
   </ul>
 </div>
+<style>
+  #header img {
+    position: absolute;
+    left: 10px;
+    margin-bottom: 20px;
+  }
+</style>

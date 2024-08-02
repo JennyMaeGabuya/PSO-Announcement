@@ -21,9 +21,58 @@ if (session_status() == PHP_SESSION_NONE) {
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
   <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    #header img {
+      position: absolute;
+      left: 10px;
+      margin-bottom: 20px;
+    }
+
+    body {
+      background-color: #1f262d;
+    }
+
+    #sidebar {
+      color: white;
+      height: 100vh;
+    }
+
+    #sidebar a {
+      color: white;
+    }
+
+    #content #content-header {
+      border: 2px solid #ddd;
+      padding: 5px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+    #content {
+      padding-top: 0px;
+    }
+
+    .widget-title {
+      background-color: #ff6f61;
+      color: white;
+    }
+
+    .widget-title h5 {
+      color: white;
+    }
+
+    .widget-box {
+      border: none;
+      box-shadow: none;
+    }
+
     .highlight {
       background-color: #FFFF99;
       border: 1px solid #FFD700;
+      color: black;
+      font-size: 18px;
     }
 
     .zoom-img {
@@ -36,56 +85,36 @@ if (session_status() == PHP_SESSION_NONE) {
 
     .user-thumb {
       float: left;
-      /* Align the user-thumb to the left */
       margin-right: 10px;
-      /* Add some margin between the user-thumb and article-post */
       background-color: transparent;
     }
 
     .article-post {
       overflow: hidden;
-      /* Clear the float */
       padding-left: 10px;
-      /* Adjust padding to ensure content is not overlapping with the image */
     }
-
-    .highlight {
-      color: black;
-      font-size: 18px;
-      /* Increase font size for the highlighted announcement */
-    }
-
-    /* Add padding to article-post when it doesn't have the highlight class */
+    
     .article-post:not(.highlight) {
       padding: 10px;
-      /* Add padding to all sides */
     }
   </style>
-
-
 </head>
 
 <body>
-
   <!--Header-part-->
-  <div id="header">
-    <h1>PSO Inventory System</h1>
-  </div>
+  
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
   <?php include '../includes/topheader.php' ?>
   <!--close-top-Header-menu-->
 
-  <!--start-top-serch-->
-  <!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-  <!--close-top-serch-->
   <!--sidebar-menu-->
-  <?php $page = "dashboard";
-  include '../includes/sidebar.php' ?>
+  <br><br>
+  <div id="sidebar">
+    <?php $page = "dashboard";
+    include '../includes/sidebar.php' ?>
+  </div>
   <!--sidebar-menu-->
 
   <!--main-container-part-->
@@ -98,8 +127,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <!--Action boxes-->
     <div class="container-fluid">
-
-      <!--End-Action boxes-->
 
       <div class="row-fluid">
 
@@ -114,14 +141,13 @@ if (session_status() == PHP_SESSION_NONE) {
                 <li>
 
                   <?php
-
                   include "dbcon.php";
 
                   // Calculate the date of one week ago
                   $one_week_ago = date('Y-m-d', strtotime('-1 week'));
 
-                  // Retrieve the announcements from the last week and the newest one
-                  $qry = "SELECT * FROM announcements WHERE date >= '$one_week_ago' ORDER BY date DESC";
+                  // Retrieve the reminders from the last week
+                  $qry = "SELECT * FROM reminder WHERE date >= '$one_week_ago' ORDER BY date DESC";
                   $result = mysqli_query($con, $qry);
 
                   $count = 0; // Initialize count variable
@@ -129,57 +155,54 @@ if (session_status() == PHP_SESSION_NONE) {
                     // Increment count variable
                     $count++;
 
-                    // Check if this is the newest announcement
+                    // Check if this is the newest reminder
                     $class = ($count == 1) ? 'highlight' : '';
 
                     // Start the div with the article-post class
-                    echo "<div class='article-post $class'>"; // Add the class here
+                    echo "<div class='article-post $class'>";
 
-                    // Check if this is the highlighted announcement
+                    // Check if this is the highlighted reminder
                     $messageStyle = ($class == 'highlight') ? 'font-weight: bold;' : '';
 
                     // Start the div for user-thumb
-                    echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
-                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='http://localhost/gym%20system/img/demo/alert.png'> ";
+                    echo "<div class='user-thumb'>";
+                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../path/to/your/alert.png'> ";
                     echo "</div>"; // Close the user-thumb div
 
-                    // Start the div for announcement content
-                    echo "<div style='overflow: hidden;'>"; // Adjust styling here
+                    // Start the div for reminder content
+                    echo "<div>";
                     echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
                     echo "<p><a href='#' style='$messageStyle'>" . $row['message'] . "</a> </p>";
-                    echo "</div>"; // Close the announcement content div
+                    echo "</div>"; // Close the reminder content div
 
                     echo "</div>"; // Close the article-post div
                   }
-
                   ?>
 
-                  <a href="announcement.php"><button class="btn btn-warning btn-mini">View All</button></a>
+                  <a href="reminders.php"><button class="btn btn-warning btn-mini">View All</button></a>
                 </li>
               </ul>
             </div>
           </div>
 
-        </div> <!-- End of ToDo List Bar -->
+        </div> <!-- End of Reminders -->
 
         <div class="span6">
           <div class="widget-box">
-            <div class="widget-title bg_ly" data-toggle="collapse">
-              <span class="icon"><i class="icon-chevron-down"></i></span>
-              <h5>Product & Supply Office Announcements</h5>
+            <div class="widget-title"> <span class="icon"><i class="icon-bullhorn"></i></span>
+              <h5>Announcements</h5>
             </div>
             <div class="widget-content nopadding collapse in">
               <ul class="recent-posts">
                 <li>
 
                   <?php
-
-                  include "../dbcon.php";
+                  include "dbcon.php";
 
                   // Calculate the date of one week ago
                   $one_week_ago = date('Y-m-d', strtotime('-1 week'));
 
-                  // Retrieve the announcements from the last week and the newest one
+                  // Retrieve the announcements from the last week
                   $qry = "SELECT * FROM announcements WHERE date >= '$one_week_ago' ORDER BY date DESC";
                   $result = mysqli_query($con, $qry);
 
@@ -192,38 +215,32 @@ if (session_status() == PHP_SESSION_NONE) {
                     $class = ($count == 1) ? 'highlight' : '';
 
                     // Start the div with the article-post class
-                    echo "<div class='article-post $class'>"; // Add the class here
+                    echo "<div class='article-post $class'>";
 
                     // Check if this is the highlighted announcement
                     $messageStyle = ($class == 'highlight') ? 'font-weight: bold;' : '';
 
-                    // Truncate the message to the first 15 words and add "..."
-                    $message = implode(' ', array_slice(explode(' ', $row['message']), 0, 15));
-                    $message = strlen($row['message']) > 15 ? $message . "..." : $message;
-
                     // Start the div for user-thumb
-                    echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
-                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='http://localhost/gym%20system/img/demo/alert.png'> ";
+                    echo "<div class='user-thumb'>";
+                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../path/to/your/alert.png'> ";
                     echo "</div>"; // Close the user-thumb div
 
                     // Start the div for announcement content
-                    echo "<div style='overflow: hidden;'>"; // Adjust styling here
+                    echo "<div>";
                     echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
-                    echo "<p><a href='#' style='$messageStyle'>" . $message . "</a> </p>";
+                    echo "<p><a href='#' style='$messageStyle'>" . $row['message'] . "</a> </p>";
                     echo "</div>"; // Close the announcement content div
 
                     echo "</div>"; // Close the article-post div
                   }
-
                   ?>
 
-                  <a href="announcement.php"><button class="btn btn-warning btn-mini">View All</button></a>
+                  <a href="announcements.php"><button class="btn btn-warning btn-mini">View All</button></a>
                 </li>
               </ul>
-
             </div>
           </div>
-        </div> <!-- end of announcement -->
+        </div> <!-- End of Announcements -->
 
       </div><!-- End of row-fluid -->
     </div><!-- End of container-fluid -->
@@ -281,16 +298,10 @@ if (session_status() == PHP_SESSION_NONE) {
     // This function is called from the pop-up menus to transfer to
     // a different page. Ignore if the value returned is a null string:
     function goPage(newURL) {
-
-      // if url is empty, skip the menu dividers and reset the menu selection to default
       if (newURL != "") {
-
-        // if url is "-", it is this page -- reset the menu:
         if (newURL == "-") {
           resetMenu();
-        }
-        // else, send page to designated URL            
-        else {
+        } else {
           document.location.href = newURL;
         }
       }

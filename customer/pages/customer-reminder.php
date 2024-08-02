@@ -24,9 +24,6 @@ header('location:../index.php');
 <body>
 
 <!--Header-part-->
-<div id="header">
-  <h1><a href="index.php">Perfect Gym System</a></h1>
-</div>
 <!--close-Header-part--> 
 
 
@@ -41,6 +38,7 @@ header('location:../index.php');
 </div> -->
 <!--close-top-serch-->
 <!--sidebar-menu-->
+<br><br>
 <?php $page="reminder"; include '../includes/sidebar.php'?>
 <!--sidebar-menu-->
 

@@ -17,9 +17,6 @@
 <body><!-- Visit codeastro.com for more projects -->
 
 <!--Header-part-->
-<div id="header">
-  <h1><a href="index.php">Perfect Gym System</a></h1>
-</div>
 <!--close-Header-part--> 
 
 
@@ -27,6 +24,7 @@
 <?php include '../includes/topheader.php'?>
 <!--close-top-Header-menu-->
 <!--sidebar-menu-->
+<br><br>
 <?php $page="report"; include '../includes/sidebar.php'?>
 <!--sidebar-menu-->
 

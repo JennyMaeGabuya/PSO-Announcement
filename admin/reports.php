@@ -176,9 +176,7 @@ $result = mysqli_query($con, $qry);
 <body>
 
   <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Admin</a></h1>
-  </div>
+
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
@@ -192,6 +190,7 @@ $result = mysqli_query($con, $qry);
   <!--close-top-serch-->
   <!-- Visit codeastro.com for more projects -->
   <!--sidebar-menu-->
+  <br><br>
   <?php $page = 'chart';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->

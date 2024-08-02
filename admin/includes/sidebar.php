@@ -27,8 +27,19 @@
         <li class="<?php if($page=='chart'){ echo 'active'; }?>"><a href="reports.php"><i class="fas fa-arrow-right"></i> Chart Representation</a></li>
         <li class="<?php if($page=='member-repo'){ echo 'active'; }?>"><a href="members-report.php"><i class="fas fa-arrow-right"></i> Offices Product & Supply Reports</a></li>
       </ul>
-    </li>
-
-     
+    </li> 
   </ul>
 </div>
+<style>
+  div #sidebar{
+    background-color: #1f262d;
+  }
+  body {
+      background-color: #1f262d;
+  }
+  #header img {
+      position: absolute;
+      left: 10px;
+      margin-bottom: 20px;
+    }
+</style>

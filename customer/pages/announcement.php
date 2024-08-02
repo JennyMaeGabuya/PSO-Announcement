@@ -45,9 +45,7 @@ if (!isset($_SESSION['user_id'])) {
 <body>
 
   <!--Header-part-->
-  <div id="header">
-    <h1><a href="index.php">PSO Inventory System</a></h1>
-  </div>
+
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
@@ -55,6 +53,7 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-Header-menu-->
 
   <!--sidebar-menu-->
+  <br><br>
   <?php $page = "announcement";
   include '../includes/sidebar.php' ?>
   <!--sidebar-menu-->

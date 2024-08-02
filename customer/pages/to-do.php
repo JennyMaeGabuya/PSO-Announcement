@@ -31,16 +31,17 @@ $userid = $_SESSION['user_id'];
 <body>
 
   <!--Header-part-->
-  <div id="header">
-    <h1><a href="index.php">Perfect Gym System</a></h1>
-  </div>
+
   <!--close-Header-part-->
 
 
   <!--top-Header-menu-->
+
   <?php include '../includes/topheader.php' ?>
   <!--close-top-Header-menu-->
+  
   <!--sidebar-menu-->
+  <br><br>
   <?php $page = "todo";
   include '../includes/sidebar.php' ?>
 
@@ -128,6 +129,9 @@ $userid = $_SESSION['user_id'];
   <style>
     #footer {
       color: white;
+    }
+    .highlight{
+      background-color: black;
     }
   </style>
 

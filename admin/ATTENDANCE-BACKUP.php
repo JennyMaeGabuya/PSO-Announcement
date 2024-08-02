@@ -27,12 +27,11 @@ if (!isset($_SESSION['user_id'])) {
 <body>
 
   <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Admin</a></h1>
-  </div>
+
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
+  <br><br>
   <?php include 'includes/topheader.php' ?>
   <!--close-top-Header-menu-->
   <!--start-top-serch-->
