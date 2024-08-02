@@ -41,18 +41,16 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = "member-repo";
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="member-report.php" class="current">Member Reports</a> </div>
-      <h1 class="text-center">View Reports <i class="fas fa-file"></i></h1>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom"> Reports</a><a href="members-report.php" class="current">View Reports</a> </div>
     </div>
+      <h1 class="text-center">View Reports <i class="fas fa-file"></i></h1>
     <div class="container-fluid">
-      <hr>
       <div class="row-fluid">
         <div class="span12">
 

@@ -41,18 +41,17 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'update-equip';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Equipment List</a> </div>
-      <h1 class="text-center">Perfect Gym's Equipment List <i class="fas fa-cogs"></i></h1>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Equipments</a><a href="#" class="current">Equipment List</a> </div>
     </div>
     <div class="container-fluid">
-      <hr>
+          <h1 class="text-center">Perfect Gym's Equipment List <i class="fas fa-keyboard"></i></h1>
+
       <div class="row-fluid">
         <div class="span12">
 

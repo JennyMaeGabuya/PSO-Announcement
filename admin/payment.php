@@ -40,7 +40,6 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'payment';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
@@ -48,10 +47,9 @@ if (!isset($_SESSION['user_id'])) {
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="payment.php" class="current">Payments</a> </div>
-      <h1 class="text-center">Registered Member's Payment <i class="fas fa-group"></i></h1>
     </div>
     <div class="container-fluid">
-      <hr>
+        <h1 class="text-center">Registered Member's Payment <i class="fas fa-credit-card"></i></h1>
       <div class="row-fluid">
         <div class="span12">
 

@@ -41,7 +41,6 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'add-equip';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
@@ -49,10 +48,9 @@ if (!isset($_SESSION['user_id'])) {
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Equipments</a> <a href="#" class="current">Add Equipments</a> </div>
-      <h1>Equipment Entry Form</h1>
     </div>
     <div class="container-fluid">
-      <hr>
+      <h1 class="text-center">Equipment Entry Form <i class="fas fa-pencil-alt"></i></h1>
       <div class="row-fluid">
         <div class="span6">
           <div class="widget-box">

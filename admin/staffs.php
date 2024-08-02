@@ -35,7 +35,7 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-Header-menu-->
 
   <!--sidebar-menu-->
-  <br><br>
+
   <?php $page = 'staff-management';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
@@ -43,10 +43,11 @@ if (!isset($_SESSION['user_id'])) {
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="current">Staff Members</a> </div>
-      <h1 class="text-center">GYM's Staff List <i class="fas fa-briefcase"></i></h1>
+     
     </div>
     <div class="container-fluid">
-      <hr>
+        <h1 class="text-center">GYM's Staff List <i class="fas fa-briefcase"></i></h1>
+        <hr>
       <div class="row-fluid">
         <div class="span12">
           <a href="staffs-entry.php"><button class="btn btn-primary">Add Staff Members</button></a>

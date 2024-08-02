@@ -41,17 +41,16 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'members-entry';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
-      <h1>Member Entry Form</h1>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manage Members</a> <a href="#" class="current">Add Members</a> </div>
+      
     </div>
+    <h1 class="text-center">Member Entry Form <i class="fas fa-pencil-alt"></i></h1>
     <div class="container-fluid">
-      <hr>
       <div class="row-fluid">
         <div class="span6">
           <div class="widget-box">

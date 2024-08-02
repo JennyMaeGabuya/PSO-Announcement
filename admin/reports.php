@@ -190,7 +190,7 @@ $result = mysqli_query($con, $qry);
   <!--close-top-serch-->
   <!-- Visit codeastro.com for more projects -->
   <!--sidebar-menu-->
-  <br><br>
+
   <?php $page = 'chart';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
@@ -198,18 +198,21 @@ $result = mysqli_query($con, $qry);
   <div id="content">
 
     <div id="content-header">
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom"> Reports</a> <a href="reports.php" class="current"> Chart Representation</a> </div>
+
+    </div>
+    <div id="container-fluid" style="margin-top: 20px;">
       <h1 class="text-center">Active and Not Active Accounts Report <i class="fas fa-chart-bar"></i></h1>
     </div>
     <div class="container-fluid">
-
       <div class="row-fluid">
         <div class="span12">
           <div id="piechart" style="width: 800px; height: 450px; margin-left:auto; margin-right:auto;"></div>
         </div>
       </div>
     </div>
-
-    <div id="content-header" style="margin-top: 20px;">
+    <hr>
+    <div id="container-fluid" style="margin-top: 20px;">
       <h1 class="text-center">Useful Life Statuses Report <i class="fas fa-chart-bar"></i></h1>
     </div>
     <div class="container-fluid">

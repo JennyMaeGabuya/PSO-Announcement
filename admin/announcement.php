@@ -19,6 +19,7 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../css/matrix-style.css" />
   <link rel="stylesheet" href="../css/matrix-media.css" />
   <link href="../font-awesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
   <link href="../font-awesome/css/all.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
@@ -41,16 +42,16 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'announcement';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a><a href="announcement.php" class="current">Announcements</a> </div>
-      <h1>Announcement</h1>
+     
     </div>
     <div class="container-fluid">
+      <h1 class="text-center">Announcement <i class="fas fa-bullhorn"></i></h1>
       <hr>
       <a href="manage-announcement.php"><button class="btn btn-danger" type="button">Manage Your Announcements</button></a>
       <div class="row-fluid">

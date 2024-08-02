@@ -27,11 +27,15 @@
     left: 10px;
     margin-bottom: 20px;
   }
-
   .logo-small {
     display: none;
   }
 
+  #content #content-header {
+      border: 2px solid #ddd;
+      padding: 10px;
+      background-color: #f5f5f5;
+    }
   @media (max-width: 768px) {
     .logo-large {
       display: none;
