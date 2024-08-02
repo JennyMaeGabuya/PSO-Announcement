@@ -57,14 +57,6 @@ if (!isset($_SESSION['user_id'])) {
     .article-post:not(.highlight) {
       padding: 10px;
     }
-
-    #header h1 {
-      background: url("../img/header.png") no-repeat scroll 0 0 transparent;
-      height: 800px;
-      /* Adjust the height as needed */
-      width: 250px;
-      /* Adjust the width as needed */
-    }
   </style>
 
 </head>
@@ -72,9 +64,6 @@ if (!isset($_SESSION['user_id'])) {
 <body>
 
   <!--Header-part-->
-  <div id="header">
-    <h1></h1>
-  </div>
   <!--close-Header-part-->
 
   <?php $page = "dashboard";

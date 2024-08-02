@@ -281,7 +281,6 @@ $result5 = mysqli_query($con, $qry);
   <!--close-top-Header-menu-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'dashboard';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->

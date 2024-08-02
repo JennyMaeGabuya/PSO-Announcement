@@ -25,12 +25,6 @@ if (session_status() == PHP_SESSION_NONE) {
       font-family: 'Open Sans', sans-serif;
     }
 
-    #header img {
-      position: absolute;
-      left: 10px;
-      margin-bottom: 20px;
-    }
-
     body {
       background-color: #1f262d;
     }
@@ -50,6 +44,7 @@ if (session_status() == PHP_SESSION_NONE) {
       background-color: #f5f5f5;
       border-radius: 5px;
     }
+
     #content {
       padding-top: 0px;
     }
@@ -93,7 +88,7 @@ if (session_status() == PHP_SESSION_NONE) {
       overflow: hidden;
       padding-left: 10px;
     }
-    
+
     .article-post:not(.highlight) {
       padding: 10px;
     }
@@ -102,7 +97,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <body>
   <!--Header-part-->
-  
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
@@ -110,7 +104,6 @@ if (session_status() == PHP_SESSION_NONE) {
   <!--close-top-Header-menu-->
 
   <!--sidebar-menu-->
-  <br><br>
   <div id="sidebar">
     <?php $page = "dashboard";
     include '../includes/sidebar.php' ?>

@@ -1,3 +1,8 @@
+<div id="header">
+  <img class="logo-large" src="../img/header_logo.png" alt="Logo" style="width: 200px; height: 80px;">
+  <img class="logo-small" src="../img/header_logo.png" alt="Small Logo" style="width: 120px; height: 40px;">
+</div>
+
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav right">
     <li class="dropdown" id="profile-messages">
@@ -19,3 +24,25 @@
     </li>
   </ul>
 </div>
+
+<style>
+  #header img {
+    position: absolute;
+    left: 10px;
+    margin-bottom: 20px;
+  }
+
+  .logo-small {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .logo-large {
+      display: none;
+    }
+
+    .logo-small {
+      display: block;
+    }
+  }
+</style>

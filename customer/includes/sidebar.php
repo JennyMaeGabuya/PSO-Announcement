@@ -22,16 +22,19 @@
                 } ?>"><a href="my-report.php"><i class="icon icon-file"></i> <span>Reports</span></a></li>
   </ul>
 </div>
+
 <style>
-  div #sidebar{
+  div #sidebar {
     background-color: #1f262d;
   }
+
   body {
-      background-color: #1f262d;
+    background-color: #1f262d;
   }
+
   #header img {
-      position: absolute;
-      left: 10px;
-      margin-bottom: 20px;
-    }
+    position: absolute;
+    left: 10px;
+    margin-bottom: 20px;
+  }
 </style>

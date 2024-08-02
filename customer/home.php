@@ -94,7 +94,7 @@ if (isset($_POST['login'])) {
 <html lang="en">
 
 <head>
-    <title>PSO Inventory | Login</title>
+    <title>PSO Inventory | User Login</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -266,7 +266,7 @@ if (isset($_POST['login'])) {
             <div class="login-page">
                 <div class="text-center">
                     <b>
-                        <h1 style="margin-bottom: 10px;">Login</h1>
+                        <h1 style="margin-bottom: 10px;">User Login</h1>
                     </b>
                     <h3 style="margin-bottom: 15px; color: #E71B03;">PSO Inventory System</h3>
                 </div>
