@@ -40,7 +40,6 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'update-equip';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->

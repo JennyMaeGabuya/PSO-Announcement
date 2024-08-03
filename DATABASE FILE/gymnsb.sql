@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 30, 2024 at 04:59 AM
+-- Generation Time: Aug 03, 2024 at 09:20 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -32,7 +32,13 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `user_id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `gender` text NOT NULL,
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `co_number` bigint NOT NULL,
+  `profile_picture` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `dor` date NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -40,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`user_id`, `username`, `password`, `name`) VALUES
-(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `admin` (`user_id`, `username`, `password`, `name`, `gender`, `email`, `address`, `co_number`, `profile_picture`, `dor`) VALUES
+(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Jenny Mae', 'Female', 'admin@gmail.com', 'Lipa City, Batangas', 9123456789, 'IMG_20240723_215500_534.jpg', '2024-08-03');
 
 -- --------------------------------------------------------
 
@@ -123,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `equipment` (
 --
 
 INSERT INTO `equipment` (`id`, `name`, `amount`, `quantity`, `vendor`, `description`, `address`, `contact`, `date`) VALUES
-(3, 'Treadmill', 909, 4, 'DnS', 'Edited Description', '7 Cedarstone Drive', '8521479633', '2019-03-07'),
+(3, 'Treadmillsas', 3636, 4, 'DnS', 'Edited Description', '7 Cedarstone Drive', '8521479633', '2019-03-07'),
 (4, 'Vertical Press Machine', 949, 3, 'SS Industries', 'For Biceps And Triceps, Upper Back, Chest', '7 Cedarstone Drive', '1245558980', '2020-03-19'),
 (5, 'Dumbell - Adjustable', 102, 26, 'Uptown Suppliers', 'Material: Steel, Rubber Plastic, Concrete', '7 Cedarstone Drive', '9875552100', '2020-03-29'),
 (6, 'Multi Bench Press Machine', 219, 2, 'DnS Suppliers', '6 In 1 Multi Bench With Incline, Flat, Decline Ben', '7 Cedarstone Drive', '7410001010', '2020-04-05'),
@@ -167,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `members` (
 --
 
 INSERT INTO `members` (`user_id`, `fullname`, `username`, `password`, `gender`, `dor`, `services`, `amount`, `paid_date`, `p_year`, `plan`, `address`, `contact`, `status`, `attendance_count`, `ini_weight`, `curr_weight`, `ini_bodytype`, `curr_bodytype`, `progress_date`, `reminder`) VALUES
-(6, 'Harry Denn', 'harry', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2024-05-27', 'Sauna', 4950, '2022-06-02', 2021, '30', '64 Mulberry Lane', '8545878545', 'Active', 0, 54, 62, 'Slim', 'Buffed', '2020-04-22', 1),
+(6, 'Harry Denn', 'harry', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2024-05-27', '', 148500, '2022-06-02', 2021, '30', '64 Mulberry Lane', '8545878545', 'Active', 0, 54, 62, 'Slim', 'Buffed', '2020-04-22', 1),
 (8, 'Charles Anderson', 'charles', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2020-01-02', 'Fitness', 55, '2020-04-01', 2020, '3', '99 Heron Way', '8520258520', 'Active', 0, 92, 85, 'Fat', 'Bulked', '2020-04-22', 1),
 (11, 'Justin Schexnayder', 'justin', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2019-01-25', 'Cardio', 35, '2020-03-31', 2020, '3', '14 Blair Court', '7535752220', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
 (14, 'Ryan Crowl', 'ryan', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2019-07-13', 'Fitness', 55, '2024-03-29', 2020, '1', '34 Twin Oaks Drive', '1578880010', 'Active', 0, 59, 63, 'Slim', 'Slim', '2020-04-23', 0),

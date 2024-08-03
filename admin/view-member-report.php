@@ -41,7 +41,6 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = "member-repo";
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->

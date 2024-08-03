@@ -12,9 +12,9 @@
       <ul class="dropdown-menu">
         <li><a href="admin-profile.php"><i class="fas fa-user"></i> My Profile</a></li>
         <li class="divider"></li>
-        <li><a href="change-password.php"><i class="fas fa-cog"></i> Change Password</a></li>
+        <li><a href="change-password.php"><i class="fas fa-lock"></i> Change Password</a></li>
         <li class="divider"></li>
-        <li><a href="../logout.php"><i class="fas fa-key"></i> Log Out</a></li>
+        <li><a href="../logout.php"><i class="fas fa-power-off"></i> Log Out</a></li>
       </ul>
     </li>
     <li class=""><a title="" href="../logout.php"><i class="fas fa-power-off"></i> <span class="text">Logout</span></a></li>
@@ -27,15 +27,17 @@
     left: 10px;
     margin-bottom: 20px;
   }
+
   .logo-small {
     display: none;
   }
 
   #content #content-header {
-      border: 2px solid #ddd;
-      padding: 10px;
-      background-color: #f5f5f5;
-    }
+    border: 2px solid #ddd;
+    padding: 10px;
+    background-color: #f5f5f5;
+  }
+
   @media (max-width: 768px) {
     .logo-large {
       display: none;

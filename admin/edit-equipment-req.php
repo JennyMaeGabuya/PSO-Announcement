@@ -111,7 +111,6 @@ if (!isset($_SESSION['user_id'])) {
           echo "</div>";
           echo "</div>";
           echo "</div>";
-          // <!-- Visit codeastro.com for more projects -->
         }
       } else {
         echo "<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'> DASHBOARD </a></h3>";

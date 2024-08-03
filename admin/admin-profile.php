@@ -1,10 +1,35 @@
+<?php
+session_start();
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('location:../index.php');
+    exit();
+}
+
+include 'dbcon.php';
+
+// Use the logged-in user's ID
+$id = $_SESSION['user_id'];
+
+$qry = "SELECT * FROM admin WHERE user_id='$id'";
+$result = mysqli_query($con, $qry);
+
+// Check if the query was successful and if any rows were returned
+if (!$result || mysqli_num_rows($result) == 0) {
+    echo "Error: No records found.";
+    exit();
+}
+
+$row = mysqli_fetch_array($result);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Profile</title>
+    <title>PSO Admin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="../css/fullcalendar.css" />
@@ -15,179 +40,150 @@
     <link rel="stylesheet" href="../css/jquery.gritter.css" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     <style>
-        .sidebar {
-            padding-top: 20px;
+        #footer {
+            padding: 5px;
+            text-align: center;
         }
 
-        .sidebar .nav>li>a {
-            color: #333;
-        }
-
-        .form-container {
-            margin: 0 auto;
-            padding: 35px;
-            padding-bottom: 50px;
-            max-width: 800px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .form-container h2 {
-            margin-bottom: 20px;
-        }
-
-        .form-container .form-group {
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="email"],
-        .form-container input[type="tel"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            width: 150%;
-        }
-
-        .form-container input[type="submit"],
-        .form-container input[type="button"] {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-            font-size: 16px;
-        }
-
-        .form-container input[type="submit"]:hover,
-        .form-container input[type="button"]:hover {
-            background-color: #0056b3;
-        }
-
-        .profile-pic-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 40px;
-            margin-left: 20px;
-            margin-top: 30px;
-        }
-
-        .profile-pic {
-            width: 170px;
-            height: 170px;
+        #profile-picture {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 50%;
-            background-color: #e0e0e0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid #007bff;
-            cursor: pointer;
+            margin-top: 5px;
         }
 
-        .profile-pic input[type="file"] {
-            display: none;
-        }
-
-        .upload-icon {
-            position: absolute;
-            font-size: 24px;
-            color: #007bff;
-            cursor: pointer;
+        .error-message {
+            color: red;
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: 5px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Include header -->
-    <?php include 'includes/topheader.php'; ?>
+    <div id="wrapper">
+        <!-- Include header -->
+        <?php include 'includes/topheader.php'; ?>
 
-    <!-- Include sidebar -->
-    <div class="sidebar">
-        <?php $page = "admin-profile"; include 'includes/sidebar.php'; ?>
-    </div>
+        <!-- Include sidebar -->
+        <?php
+        $page = 'admin-profile';
+        include 'includes/sidebar.php';
+        ?>
 
-    <!-- Main content -->
-    <div id="content">
-        <div id="content-header">
-            <div id="breadcrumb">
-                <a href="index.php" class="tip-bottom"><i class="icon-home"></i> Home</a>
-                <a href="admin-profile.php" class="current">Admin Profile</a>
+        <!-- Main content -->
+        <div id="content">
+            <div id="content-header">
+                <div id="breadcrumb">
+                    <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+                    <a href="#" class="tip-bottom">My Profile</a>
+                </div>
             </div>
-            <h1>Admin Profile</h1>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class='widget-box'>
-                        <div class='widget-title'>
-                            <span class='icon'><i class='icon-user'></i></span>
-                            <h5>Admin Profile</h5>
-                        </div>
-                        <div class='widget-content nopadding'>
-                            <div class="form-container">
-                                <!-- Profile Picture Section -->
-                                <div class="profile-pic-container">
-                                    <label for="profile_pic_input" class="profile-pic">
-                                        <span class="upload-icon">+</span>
-                                        <input type="file" id="profile_pic_input" name="profile_pic" accept="image/*">
-                                    </label>
-                                </div>
-                                <!-- Form Section -->
-                                <div>
-                                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label for="admin_fullname">Fullname:</label>
-                                            <input type="text" id="admin_fullname" name="admin_fullname" required>
+            <div class="container-fluid">
+            <h1 class="text-center">Profile Details <i class="fas fa-info-circle"></i></h1>
+                <hr>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <span class="icon"><i class="fas fa-align-justify"></i></span>
+                                <h5>Personal and Contact Info</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <form action="edit-admin-profile.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <img id="profile-picture" src="profile_image/<?php echo htmlspecialchars($row['profile_picture']); ?>" alt="Profile Picture" />
+                                            <div id="error-message" class="error-message"></div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="admin_department">Department/Office:</label>
-                                            <input type="text" id="admin_department" name="admin_department" required>
+                                        <label class="control-label">Profile Picture :</label>
+                                        <div class="controls">
+                                            <input type="file" class="span11" name="profile" id="profile-input" />
                                         </div>
-                                        <div class="form-group">
-                                            <label for="admin_email">Email:</label>
-                                            <input type="email" id="admin_email" name="admin_email" required>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Full Name :</label>
+                                        <div class="controls">
+                                            <input type="text" class="span11" name="fullname" value='<?php echo htmlspecialchars($row['name']); ?>' />
                                         </div>
-                                        <div class="form-group">
-                                            <label for="admin_gender">Gender:</label>
-                                            <input type="text" id="admin_gender" name="admin_gender" required>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Username :</label>
+                                        <div class="controls">
+                                            <input type="text" class="span11" name="username" value='<?php echo htmlspecialchars($row['username']); ?>' />
                                         </div>
-                                        <div class="form-group">
-                                            <label for="admin_address">Address:</label>
-                                            <input type="text" id="admin_address" name="admin_address" required>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Password :</label>
+                                        <div class="controls">
+                                            <input type="password" class="span11" name="password" disabled="" placeholder="**********" />
+                                            <span class="help-block">Note: Change password regularly only if it is necessary.</span>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="admin_contact_no">Contact No:</label>
-                                            <input type="tel" id="admin_contact_no" name="admin_contact_no" required>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Gender :</label>
+                                        <div class="controls">
+                                            <select name="gender" required="required" id="select">
+                                                <option value="Male" <?php echo $row['gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
+                                                <option value="Female" <?php echo $row['gender'] == 'Female' ? 'selected' : ''; ?>>Female</option>
+                                                <option value="Other" <?php echo $row['gender'] == 'Other' ? 'selected' : ''; ?>>Other</option>
+                                            </select>
                                         </div>
-                                        <input type="submit" name="submit" value="Update Profile">
-                                        <input type="button" value="Cancel" onclick="window.location.href='index.php';">
-                                    </form>
-                                </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">D.O.R :</label>
+                                        <div class="controls">
+                                            <input type="date" name="dor" class="span11" disabled=""  value='<?php echo htmlspecialchars($row['dor']); ?>' />
+                                            <span class="help-block">Date of Registration</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Email :</label>
+                                        <div class="controls">
+                                            <input type="email" class="span11" name="email" value='<?php echo htmlspecialchars($row['email']); ?>' />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="normal" class="control-label">Contact Number :</label>
+                                        <div class="controls">
+                                            <input type="number" class="span11" id="mask-phone" name="contact" value='<?php echo htmlspecialchars($row['co_number']); ?>' class="span8 mask text">
+                                            <span class="help-block">(+63) 999-999-9999</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Address :</label>
+                                        <div class="controls">
+                                            <input type="text" class="span11" name="address" value='<?php echo htmlspecialchars($row['address']); ?>' />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Access Type :</label>
+                                        <div class="controls">
+                                            <input type="text" disabled="" value='Admin Access' class="span11" />
+                                        </div>
+                                    </div>
+                                    <div class="form-actions text-center">
+                                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['user_id']); ?>">
+                                        <button type="submit" class="btn btn-success">Update Details</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <?php include 'includes/footer.php'; ?>
+        </div>
     </div>
 
-    <!-- Include footer -->
-    <?php include 'includes/footer.php'; ?>
-
+    <!-- Scripts -->
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/matrix.js"></script>
@@ -209,18 +205,38 @@
     <script src="../js/matrix.popover.js"></script>
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/matrix.tables.js"></script>
+
     <script>
-        // Function to handle file input change and display the image immediately
-        document.getElementById('profile_pic_input').addEventListener('change', function(event) {
-            const file = event.target.files[0];
+        document.getElementById('profile-input').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var errorMessage = document.getElementById('error-message');
+
+            // Clear previous error message
+            errorMessage.textContent = '';
+
             if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const profilePic = document.querySelector('.profile-pic');
-                    profilePic.style.backgroundImage = `url(${e.target.result})`;
-                    profilePic.style.backgroundSize = 'cover';
-                    profilePic.style.backgroundPosition = 'center';
-                    document.querySelector('.upload-icon').style.display = 'none'; // Hide the '+' icon
+                // Check file type
+                var allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!allowedTypes.includes(file.type)) {
+                    errorMessage.textContent = 'Only image files (JPG, PNG, GIF) are allowed.';
+                    event.target.value = ''; // Clear the input
+                    document.getElementById('profile-picture').src = ''; // Clear the preview
+                    return;
+                }
+
+                // Check file size
+                if (file.size > 5 * 1024 * 1024) { // Check if file size is greater than 5MB
+                    errorMessage.textContent = 'File size must be less than 5MB.';
+                    event.target.value = ''; // Clear the input 
+                    document.getElementById('profile-picture').src = ''; // Clear the preview
+                    return;
+                }
+
+                // Preview the image
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var img = document.getElementById('profile-picture');
+                    img.src = reader.result;
                 };
                 reader.readAsDataURL(file);
             }

@@ -14,7 +14,6 @@ $result5 = mysqli_query($con, $qry);
 ?>
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -36,6 +35,7 @@ $result5 = mysqli_query($con, $qry);
       background-color: #FFFF99;
       border: 1px solid #FFD700;
     }
+
     #content #content-header {
       border: 2px solid #ddd;
       padding: 10px;
@@ -43,6 +43,7 @@ $result5 = mysqli_query($con, $qry);
       border-radius: 5px;
       margin-bottom: 20px;
     }
+
     .zoom-img {
       transition: transform 0.3s ease;
     }
@@ -67,9 +68,7 @@ $result5 = mysqli_query($con, $qry);
       font-size: 18px;
     }
 
-    .article-post:not(.highlight) {
-
-    }
+    .article-post:not(.highlight) {}
   </style>
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

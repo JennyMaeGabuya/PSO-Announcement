@@ -48,7 +48,6 @@ if (!isset($_SESSION['user_id'])) {
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a><a href="announcement.php" class="current">Announcements</a> </div>
-     
     </div>
     <div class="container-fluid">
       <h1 class="text-center">Announcement <i class="fas fa-bullhorn"></i></h1>
@@ -70,7 +69,7 @@ if (!isset($_SESSION['user_id'])) {
                       <input type="date" name="date"></h5> </label>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-info btn-large">Publish Now</button>
+                  <button type="submit" class="btn btn-info">Publish Now</button>
                 </div>
               </form>
             </div>
