@@ -17,6 +17,7 @@
         <li><a href="../logout.php"><i class="fas fa-power-off"></i> Log Out </a></li>
       </ul>
     </li>
+    
     <li class=""><a title="" href="../logout.php"><i class="fas fa-power-off"></i> <span class="text">Logout</span></a></li>
   </ul>
 </div>

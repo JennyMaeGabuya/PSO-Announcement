@@ -1,6 +1,30 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header('location:../index.php');
+  exit();
+}
+
+// Default fullname if not found
+$user_name = 'Guest';
+
+// Check if the user's name is stored in the session
+if (isset($_SESSION['fullname'])) {
+  $user_name = $_SESSION['fullname'];
+} else {
+  // Fetch fullname from database if not set in session
+  include "../dbcon.php"; // Adjust the path as necessary
+
+  $user_id = $_SESSION['user_id'];
+  $qry = "SELECT fullname FROM members WHERE user_id = '$user_id'";
+  $result = mysqli_query($con, $qry);
+
+  if ($result && $row = mysqli_fetch_assoc($result)) {
+    $user_name = $row['fullname'];
+    $_SESSION['fullname'] = $user_name; // Store in session for future use
+  }
+
+  mysqli_close($con);
 }
 ?>
 
@@ -17,14 +41,11 @@ if (session_status() == PHP_SESSION_NONE) {
   <link rel="stylesheet" href="../css/matrix-style.css" />
   <link rel="stylesheet" href="../css/matrix-media.css" />
   <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
   <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-    }
-
     body {
       background-color: #1f262d;
     }
@@ -104,10 +125,8 @@ if (session_status() == PHP_SESSION_NONE) {
   <!--close-top-Header-menu-->
 
   <!--sidebar-menu-->
-  <div id="sidebar">
-    <?php $page = "dashboard";
-    include '../includes/sidebar.php' ?>
-  </div>
+  <?php $page = "dashboard";
+  include '../includes/sidebar.php' ?>
   <!--sidebar-menu-->
 
   <!--main-container-part-->
@@ -159,7 +178,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
                     // Start the div for user-thumb
                     echo "<div class='user-thumb'>";
-                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../path/to/your/alert.png'> ";
+                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/icons/alert.png'> ";
                     echo "</div>"; // Close the user-thumb div
 
                     // Start the div for reminder content
@@ -215,7 +234,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
                     // Start the div for user-thumb
                     echo "<div class='user-thumb'>";
-                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../path/to/your/alert.png'> ";
+                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/icons/alert.png'> ";
                     echo "</div>"; // Close the user-thumb div
 
                     // Start the div for announcement content

@@ -38,17 +38,22 @@ if (!isset($_SESSION['user_id'])) {
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
+  </div> -->
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
   <?php $page = 'announcement';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
+
+  <!-- Main Content -->
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a><a href="announcement.php" class="current">Announcements</a> </div>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="announcement.php" class="current">Announcements</a>
+      </div>
     </div>
+    
     <div class="container-fluid">
       <h1 class="text-center">Announcement <i class="fas fa-bullhorn"></i></h1>
       <hr>

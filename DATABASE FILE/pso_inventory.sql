@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 03, 2024 at 12:56 PM
+-- Generation Time: Aug 03, 2024 at 02:47 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `message` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `date` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `announcements`
@@ -86,7 +86,9 @@ INSERT INTO `announcements` (`id`, `message`, `date`) VALUES
 (28, 'asasas', '2024-05-27 12:04:03'),
 (29, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ', '2024-05-27 12:50:36'),
 (30, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mollis aliquam ut porttitor leo a diam. Tellus integer feugiat scelerisque varius morbi. Duis ut diam quam nulla porttitor massa id', '2024-05-27 12:51:38'),
-(32, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas diam in arcu cursus euismod quis viverra. In nisl nisi scelerisque eu ultrices vitae auctor. Laoreet sit amet cursus sit. V', '2024-05-27 13:03:38');
+(32, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas diam in arcu cursus euismod quis viverra. In nisl nisi scelerisque eu ultrices vitae auctor. Laoreet sit amet cursus sit. V', '2024-05-27 13:03:38'),
+(33, 'send foods,,', '2024-08-03 13:00:12'),
+(34, 'sdsdsd', '2024-08-03 13:00:25');
 
 -- --------------------------------------------------------
 
@@ -147,9 +149,11 @@ CREATE TABLE IF NOT EXISTS `members` (
   `user_id` int NOT NULL AUTO_INCREMENT,
   `fullname` varchar(20) NOT NULL,
   `username` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(100) NOT NULL,
   `gender` varchar(20) NOT NULL,
   `dor` date NOT NULL,
+  `profile_picture` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `services` varchar(50) NOT NULL,
   `amount` int NOT NULL,
   `paid_date` date NOT NULL,
@@ -172,26 +176,10 @@ CREATE TABLE IF NOT EXISTS `members` (
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`user_id`, `fullname`, `username`, `password`, `gender`, `dor`, `services`, `amount`, `paid_date`, `p_year`, `plan`, `address`, `contact`, `status`, `attendance_count`, `ini_weight`, `curr_weight`, `ini_bodytype`, `curr_bodytype`, `progress_date`, `reminder`) VALUES
-(8, 'Charles Anderson', 'charles', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2020-01-02', 'Fitness', 55, '2020-04-01', 2020, '3', '99 Heron Way', '8520258520', 'Active', 0, 92, 85, 'Fat', 'Bulked', '2020-04-22', 1),
-(11, 'Justin Schexnayder', 'justin', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2019-01-25', 'Cardio', 35, '2020-03-31', 2020, '3', '14 Blair Court', '7535752220', 'Active', 0, 0, 0, '', '', '0000-00-00', 1),
-(14, 'Ryan Crowl', 'ryan', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2019-07-13', 'Fitness', 55, '2024-03-29', 2020, '1', '34 Twin Oaks Drive', '1578880010', 'Active', 0, 59, 63, 'Slim', 'Slim', '2020-04-23', 0),
-(16, 'TrialsChanged', 'trials', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2020-04-01', 'Fitness', 0, '2021-06-12', 2021, '0', '4 Demo Lane', '741111110', 'Expired', 26, 50, 61, 'Slim', 'Slim', '2021-06-11', 1),
-(17, 'Karen McGray', 'karen', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2020-04-02', 'Cardio', 120, '2022-05-31', 2020, '3', '23 Rubaiyat Road', '7441002540', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
-(18, 'Jeanne Pratt', 'prattj', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2020-04-04', 'Fitness', 55, '2021-06-11', 2021, '1', '86 Hilltop Street', '7854445410', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
-(19, 'George Fann', 'george', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2019-04-02', 'Fitness', 55, '2021-06-11', 2021, '1', '43 Oak Drive', '0258987850', 'Active', 0, 0, 0, '', '', '0000-00-00', 1),
-(20, 'Wendy Scott', 'wendy', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2020-03-21', 'Fitness', 55, '2021-06-11', 2021, '1', '24 Cody Ridge Road', '8547896520', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
-(21, 'Patrick Wilson', 'patrick', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2020-04-02', 'Cardio', 120, '2022-06-01', 2021, '3', '24 Cody Ridge Road', '9874568520', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
-(22, 'Tommy Marks', 'tommy', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2020-04-01', 'Fitness', 55, '2020-04-05', 2020, '3', '22 Franklin Street', '8529997500', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
-(23, 'Keith Martin', 'martin', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2020-04-02', 'Cardio', 120, '2022-06-02', 2021, '3', '89 Smithfield Avenue', '7895456250', 'Active', 1, 51, 68, 'Slim', 'Muscular', '2022-06-02', 0),
-(24, 'Richard G Langston', 'richard', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '1990-02-02', 'Sauna', 420, '2022-05-31', 2022, '12', '541  Raoul Wallenber', '7012545580', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
-(25, 'Raymond Ledesma', 'raymond', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '1986-02-19', 'Cardio', 480, '2022-06-02', 2022, '12', '2954  Robinson Lane', '4785450002', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
-(26, 'Mattie F. Maher', 'mattie', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '1995-05-18', 'Sauna', 420, '2022-06-01', 2022, '12', '73 Settlers Lane', '9995554444', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
-(27, 'Justin C. Lusk', 'justin', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '1995-12-12', 'Cardio', 40, '2022-05-30', 2022, '1', '45 Bell Street', '3545785540', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
-(29, 'Kathy J. Glennon', 'kathy', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2022-06-02', 'Fitness', 0, '2024-03-22', 0, '0', '87 Harry Place', '7896587458', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
-(30, 'ryan', 'ryan', '10c7ccc7a4f0aff03c915c485565b9da', 'Male', '2023-04-30', 'Cardio', 500, '2024-03-29', 0, '1', 'Cuenca', '0912345678', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
-(31, 'jen', 'jen', 'b18ea44550b68d0d012bd9017c4a864a', 'Male', '2020-01-22', 'Sauna', 35, '2024-04-02', 0, '1', 'Lipa', '0921892817', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
-(32, 'Maloi', 'maloi', '27dcb4f27958b0880d0e3f9e389f4ebf', 'Male', '2024-08-03', 'Sauna', 2147483647, '2024-08-03', 2024, '30', 'Lemery, B atangas', '9123232432', 'Active', 0, 0, 0, '', '', '0000-00-00', 0);
+INSERT INTO `members` (`user_id`, `fullname`, `username`, `email`, `password`, `gender`, `dor`, `profile_picture`, `services`, `amount`, `paid_date`, `p_year`, `plan`, `address`, `contact`, `status`, `attendance_count`, `ini_weight`, `curr_weight`, `ini_bodytype`, `curr_bodytype`, `progress_date`, `reminder`) VALUES
+(30, 'Ryan Ceasar Ramos', 'ryan', 'ryan@gmail.com', '10c7ccc7a4f0aff03c915c485565b9da', 'Male', '2023-04-30', 'bsu_img.jpg', 'Cardio', 500, '2024-03-29', 0, '1', 'Cuenca', '2121323243', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
+(31, 'jen', 'jen', '', 'b18ea44550b68d0d012bd9017c4a864a', 'Male', '2020-01-22', '', 'Sauna', 35, '2024-04-02', 0, '1', 'Lipa', '0921892817', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
+(32, 'Maloi', 'maloi', 'maloi@gmail.com', '27dcb4f27958b0880d0e3f9e389f4ebf', 'Male', '2024-08-03', '', 'Sauna', 2147483647, '2024-08-03', 2024, '30', 'Lemery, B atangas', '9123232432', 'Active', 0, 0, 0, '', '', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 

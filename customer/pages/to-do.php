@@ -10,12 +10,11 @@ if (!isset($_SESSION['user_id'])) {
 $userid = $_SESSION['user_id'];
 ?>
 
-<!-- Visit codeastro.com for more projects -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Gym System</title>
+  <title>PSO Inventory | Request</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -24,9 +23,33 @@ $userid = $_SESSION['user_id'];
   <link rel="stylesheet" href="../css/matrix-style.css" />
   <link rel="stylesheet" href="../css/matrix-media.css" />
   <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
+
+<style>
+  .resizable-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  #resizable-input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: #333;
+    cursor: nwse-resize;
+  }
+</style>
 
 <body>
 
@@ -34,14 +57,11 @@ $userid = $_SESSION['user_id'];
 
   <!--close-Header-part-->
 
-
   <!--top-Header-menu-->
-
   <?php include '../includes/topheader.php' ?>
   <!--close-top-Header-menu-->
-  
+
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = "todo";
   include '../includes/sidebar.php' ?>
 
@@ -49,15 +69,18 @@ $userid = $_SESSION['user_id'];
 
   <!--main-container-part-->
   <div id="content">
-    <!--breadcrumbs-->
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="You're right here" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+      <div id="breadcrumb">
+        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon icon-home"></i> Home</a>
+        <a href="#" class="current">Relocation Request</a>
+      </div>
     </div>
     <!--End-breadcrumbs-->
 
     <!--Action boxes-->
     <div class="container-fluid">
-
+      <h1 class="text-center">Submit a Request <i class="fas fa-file"></i></h1>
+      <hr>
       <!--End-Action boxes-->
 
       <div class="row-fluid">
@@ -71,7 +94,7 @@ $userid = $_SESSION['user_id'];
               <form id="form-wizard" class="form-horizontal" action="add-to-do.php" method="POST">
                 <div id="form-wizard-1" class="step">
 
-                <div class="control-group">
+                  <div class="control-group">
                     <label class="control-label">Office Requesting :</label>
                     <div class="controls">
                       <input type="text" class="span11" name="task_desc" placeholder="CECS Office . . ." />
@@ -88,7 +111,10 @@ $userid = $_SESSION['user_id'];
                   <div class="control-group">
                     <label class="control-label">Description :</label>
                     <div class="controls">
-                      <input type="text" class="span11" name="task_desc" placeholder="As detailed as possible ..." />
+                      <div class="resizable-container">
+                        <input type="text" id="resizable-input" class="span11" name="task_desc" placeholder="As detailed as possible ..." />
+                        <div class="resize-handle"></div>
+                      </div>
                     </div>
                   </div>
 
@@ -102,20 +128,20 @@ $userid = $_SESSION['user_id'];
                       </select>
                     </div>
                   </div>
-                  --> 
+                  -->
 
-                  <div class="form-actions">
+                  <div class="form-actions text-center">
+                    <!-- HIDDEN USERID -->
                     <input type="hidden" name="userid" value="<?php echo $userid; ?>">
-                    <input id="add" class="btn btn-primary" type="submit" value="Submit" />
+                    <input id="add" class="btn btn-success" type="submit" value="Submit" />
                     <div id="status"></div>
                   </div>
+
                   <div id="submitted"></div>
               </form>
             </div><!--end of widget-content -->
           </div><!--end of widget box-->
         </div><!--end of span 12 -->
-
-
 
       </div><!-- End of row-fluid -->
     </div><!-- End of container-fluid -->
@@ -125,15 +151,6 @@ $userid = $_SESSION['user_id'];
 
   <!--Footer-->
   <?php include '../includes/footer.php' ?>
-
-  <style>
-    #footer {
-      color: white;
-    }
-    .highlight{
-      background-color: black;
-    }
-  </style>
 
   <!--end-Footer-part-->
 
@@ -183,6 +200,41 @@ $userid = $_SESSION['user_id'];
       document.gomenu.selector.selectedIndex = 2;
     }
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const handle = document.querySelector('.resize-handle');
+      const container = document.querySelector('.resizable-container');
+      const input = document.getElementById('resizable-input');
+
+      let startX, startY, startWidth, startHeight;
+
+      handle.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        startX = e.clientX;
+        startY = e.clientY;
+        startWidth = parseFloat(getComputedStyle(input, null).width.replace('px', ''));
+        startHeight = parseFloat(getComputedStyle(input, null).height.replace('px', ''));
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+      });
+
+      function handleMouseMove(e) {
+        const width = startWidth + (e.clientX - startX);
+        const height = startHeight + (e.clientY - startY);
+
+        input.style.width = width + 'px';
+        input.style.height = height + 'px';
+      }
+
+      function handleMouseUp() {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      }
+    });
+  </script>
+
 </body>
 
 </html>

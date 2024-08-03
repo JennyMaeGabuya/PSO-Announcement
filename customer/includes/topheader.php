@@ -1,3 +1,28 @@
+<?php
+// Check if the user's name is stored in the session
+$user_name = ''; // Default user name if not found
+
+if (isset($_SESSION['fullname'])) {
+  $user_name = $_SESSION['fullname'];
+} else {
+  // Fetch user name from database if not set in session
+  include "../dbcon.php"; // Adjust the path as necessary
+
+  if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $qry = "SELECT fullname FROM members WHERE user_id = '$user_id'";
+    $result = mysqli_query($con, $qry);
+
+    if ($result && $row = mysqli_fetch_assoc($result)) {
+      $user_name = $row['fullname'];
+      $_SESSION['fullname'] = $user_name; // Store in session for future use
+    }
+
+    mysqli_close($con);
+  }
+}
+?>
+
 <div id="header">
   <img class="logo-large" src="../img/header_logo.png" alt="Logo" style="width: 200px; height: 80px;">
   <img class="logo-small" src="../img/header_logo.png" alt="Small Logo" style="width: 135px; height: 55px;">
@@ -5,17 +30,20 @@
 
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav right">
-    <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i> <span class="text">Welcome @officeName</span><b class="caret"></b></a>
+    <li class="dropdown" id="profile-messages">
+      <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle">
+        <i class="icon icon-user"></i> <span class="text"> Welcome <?php echo htmlspecialchars($user_name); ?></span> <b class="caret"></b>
+      </a>
       <ul class="dropdown-menu">
         <li><a href="../pages/my-report.php"><i class="icon-file"></i> My Report</a></li>
         <li class="divider"></li>
-        <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-        <li class="divider "></li>
-        <li><a href="../logout.php"><i class="icon-key"></i> Log Out</a></li>
+        <li><a href="my-profile.php"><i class="icon-user"></i> My Profile</a></li>
+        <li class="divider"></li>
+        <li><a href="change-password.php"><i class="fas fa-lock"></i> Change Password</a></li>
       </ul>
     </li>
 
-    <li class=""><a title="" href="../logout.php"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    <li class=""><a title="" href="../logout.php"><i class="icon icon-share-alt"></i> <span class="text"> Logout</span></a></li>
   </ul>
 </div>
 
@@ -39,4 +67,4 @@
       display: block;
     }
   }
-</style>a
+</style>

@@ -20,9 +20,10 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../css/matrix-style.css" />
   <link rel="stylesheet" href="../css/matrix-media.css" />
   <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-  
+
   <style>
     .highlight-announcement {
       background-color: #FFFF99;
@@ -53,7 +54,6 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-Header-menu-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = "announcement";
   include '../includes/sidebar.php' ?>
   <!--sidebar-menu-->
@@ -62,12 +62,17 @@ if (!isset($_SESSION['user_id'])) {
   <div id="content">
     <!--breadcrumbs-->
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="You're right here" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+      <div id="breadcrumb">
+        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon icon-home"></i> Home</a>
+        <a href="#" class="current">Announcements</a>
+      </div>
     </div>
     <!--End-breadcrumbs-->
 
     <!--Action boxes-->
     <div class="container-fluid">
+      <h1 class="text-center">Annoucements <i class="fas fa-bullhorn"></i></h1>
+      <hr>
 
       <!--End-Action boxes-->
 
@@ -76,7 +81,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="span12">
           <div class="widget-box">
             <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
-              <h5>Product & Supply Office Announcement</h5>
+              <h5>Property & Supply Office Announcement</h5>
             </div>
             <div class="widget-content nopadding collapse in" id="collapseG2">
               <ul class="recent-posts">
@@ -92,7 +97,7 @@ if (!isset($_SESSION['user_id'])) {
                   while ($row = mysqli_fetch_array($result)) {
                     // Open a div and apply conditional class for highlighting
                     echo "<div class='" . ($first_row ? 'highlight-announcement' : '') . "'>";
-                    echo "<div class='user-thumb'> <img width='50' height='50' alt='Alert' src='http://localhost/gym%20system/img/demo/alert.png'> </div>";
+                    echo "<div class='user-thumb'> <img width='50' height='50' alt='Alert' src='../img/icons/alert.png'> </div>";
                     echo "<div class='article-post'>";
                     echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
                     // Apply conditional class for making text bold
@@ -116,8 +121,8 @@ if (!isset($_SESSION['user_id'])) {
   </div><!-- End of content-ID -->
   </div><!--end-main-container-part-->
 
-<!--Footer-->
-<?php include '../includes/footer.php' ?>
+  <!--Footer-->
+  <?php include '../includes/footer.php' ?>
 
   <style>
     #footer {
