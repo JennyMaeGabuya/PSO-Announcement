@@ -78,12 +78,12 @@ $row = mysqli_fetch_array($result);
         <div id="content">
             <div id="content-header">
                 <div id="breadcrumb">
-                    <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+                    <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
                     <a href="#" class="tip-bottom">My Profile</a>
                 </div>
             </div>
             <div class="container-fluid">
-            <h1 class="text-center">Profile Details <i class="fas fa-info-circle"></i></h1>
+                <h1 class="text-center">Profile Details <i class="fas fa-info-circle"></i></h1>
                 <hr>
                 <div class="row-fluid">
                     <div class="span12">
@@ -94,6 +94,7 @@ $row = mysqli_fetch_array($result);
                             </div>
                             <div class="widget-content nopadding">
                                 <form action="edit-admin-profile.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+
                                     <div class="control-group">
                                         <div class="controls">
                                             <img id="profile-picture" src="profile_image/<?php echo htmlspecialchars($row['profile_picture']); ?>" alt="Profile Picture" />
@@ -104,18 +105,21 @@ $row = mysqli_fetch_array($result);
                                             <input type="file" class="span11" name="profile" id="profile-input" />
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">Full Name :</label>
                                         <div class="controls">
                                             <input type="text" class="span11" name="fullname" value='<?php echo htmlspecialchars($row['name']); ?>' />
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">Username :</label>
                                         <div class="controls">
                                             <input type="text" class="span11" name="username" value='<?php echo htmlspecialchars($row['username']); ?>' />
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">Password :</label>
                                         <div class="controls">
@@ -123,6 +127,7 @@ $row = mysqli_fetch_array($result);
                                             <span class="help-block">Note: Change password regularly only if it is necessary.</span>
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">Gender :</label>
                                         <div class="controls">
@@ -133,38 +138,44 @@ $row = mysqli_fetch_array($result);
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">D.O.R :</label>
                                         <div class="controls">
-                                            <input type="date" name="dor" class="span11" disabled=""  value='<?php echo htmlspecialchars($row['dor']); ?>' />
+                                            <input type="date" name="dor" class="span11" readonly value='<?php echo htmlspecialchars($row['dor']); ?>' />
                                             <span class="help-block">Date of Registration</span>
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">Email :</label>
                                         <div class="controls">
                                             <input type="email" class="span11" name="email" value='<?php echo htmlspecialchars($row['email']); ?>' />
                                         </div>
                                     </div>
+
                                     <div class="control-group">
-                                        <label for="normal" class="control-label">Contact Number :</label>
+                                        <label for="contact" class="control-label">Contact Number :</label>
                                         <div class="controls">
-                                            <input type="number" class="span11" id="mask-phone" name="contact" value='<?php echo htmlspecialchars($row['co_number']); ?>' class="span8 mask text">
+                                            <input type="text" id="contact" name="contact" value='<?php echo htmlspecialchars($row['co_number']); ?>' class="span11 mask text" maxlength="11" pattern="\d{11}" placeholder="Enter 11-digit number" title="Please enter a 11-digit number" />
                                             <span class="help-block">(+63) 999-999-9999</span>
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">Address :</label>
                                         <div class="controls">
                                             <input type="text" class="span11" name="address" value='<?php echo htmlspecialchars($row['address']); ?>' />
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">Access Type :</label>
                                         <div class="controls">
                                             <input type="text" disabled="" value='Admin Access' class="span11" />
                                         </div>
                                     </div>
+
                                     <div class="form-actions text-center">
                                         <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['user_id']); ?>">
                                         <button type="submit" class="btn btn-success">Update Details</button>

@@ -39,7 +39,7 @@
 
     <li class="<?php if ($page == 'payment') {
                   echo 'active';
-                } ?>"><a href="payment.php"><i class="fas fa-hand-holding-usd"></i> <span>Useful Life In-System Remind</span></a></li>
+                } ?>"><a href="payment.php"><i class="fas fa-exclamation-triangle"></i> <span>Useful Life In-System Remind</span></a></li>
     <li class="<?php if ($page == 'announcement') {
                   echo 'active';
                 } ?>"><a href="announcement.php"><i class="fas fa-bullhorn"></i> <span>Announcement</span></a></li>

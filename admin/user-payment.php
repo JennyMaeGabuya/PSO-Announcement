@@ -168,7 +168,7 @@ if (!isset($_SESSION['user_id'])) {
 
                       <input type="hidden" name="id" value="<?php echo $row['user_id']; ?>">
 
-                      <button class="btn btn-success btn-large" type="SUBMIT" href="">Make Payment</button>
+                      <button class="btn btn-success" type="SUBMIT" href="">Make Payment</button>
                     </div>
 
                     </form>

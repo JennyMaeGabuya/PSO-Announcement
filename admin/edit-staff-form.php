@@ -41,7 +41,6 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'staff-management';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
@@ -56,10 +55,13 @@ if (!isset($_SESSION['user_id'])) {
 
     <div id="content">
       <div id="content-header">
-        <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="tip-bottom">Staffs</a> <a href="edit-staff-form.php" class="current">Edit Staff Records</a> </div>
-        <h1 class="text-center">Update Staff's Detail <i class="fas fa-briefcase"></i></h1>
+        <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+          <a href="staffs.php" class="tip-bottom">Staff Members</a>
+          <a href="#" class="current">Edit Staff Records</a>
+        </div>
       </div>
       <div class="container-fluid">
+        <h1 class="text-center">Update Staff's Detail <i class="fas fa-briefcase"></i></h1>
         <hr>
         <div class="row-fluid">
           <div class="span6">
@@ -76,12 +78,14 @@ if (!isset($_SESSION['user_id'])) {
                       <input type="text" class="span11" name="fullname" value='<?php echo $row['fullname']; ?>' />
                     </div>
                   </div>
+
                   <div class="control-group">
                     <label class="control-label">Username :</label>
                     <div class="controls">
                       <input type="text" class="span11" name="username" value='<?php echo $row['username']; ?>' />
                     </div>
                   </div>
+
                   <div class="control-group">
                     <label class="control-label">Password :</label>
                     <div class="controls">
@@ -89,10 +93,23 @@ if (!isset($_SESSION['user_id'])) {
                       <span class="help-block">Note: Only the members are allowed to change their password until and unless it's an emergency.</span>
                     </div>
                   </div>
+
                   <div class="control-group">
                     <label class="control-label">Gender :</label>
                     <div class="controls">
-                      <input type="text" class="span11" name="gender" value='<?php echo $row['gender']; ?>' />
+                      <select name="gender" required="required" id="select">
+                        <option value="Male" <?php echo $row['gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
+                        <option value="Female" <?php echo $row['gender'] == 'Female' ? 'selected' : ''; ?>>Female</option>
+                        <option value="Other" <?php echo $row['gender'] == 'Other' ? 'selected' : ''; ?>>Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label">Date of Deployment:</label>
+                    <div class="controls">
+                      <input type="date" name="date" value='<?php echo $row['dor']; ?>' class="span11" readonly />
+                      <span class="help-block">The date of deployment.</span>
                     </div>
                   </div>
 
@@ -117,13 +134,15 @@ if (!isset($_SESSION['user_id'])) {
               </div>
               <div class="widget-content nopadding">
                 <div class="form-horizontal">
+
                   <div class="control-group">
-                    <label for="normal" class="control-label">Contact Number</label>
+                    <label for="contact" class="control-label">Contact Number :</label>
                     <div class="controls">
-                      <input type="number" id="mask-phone" name="contact" value='<?php echo $row['contact']; ?>' class="span8 mask text">
-                      <span class="help-block blue span8">(999) 999-9999</span>
+                      <input type="number" id="contact" name="contact" value='<?php echo htmlspecialchars($row['contact']); ?>' class="span11 mask text" maxlength="11" pattern="\d{11}" placeholder="Enter 11-digit number" title="Please enter a 11-digit number" />
+                      <span class="help-block">(+63) 999-999-9999</span>
                     </div>
                   </div>
+
                   <div class="control-group">
                     <label class="control-label">Address :</label>
                     <div class="controls">
@@ -144,7 +163,6 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                   </div>
 
-
                 </div>
 
                 <div class="form-actions text-center">
@@ -164,7 +182,6 @@ if (!isset($_SESSION['user_id'])) {
 
           </div>
         </div>
-
 
       </div>
 

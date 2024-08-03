@@ -47,7 +47,10 @@ if (!isset($_SESSION['user_id'])) {
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a><a href="announcement.php">Announcement</a> <a href="#" class="current">Manage Announcement</a> </div>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="announcement.php">Announcements</a>
+        <a href="#" class="current">Manage Announcements</a>
+      </div>
     </div>
     <div class="container-fluid">
       <h1 class="text-center">Manage Announcement <i class="fas fa-bullhorn"></i></h1>

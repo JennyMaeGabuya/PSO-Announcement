@@ -49,16 +49,19 @@ if (!isset($_SESSION['user_id'])) {
   include 'dbcon.php';
   $id = $_GET['id'];
   $qry = "select * from members where user_id='$id'";
-  $result = mysqli_query($conn, $qry);
+  $result = mysqli_query($con, $qry);
   while ($row = mysqli_fetch_array($result)) {
   ?>
 
     <div id="content">
       <div id="content-header">
-        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
-        <h1>Update Member Details</h1>
+        <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+          <a href="edit-member.php" class="tip-bottom">Manage Members</a>
+          <a href="#" class="current">Update Account Details</a>
+        </div>
       </div>
       <div class="container-fluid">
+        <h1 class="text-center">Update Account Details</h1>
         <hr>
         <div class="row-fluid">
           <div class="span6">
@@ -101,11 +104,10 @@ if (!isset($_SESSION['user_id'])) {
                   <div class="control-group">
                     <label class="control-label">D.O.R :</label>
                     <div class="controls">
-                      <input type="date" name="dor" class="span11" value='<?php echo $row['dor']; ?>' />
-                      <span class="help-block">Date of registration</span>
+                      <input type="date" name="dor" class="span11" value='<?php echo $row['dor']; ?>' readonly />
+                      <span class="help-block">Date of Registration</span>
                     </div>
                   </div>
-
               </div>
 
               <div class="widget-content nopadding">
@@ -114,7 +116,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="widget-content nopadding">
                   <div class="form-horizontal">
                     <div class="control-group">
-                      <label for="normal" class="control-label">Plans: </label>
+                      <label for="normal" class="control-label">Plans :</label>
                       <div class="controls">
                         <select name="plan" required="required" id="select">
                           <option value="30" selected="selected">One Month</option>
@@ -143,6 +145,7 @@ if (!isset($_SESSION['user_id'])) {
                 <h5>Contact Details</h5>
               </div>
               <div class="widget-content nopadding">
+
                 <div class="form-horizontal">
                   <div class="control-group">
                     <label for="normal" class="control-label">Contact Number</label>
@@ -151,6 +154,7 @@ if (!isset($_SESSION['user_id'])) {
                       <span class="help-block blue span8">(999) 999-9999</span>
                     </div>
                   </div>
+
                   <div class="control-group">
                     <label class="control-label">Address :</label>
                     <div class="controls">

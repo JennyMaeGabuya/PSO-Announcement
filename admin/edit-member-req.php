@@ -47,8 +47,11 @@ if (!isset($_SESSION['user_id'])) {
   <!--sidebar-menu-->
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
-      <h1>Update Member Details</h1>
+      <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="edit-member.php" class="tip-bottom">Manage Members</a>
+        <a href="#" class="current">Update Account Details</a>
+      </div>
+      <h1>Update Account Details</h1>
     </div>
     <form role="form" action="index.php" method="POST">
       <?php
@@ -71,7 +74,7 @@ if (!isset($_SESSION['user_id'])) {
         //code after connection is successfull
         //update query
         $qry = "update members set fullname='$fullname', username='$username',dor='$dor', gender='$gender', services='$services', amount='$totalamount', plan='$plan', address='$address', contact='$contact' where user_id='$id'";
-        $result = mysqli_query($conn, $qry); //query executes
+        $result = mysqli_query($con, $qry); //query executes
 
         if (!$result) {
           echo "<div class='container-fluid'>";

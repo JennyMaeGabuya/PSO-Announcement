@@ -72,7 +72,7 @@ mysqli_stmt_close($stmt);
         <div id="content">
             <div id="content-header">
                 <div id="breadcrumb">
-                    <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+                    <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
                     <a href="admin-profile.php" class="tip-bottom">My Profile</a>
                     <a href="#" class="current">Edit Profile</a>
                 </div>

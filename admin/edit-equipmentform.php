@@ -53,8 +53,11 @@ if (!isset($_SESSION['user_id'])) {
 
     <div id="content">
       <div id="content-header">
-        <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Equipments</a> <a href="#" class="current">Edit Equipments</a> </div>
-        <h1>Equipment Entry Form</h1>
+        <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+          <a href="equipment.php" class="tip-bottom">Product List</a>
+          <a href="#" class="current">Update Product</a>
+        </div>
+        <h1>Product Entry Form</h1>
       </div>
       <div class="container-fluid">
         <hr>
@@ -62,12 +65,12 @@ if (!isset($_SESSION['user_id'])) {
           <div class="span6">
             <div class="widget-box">
               <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-                <h5>Eqipment-info</h5>
+                <h5>Product-info</h5>
               </div>
               <div class="widget-content nopadding">
                 <form action="edit-equipment-req.php" method="POST" class="form-horizontal">
                   <div class="control-group">
-                    <label class="control-label">Equipment Name :</label>
+                    <label class="control-label">Product Name :</label>
                     <div class="controls">
                       <input type="text" class="span11" name="name" value='<?php echo $row['name']; ?>' required />
                     </div>
@@ -82,8 +85,8 @@ if (!isset($_SESSION['user_id'])) {
                   <div class="control-group">
                     <label class="control-label">Date of Purchase :</label>
                     <div class="controls">
-                      <input type="date" name="date" value='<?php echo $row['date']; ?>' class="span11" />
-                      <span class="help-block">Please mention the date of purchase</span>
+                      <input type="date" name="date" value='<?php echo $row['date']; ?>' class="span11" readonly />
+                      <span class="help-block">The date of purchase.</span>
                     </div>
                   </div>
 
@@ -120,7 +123,7 @@ if (!isset($_SESSION['user_id'])) {
               <div class="widget-content nopadding">
                 <div class="form-horizontal">
                   <div class="control-group">
-                    <label for="normal" class="control-label">Contact Number</label>
+                    <label for="normal" class="control-label">Contact Number :</label>
                     <div class="controls">
                       <input type="text" id="mask-phone" name="contact" minlength="10" maxlength="10" value='<?php echo $row['contact']; ?>' class="span8 mask text" required>
                       <span class="help-block blue span8">(999) 999-9999</span>
@@ -148,10 +151,10 @@ if (!isset($_SESSION['user_id'])) {
                   <div class="form-horizontal">
 
                     <div class="control-group">
-                      <label class="control-label">Total Cost: </label>
+                      <label class="control-label">Total Cost :</label>
                       <div class="controls">
                         <div class="input-append">
-                          <span class="add-on">$</span>
+                          <span class="add-on">₱</span>
                           <input type="number" placeholder="120000" name="amount" value='<?php echo $row['amount']; ?>' class="span11" required>
                         </div>
                       </div>
@@ -160,7 +163,7 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="form-actions text-center">
                       <!-- user's ID is hidden here -->
                       <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                      <button type="submit" class="btn btn-success">Submit Details</button>
+                      <button type="submit" class="btn btn-success">Update Details</button>
                     </div>
                     </form>
 

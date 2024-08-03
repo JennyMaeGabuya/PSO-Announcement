@@ -1,6 +1,6 @@
 <?php
 session_start();
-//the isset function to check username is already loged in and stored on the session
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
 }
@@ -27,7 +27,6 @@ if (!isset($_SESSION['user_id'])) {
 <body>
 
   <!--Header-part-->
-
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
@@ -35,9 +34,9 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-Header-menu-->
   <!--start-top-serch-->
   <!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
+    <input type="hidden" placeholder="Search here..."/>
+    <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+    </div> -->
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
@@ -47,62 +46,60 @@ if (!isset($_SESSION['user_id'])) {
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom"> Reports</a><a href="members-report.php" class="current">View Reports</a> </div>
+      <div id="breadcrumb">
+        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="tip-bottom"> Reports</a>
+        <a href="members-report.php" class="current">View Reports</a>
+      </div>
     </div>
-      <h1 class="text-center">View Reports <i class="fas fa-file"></i></h1>
+    <h1 class="text-center">View Reports <i class="fas fa-file"></i></h1>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span12">
 
           <div class='widget-box'>
-
-            <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
+            <div class='widget-title'>
+              <span class='icon'> <i class='fas fa-th'></i> </span>
               <h5>Report Section</h5>
             </div>
             <div class='widget-content nopadding'>
-
               <?php
-
               include "dbcon.php";
-              $qry = "select * from members";
-              $cnt = 1;
+
+              // Query to select members ordered by a column (e.g., ID) in descending order
+              $qry = "SELECT * FROM members ORDER BY user_id DESC"; // Change 'user_id' if needed
               $result = mysqli_query($conn, $qry);
 
+              if ($result) {
+                $cnt = mysqli_num_rows($result); // Get the total number of members
+                echo "<table class='table table-bordered table-hover'>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Fullname</th>
+                                        <th>Choosen Service</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
 
-              echo "<table class='table table-bordered table-hover'>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Fullname</th>
-                  <th>Choosen Service</th>
-                  <th>Action</th>
-                </tr>
-              </thead>";
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>
+                                    <td><div class='text-center'>" . $cnt . "</div></td>
+                                    <td><div class='text-center'>" . $row['fullname'] . "</div></td>
+                                    <td><div class='text-center'>" . $row['services'] . "</div></td>
+                                    <td><div class='text-center'><a href='view-member-report.php?id=" . $row['user_id'] . "'><i class='fas fa-file'></i> View Report</a></div></td>
+                                    </tr>";
+                  $cnt--; // Decrement the count for descending order
+                }
 
-              while ($row = mysqli_fetch_array($result)) { ?>
-
-                <tbody>
-
-                  <td>
-                    <div class='text-center'><?php echo $cnt; ?></div>
-                  </td>
-                  <td>
-                    <div class='text-center'><?php echo $row['fullname']; ?></div>
-                  </td>
-                  <td>
-                    <div class='text-center'><?php echo $row['services']; ?></div>
-                  </td>
-                  <td>
-                    <div class='text-center'><a href="view-member-report.php?id= <?php echo $row['user_id'] ?>"><i class="fas fa-file"></i> View Report</a></div>
-                  </td>
-
-                </tbody>
-              <?php
-                $cnt++;
+                echo "</tbody></table>";
+              } else {
+                echo "Error: " . mysqli_error($conn);
               }
-              ?>
 
-              </table>
+              mysqli_close($conn);
+              ?>
             </div>
           </div>
 
@@ -114,11 +111,7 @@ if (!isset($_SESSION['user_id'])) {
   <!--end-main-container-part-->
 
   <!--Footer-part-->
-
-  <?php
-  include 'includes/footer.php';
-  ?>
-
+  <?php include 'includes/footer.php'; ?>
   <!--end-Footer-part-->
 
   <script src="../js/excanvas.min.js"></script>
@@ -147,10 +140,8 @@ if (!isset($_SESSION['user_id'])) {
     // This function is called from the pop-up menus to transfer to
     // a different page. Ignore if the value returned is a null string:
     function goPage(newURL) {
-
       // if url is empty, skip the menu dividers and reset the menu selection to default
       if (newURL != "") {
-
         // if url is "-", it is this page -- reset the menu:
         if (newURL == "-") {
           resetMenu();

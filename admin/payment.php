@@ -46,16 +46,18 @@ if (!isset($_SESSION['user_id'])) {
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="payment.php" class="current">Payments</a> </div>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="current">In-system Reminder</a>
+      </div>
     </div>
     <div class="container-fluid">
-        <h1 class="text-center">Registered Member's Payment <i class="fas fa-credit-card"></i></h1>
+      <h1 class="text-center">In-system Reminder <i class="fas fa-exclamation-triangle"></i></h1>
       <div class="row-fluid">
         <div class="span12">
 
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
-              <h5>Member's Payment table</h5>
+              <h5>Reminder Alert Table</h5>
               <form id="custom-search-form" role="search" method="POST" action="search-result.php" class="form-search form-horizontal pull-right">
                 <div class="input-append span12">
                   <input type="text" class="search-query" placeholder="Search" name="search" required>
@@ -121,9 +123,15 @@ if (!isset($_SESSION['user_id'])) {
                     <div class='text-center'><a href='user-payment.php?id=<?php echo $row['user_id'] ?>'><button class='btn btn-success btn'><i class='fas fa-dollar-sign'></i> Make Payment</button></a></div>
                   </td>
                   <td>
-                    <div class='text-center'><a href='sendReminder.php?id=<?php echo $row['user_id'] ?>'><button class='btn btn-danger btn' <?php echo ($row['reminder'] == 1 ? "disabled" : "") ?>>Alert</button></a></div>
+                    <div class='text-center'>
+                      <a href='sendReminder.php?id=<?php echo $row['user_id'] ?>'>
+                        <button class='btn btn-danger' <?php echo ($row['reminder'] == 1 ? "disabled" : "") ?>>
+                          <i class='fas fa-exclamation-triangle'></i>
+                        </button>
+                      </a>
+                    </div>
                   </td>
-                </tbody>
+                </tbody> 
               <?php $cnt++;
               }
 

@@ -47,24 +47,29 @@ if (!isset($_SESSION['user_id'])) {
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Equipments</a> <a href="#" class="current">Add Equipments</a> </div>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="equipment.php" class="tip-bottom">Product List</a>
+        <a href="#" class="current">Add Product</a>
+      </div>
     </div>
     <div class="container-fluid">
-      <h1 class="text-center">Equipment Entry Form <i class="fas fa-pencil-alt"></i></h1>
+      <h1 class="text-center">Product Entry Form <i class="fas fa-pencil-alt"></i></h1>
       <div class="row-fluid">
         <div class="span6">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-              <h5>Eqipment-info</h5>
+              <h5>Product-info</h5>
             </div>
             <div class="widget-content nopadding">
+
               <form action="add-equipment-req.php" method="POST" class="form-horizontal">
                 <div class="control-group">
-                  <label class="control-label">Equipment :</label>
+                  <label class="control-label">Product :</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="ename" placeholder="Equipment Name" required />
+                    <input type="text" class="span11" name="ename" placeholder="Product Name" required />
                   </div>
                 </div>
+
                 <div class="control-group">
                   <label class="control-label">Description :</label>
                   <div class="controls">
@@ -72,23 +77,20 @@ if (!isset($_SESSION['user_id'])) {
                   </div>
                 </div>
 
-
                 <div class="control-group">
                   <label class="control-label">Date of Purchase :</label>
                   <div class="controls">
                     <input type="date" name="date" class="span11" />
-                    <span class="help-block">Please mention the date of purchase</span>
+                    <span class="help-block">Please mention the date of purchase.</span>
                   </div>
                 </div>
 
                 <div class="control-group">
                   <label class="control-label">Quantity :</label>
                   <div class="controls">
-                    <input type="number" class="span5" name="quantity" placeholder="Equipment Qty" required />
+                    <input type="number" class="span5" name="quantity" placeholder="Product Qty" required />
                   </div>
                 </div>
-
-
             </div>
 
             <div class="widget-content nopadding">
@@ -149,8 +151,8 @@ if (!isset($_SESSION['user_id'])) {
                     <label class="control-label">Cost Per Item: </label>
                     <div class="controls">
                       <div class="input-append">
-                        <span class="add-on">$</span>
-                        <input type="number" placeholder="269" name="amount" class="span11" required>
+                        <span class="add-on">₱</span>
+                        <input type="number" placeholder="5 000" name="amount" class="span11" required>
                       </div>
                     </div>
                   </div>
