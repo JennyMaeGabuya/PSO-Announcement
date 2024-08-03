@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 03, 2024 at 09:20 AM
+-- Generation Time: Aug 03, 2024 at 11:15 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `gymnsb`
+-- Database: `pso_inventory`
 --
 
 -- --------------------------------------------------------
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `members` (
   `progress_date` date NOT NULL,
   `reminder` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `members`
@@ -191,7 +191,8 @@ INSERT INTO `members` (`user_id`, `fullname`, `username`, `password`, `gender`, 
 (27, 'Justin C. Lusk', 'justin', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '1995-12-12', 'Cardio', 40, '2022-05-30', 2022, '1', '45 Bell Street', '3545785540', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
 (29, 'Kathy J. Glennon', 'kathy', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2022-06-02', 'Fitness', 0, '2024-03-22', 0, '0', '87 Harry Place', '7896587458', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
 (30, 'ryan', 'ryan', '10c7ccc7a4f0aff03c915c485565b9da', 'Male', '2023-04-30', 'Cardio', 500, '2024-03-29', 0, '1', 'Cuenca', '0912345678', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
-(31, 'jen', 'jen', 'b18ea44550b68d0d012bd9017c4a864a', 'Male', '2020-01-22', 'Sauna', 35, '2024-04-02', 0, '1', 'Lipa', '0921892817', 'Active', 0, 0, 0, '', '', '0000-00-00', 0);
+(31, 'jen', 'jen', 'b18ea44550b68d0d012bd9017c4a864a', 'Male', '2020-01-22', 'Sauna', 35, '2024-04-02', 0, '1', 'Lipa', '0921892817', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
+(32, 'Maloi', 'maloi', '27dcb4f27958b0880d0e3f9e389f4ebf', 'Male', '2024-08-03', 'Cardio', 6000, '2024-08-03', 2024, '12', 'Lemery, B atangas', '9123232432', 'Active', 0, 0, 0, '', '', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 

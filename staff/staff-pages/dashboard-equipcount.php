@@ -3,7 +3,7 @@
 $servername = "localhost";
 $uname = "root";
 $pass = "";
-$db = "gymnsb";
+$db = "pso_inventory";
 
 $conn = mysqli_connect($servername, $uname, $pass, $db);
 

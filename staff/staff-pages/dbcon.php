@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "gymnsb");
+$conn = mysqli_connect("localhost", "root", "", "pso_inventory");
 
 // Check connection
 if (mysqli_connect_errno()) {
