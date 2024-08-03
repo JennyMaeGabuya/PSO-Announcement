@@ -25,23 +25,17 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
+
   <!--sidebar-menu-->
   <?php $page = "member";
   include '../includes/sidebar.php' ?>
@@ -49,69 +43,76 @@ if (!isset($_SESSION['user_id'])) {
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="remove-member.php" class="current">Remove Members</a> </div>
-      <h1 class="text-center">Remove Members <i class="icon icon-group"></i></h1>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="remove-member.php" class="current">Remove Account</a>
+      </div>
     </div>
+
     <div class="container-fluid">
+      <h1 class="text-center">Remove Accounts <i class="icon icon-group"></i></h1>
       <hr>
       <div class="row-fluid">
         <div class="span12">
 
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='icon-th'></i> </span>
-              <h5>Member table</h5>
+              <h5>Accounts Table</h5>
             </div>
             <div class='widget-content nopadding'>
 
-              <?php
-
+            <?php
               include "dbcon.php";
-              $qry = "select * from members";
-              $cnt = 1;
+
+              // Select members and order by date of registration in descending order
+              $qry = "SELECT * FROM members ORDER BY dor DESC";
               $result = mysqli_query($conn, $qry);
 
+              if ($result) {
+                $total_members = mysqli_num_rows($result); // Get the total number of members
+                $cnt = $total_members;
 
-              echo "<table class='table table-bordered table-hover'>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Fullname</th>
-                  <th>Username</th>
-                  <th>Contact Number</th>
-                  <th>D.O.R</th>
-                  <th>Address</th>
-                  <th>Amount</th>
-                  <th>Choosen Service</th>
-                  <th>Plan</th>
-                  <th>Action</th>
-                </tr>
-              </thead>";
+                echo "<table class='table table-bordered table-striped'>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Fullname</th>
+                    <th>Username</th>
+                    <th>Gender</th>
+                    <th>Contact Number</th>
+                    <th>D.O.R</th>
+                    <th>Address</th>
+                    <th>Amount</th>
+                    <th>Choosen Service</th>
+                    <th>Plan</th>
+                  </tr>
+                </thead>
+                <tbody>";
 
-              while ($row = mysqli_fetch_array($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>
+                  <td><div class='text-center'>" . $cnt . "</div></td>
+                  <td><div class='text-center'>" . $row['fullname'] . "</div></td>
+                  <td><div class='text-center'>@" . $row['username'] . "</div></td>
+                  <td><div class='text-center'>" . $row['gender'] . "</div></td>
+                  <td><div class='text-center'>" . $row['contact'] . "</div></td>
+                  <td><div class='text-center'>" . $row['dor'] . "</div></td>
+                  <td><div class='text-center'>" . $row['address'] . "</div></td>
+                  <td><div class='text-center'>$" . $row['amount'] . "</div></td>
+                  <td><div class='text-center'>" . $row['services'] . "</div></td>
+                  <td><div class='text-center'>" . $row['plan'] . " Days</div></td>
+                  </tr>";
+                  $cnt--;
+                }
 
-                echo "<tbody> 
-               
-                <td><div class='text-center'>" . $cnt . "</div></td>
-                <td><div class='text-center'>" . $row['fullname'] . "</div></td>
-                <td><div class='text-center'>@" . $row['username'] . "</div></td>
-                <td><div class='text-center'>" . $row['contact'] . "</div></td>
-                <td><div class='text-center'>" . $row['dor'] . "</div></td>
-                <td><div class='text-center'>" . $row['address'] . "</div></td>
-                <td><div class='text-center'>$" . $row['amount'] . "</div></td>
-                <td><div class='text-center'>" . $row['services'] . "</div></td>
-                <td><div class='text-center'>" . $row['plan'] . " Days</div></td>
-                <td><div class='text-center'><a href='actions/delete-member.php?id=" . $row['user_id'] . "' style='color:#F66;'><i class='icon icon-trash'></i> Remove</a></div></td>
-                
-              </tbody>";
-                $cnt++;
+                echo "</tbody></table>";
+              } else {
+                echo "Error: " . mysqli_error($conn);
               }
-              ?>
 
-              </table>
+              mysqli_close($conn);
+              ?>
             </div>
           </div>
-
-
 
         </div>
       </div>

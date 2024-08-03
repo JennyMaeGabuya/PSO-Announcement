@@ -46,8 +46,11 @@ if (!isset($_SESSION['user_id'])) {
   <!--sidebar-menu-->
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manage Members</a> <a href="#" class="current">Add Members</a> </div>
-      
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="tip-bottom">Manage Members</a>
+        <a href="#" class="current">Add Members</a>
+      </div>
+
     </div>
     <h1 class="text-center">Member Entry Form <i class="fas fa-pencil-alt"></i></h1>
     <div class="container-fluid">
@@ -137,7 +140,7 @@ if (!isset($_SESSION['user_id'])) {
             <div class="widget-content nopadding">
               <div class="form-horizontal">
                 <div class="control-group">
-                  <label for="normal" class="control-label">Contact Number</label>
+                  <label for="normal" class="control-label">Contact Number :</label>
                   <div class="controls">
                     <input type="number" id="mask-phone" name="contact" placeholder="9876543210" class="span8 mask text">
                     <span class="help-block blue span8">(999) 999-9999</span>

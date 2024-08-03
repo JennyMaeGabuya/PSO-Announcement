@@ -29,25 +29,22 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-    <!--Header-part-->
-    <div id="header">
-        <h1><a href="dashboard.html">PSO Staff</a></h1>
-    </div>
-    <!--close-Header-part-->
-
+    <!-- Header -->
     <?php $page = "announcement";
     include '../includes/header.php'; ?>
-    <!--sidebar-menu-->
+
     <?php $page = "announcement";
     include '../includes/sidebar.php'; ?>
     <!--sidebar-menu-->
 
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a><a href="#" class="current">Announcements</a> </div>
-            <h1 class="text-center">Announcements <i class='fas fa-bullhorn'></i></h1>
+            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+                <a href="#" class="current">Announcements</a>
+            </div>
         </div>
         <div class="container-fluid">
+            <h1 class="text-center">Announcements <i class='fas fa-bullhorn'></i></h1>
             <hr>
             <div class="row-fluid">
                 <div class="span9">

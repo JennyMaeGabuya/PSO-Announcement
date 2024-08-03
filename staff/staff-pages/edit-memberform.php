@@ -21,31 +21,26 @@ if (!isset($_SESSION['user_id'])) {
   <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
+
   <!--sidebar-menu-->
   <?php $page = "member";
   include '../includes/sidebar.php' ?>
-
   <!--sidebar-menu-->
 
   <?php
@@ -58,7 +53,10 @@ if (!isset($_SESSION['user_id'])) {
 
     <div id="content">
       <div id="content-header">
-        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
+        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+          <a href="#" class="tip-bottom">Manamge Members</a>
+          <a href="#" class="current">Add Members</a>
+        </div>
         <h1>Update Member Details</h1>
       </div>
       <div class="container-fluid">
@@ -130,21 +128,16 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                     <div class="control-group">
 
-
                     </div>
                   </div>
 
                 </div>
-
-
 
               </div>
             </div>
 
 
           </div>
-
-
 
           <div class="span6">
             <div class="widget-box">
@@ -200,8 +193,6 @@ if (!isset($_SESSION['user_id'])) {
                       </div>
                     </div>
 
-
-
                     <div class="form-actions text-center">
                       <!-- user's ID is hidden here -->
                       <input type="hidden" name="id" value="<?php echo $row['user_id']; ?>">
@@ -214,16 +205,14 @@ if (!isset($_SESSION['user_id'])) {
               }
                 ?>
 
-
                 </div>
 
               </div>
             </div>
 
-
           </div>
 
-          <div class="row-fluid">
+          <!-- <div class="row-fluid">
             <div class="widget-box">
               <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                 <h5>wysihtml5</h5>
@@ -238,19 +227,17 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
+
         </div>
       </div>
-
 
       <!--end-main-container-part-->
 
       <!--Footer-part-->
-
       <?php
       include '../includes/footer.php';
       ?>
-
       <!--end-Footer-part-->
 
       <script src="../js/excanvas.min.js"></script>

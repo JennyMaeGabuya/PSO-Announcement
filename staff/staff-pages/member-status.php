@@ -26,16 +26,10 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
@@ -48,17 +42,20 @@ if (!isset($_SESSION['user_id'])) {
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="member-status.php" class="current">Status</a> </div>
-      <h1 class="text-center">Member's Current Status <i class="icon icon-eye-open"></i></h1>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="current">Account Status</a>
+      </div>
     </div>
+
     <div class="container-fluid">
+      <h1 class="text-center">Account Current Status <i class="icon icon-eye-open"></i></h1>
       <hr>
       <div class="row-fluid">
         <div class="span12">
 
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='icon-th'></i> </span>
-              <h5>Status table</h5>
+              <h5>Account Status Table</h5>
             </div>
             <div class='widget-content nopadding'>
 

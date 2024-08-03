@@ -26,54 +26,55 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
+
   <!--sidebar-menu-->
   <?php $page = "equipment";
   include '../includes/sidebar.php' ?>
   <!--sidebar-menu-->
+
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Equipments</a> <a href="#" class="current">Add Equipments</a> </div>
-      <h1>Equipment Entry Form</h1>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="equipment.php" class="tip-bottom">Product List</a>
+        <a href="#" class="current">Add Product</a>
+      </div>
     </div>
+
     <div class="container-fluid">
+      <h1>Product Entry Form</h1>
       <hr>
       <div class="row-fluid">
         <div class="span6">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-              <h5>Eqipment-info</h5>
+              <h5>Product-info</h5>
             </div>
+
             <div class="widget-content nopadding">
               <form action="add-equipment-req.php" method="POST" class="form-horizontal">
                 <div class="control-group">
-                  <label class="control-label">Equipment Name :</label>
+                  <label class="control-label">Product Name :</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="name" placeholder="Equipment Name" required />
+                    <input type="text" class="span11" name="name" placeholder="Product Name" required />
                   </div>
                 </div>
+
                 <div class="control-group">
                   <label class="control-label">Description :</label>
                   <div class="controls">
                     <input type="text" class="span11" name="description" placeholder="Short Description" required />
                   </div>
                 </div>
-
 
                 <div class="control-group">
                   <label class="control-label">Date of Purchase :</label>
@@ -86,13 +87,11 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="control-group">
                   <label class="control-label">Quantity :</label>
                   <div class="controls">
-                    <input type="number" class="span5" name="quantity" placeholder="Equipment Qty" required />
+                    <input type="number" class="span5" name="quantity" placeholder="Product Qty" required />
                   </div>
                 </div>
 
-
             </div>
-
 
             <div class="widget-content nopadding">
               <div class="form-horizontal">
@@ -101,20 +100,14 @@ if (!isset($_SESSION['user_id'])) {
               <div class="widget-content nopadding">
                 <div class="form-horizontal">
 
-
                 </div>
 
               </div>
 
-
-
             </div>
           </div>
 
-
         </div>
-
-
 
         <div class="span6">
           <div class="widget-box">
@@ -151,9 +144,6 @@ if (!isset($_SESSION['user_id'])) {
               <div class="widget-content nopadding">
                 <div class="form-horizontal">
 
-
-
-
                   <div class="control-group">
                     <label class="control-label">Total Cost: </label>
                     <div class="controls">
@@ -164,16 +154,12 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                   </div>
 
-
-
                   <div class="form-actions text-center">
                     <button type="submit" class="btn btn-success">Submit Details</button>
                   </div>
                   </form>
 
                 </div>
-
-
 
               </div>
 
@@ -182,7 +168,6 @@ if (!isset($_SESSION['user_id'])) {
 
         </div>
       </div>
-
 
     </div>
   </div>

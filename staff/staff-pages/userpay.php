@@ -26,16 +26,10 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-    <!--Header-part-->
-    <div id="header">
-        <h1><a href="dashboard.php">PSO Staff</a></h1>
-    </div>
-    <!--close-Header-part-->
-
-
     <!--top-Header-menu-->
     <?php include '../includes/header.php' ?>
     <!--close-top-Header-menu-->
+
     <!--start-top-serch-->
     <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
@@ -50,7 +44,10 @@ if (!isset($_SESSION['user_id'])) {
 
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="payment.php" class="tip-bottom">Payment</a> <a href="#" class="current">Make Payments</a> </div>
+            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+                <a href="payment.php" class="tip-bottom">Payment</a>
+                <a href="#" class="current">Make Payments</a>
+            </div>
             <h1>Payments</h1>
         </div>
         <form role="form" action="index.php" method="POST">

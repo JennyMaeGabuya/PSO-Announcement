@@ -26,34 +26,31 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
-  <!--sidebar-menu-->
 
+  <!--sidebar-menu-->
   <?php $page = "equipment";
   include '../includes/sidebar.php' ?>
   <!--sidebar-menu-->
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="remove-equipment.php" class="current">Remove Equipment</a> </div>
-      <h1 class="text-center">Remove Gym's Equipment <i class="icon icon-cogs"></i></h1>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="remove-equipment.php" class="current">Remove Equipment</a>
+      </div>
     </div>
+
     <div class="container-fluid">
+      <h1 class="text-center">Remove Gym's Equipment <i class="icon icon-cogs"></i></h1>
       <hr>
       <div class="row-fluid">
         <div class="span12">

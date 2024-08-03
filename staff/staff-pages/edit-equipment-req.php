@@ -26,12 +26,6 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
 
@@ -42,16 +36,18 @@ if (!isset($_SESSION['user_id'])) {
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
-  <!--sidebar-menu-->
 
+  <!--sidebar-menu-->
   <?php $page = "equipment";
   include '../includes/sidebar.php' ?>
-
-
   <!--sidebar-menu-->
+
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Manage Equipments</a> <a href="#" class="current">Update Equipment</a> </div>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="tip-bottom">Manage Equipments</a>
+        <a href="#" class="current">Update Equipment</a>
+      </div>
       <h1>Update Equipment</h1>
     </div>
     <form role="form" action="index.php" method="POST">

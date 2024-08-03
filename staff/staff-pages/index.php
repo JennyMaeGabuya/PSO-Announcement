@@ -1,8 +1,30 @@
 <?php
 session_start();
-//the isset function to check username is already loged in and stored on the session
 if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
+  exit();
+}
+
+// Default fullname if not found
+$user_name = 'Guest';
+
+// Check if the user's name is stored in the session
+if (isset($_SESSION['fullname'])) {
+  $user_name = $_SESSION['fullname'];
+} else {
+  // Fetch fullname from database if not set in session
+  include "../dbcon.php"; // Adjust the path as necessary
+
+  $user_id = $_SESSION['user_id'];
+  $qry = "SELECT fullname FROM staffs WHERE user_id = '$user_id'";
+  $result = mysqli_query($con, $qry);
+
+  if ($result && $row = mysqli_fetch_assoc($result)) {
+    $user_name = $row['fullname'];
+    $_SESSION['fullname'] = $user_name; // Store in session for future use
+  }
+
+  mysqli_close($con);
 }
 ?>
 
@@ -137,7 +159,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="span6">
           <div class="widget-box">
             <div class="widget-title bg_ly" data-toggle="collapse"><span class="icon"><i class="icon-chevron-down"></i></span>
-              <h5>Product & Supply Office Announcements</h5>
+              <h5>Property & Supply Office Announcements</h5>
             </div>
             <div class="widget-content nopadding collapse in" id="collapseG2">
 
@@ -175,7 +197,7 @@ if (!isset($_SESSION['user_id'])) {
 
                     // Start the div for user-thumb
                     echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
-                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/demo/av1.jpg'> ";
+                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/icons/announcement.png'> ";
                     echo "</div>"; // Close the user-thumb div
 
                     // Start the div for announcement content

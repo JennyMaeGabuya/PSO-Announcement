@@ -26,33 +26,28 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
-  <!--sidebar-menu-->
 
+  <!--sidebar-menu-->
   <?php $page = "member";
   include '../includes/sidebar.php' ?>
-
-
-
   <!--sidebar-menu-->
+
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="tip-bottom">Manamge Members</a>
+        <a href="#" class="current">Add Members</a>
+      </div>
       <h1>Update Member Details</h1>
     </div>
     <form role="form" action="index.php" method="POST">
@@ -120,7 +115,6 @@ if (!isset($_SESSION['user_id'])) {
         echo "<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'> DASHBOARD </a></h3>";
       }
       ?>
-
 
     </form>
   </div>

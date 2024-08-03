@@ -1,6 +1,6 @@
 <?php
 session_start();
-//the isset function to check username is already loged in and stored on the session
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
 }
@@ -26,106 +26,94 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
-  <!--start-top-serch-->
-  <!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-  <!--close-top-serch-->
-  <!--sidebar-menu-->
 
+  <!--sidebar-menu-->
   <?php $page = "equipment";
   include '../includes/sidebar.php' ?>
   <!--sidebar-menu-->
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Equipment List</a> </div>
-      <h1 class="text-center">Perfect Gym's Equipment List <i class="icon icon-cogs"></i></h1>
+      <div id="breadcrumb">
+        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="current">Product List</a>
+      </div>
     </div>
+
     <div class="container-fluid">
+      <h1 class="text-center">Product List <i class="icon icon-cogs"></i></h1>
       <hr>
       <div class="row-fluid">
         <div class="span12">
 
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='icon-cogs'></i> </span>
-              <h5>Equipment table</h5>
+              <h5>Product Table</h5>
             </div>
             <div class='widget-content nopadding'>
 
               <?php
-
               include "dbcon.php";
-              $qry = "select * from equipment";
-              $cnt = 1;
+
+              // Select equipment and order by purchase date in descending order
+              $qry = "SELECT * FROM equipment ORDER BY date DESC";
               $result = mysqli_query($conn, $qry);
 
+              if ($result) {
+                $total_products = mysqli_num_rows($result); // Get the total number of products
+                $cnt = $total_products;
 
-              echo "<table class='table table-bordered table-striped'>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Equipment</th>
-                  <th>Description</th>
-                  <th>Qty</th>
-                  <th>Amount</th>
-                  <th>Vendor</th>
-                  <th>Address</th>
-                  <th>Contact</th>
-                  <th>Purchased Date</th>
-                </tr>
-              </thead>";
+                echo "<table class='table table-bordered table-striped'>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Qty</th>
+                                        <th>Amount</th>
+                                        <th>Vendor</th>
+                                        <th>Address</th>
+                                        <th>Contact</th>
+                                        <th>Purchased Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
 
-              while ($row = mysqli_fetch_array($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>
+                                    <td><div class='text-center'>" . $cnt . "</div></td>
+                                    <td><div class='text-center'>" . $row['name'] . "</div></td>
+                                    <td><div class='text-center'>" . $row['description'] . "</div></td>
+                                    <td><div class='text-center'>" . $row['quantity'] . "</div></td>
+                                    <td><div class='text-center'>$" . $row['amount'] . "</div></td>
+                                    <td><div class='text-center'>" . $row['vendor'] . "</div></td>
+                                    <td><div class='text-center'>" . $row['address'] . "</div></td>
+                                    <td><div class='text-center'>" . $row['contact'] . "</div></td>
+                                    <td><div class='text-center'>" . $row['date'] . "</div></td>
+                                    </tr>";
+                  $cnt--;
+                }
 
-                echo "<tbody> 
-               
-                <td><div class='text-center'>" . $cnt . "</div></td>
-                <td><div class='text-center'>" . $row['name'] . "</div></td>
-                <td><div class='text-center'>" . $row['description'] . "</div></td>
-                <td><div class='text-center'>" . $row['quantity'] . "</div></td>
-                <td><div class='text-center'>$" . $row['amount'] . "</div></td>
-                <td><div class='text-center'>" . $row['vendor'] . "</div></td>
-                <td><div class='text-center'>" . $row['address'] . "</div></td>
-                <td><div class='text-center'>" . $row['contact'] . "</div></td>
-                <td><div class='text-center'>" . $row['date'] . "</div></td>
-             
-                
-              </tbody>";
-                $cnt++;
+                echo "</tbody></table>";
+              } else {
+                echo "Error: " . mysqli_error($conn);
               }
-              ?>
 
-              </table>
+              mysqli_close($conn);
+              ?>
             </div>
           </div>
-
-
 
         </div>
       </div>
     </div>
   </div>
 
-  <!--end-main-container-part-->
-
   <!--Footer-part-->
-
-  <?php
-  include '../includes/footer.php';
-  ?>
-
+  <?php include '../includes/footer.php'; ?>
   <!--end-Footer-part-->
 
   <script src="../js/excanvas.min.js"></script>
@@ -151,25 +139,18 @@ if (!isset($_SESSION['user_id'])) {
   <script src="../js/matrix.tables.js"></script>
 
   <script type="text/javascript">
-    // This function is called from the pop-up menus to transfer to
-    // a different page. Ignore if the value returned is a null string:
+    // Function to handle page navigation
     function goPage(newURL) {
-
-      // if url is empty, skip the menu dividers and reset the menu selection to default
       if (newURL != "") {
-
-        // if url is "-", it is this page -- reset the menu:
         if (newURL == "-") {
           resetMenu();
-        }
-        // else, send page to designated URL            
-        else {
+        } else {
           document.location.href = newURL;
         }
       }
     }
 
-    // resets the menu selection upon entry to this page:
+    // Function to reset menu selection
     function resetMenu() {
       document.gomenu.selector.selectedIndex = 2;
     }

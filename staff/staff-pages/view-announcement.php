@@ -64,11 +64,9 @@ if (!$query) {
 <body>
 
     <!--Header-part-->
-    <div id="header">
-        <h1><a href="dashboard.html">PSO Staff</a></h1>
-    </div>
-
     <?php include '../includes/header.php' ?>
+
+    <!--Sidebar-part-->
     <?php $page = "announcement";
     include '../includes/sidebar.php' ?>
 

@@ -26,37 +26,36 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <!--Header-part-->
-  <div id="header">
-    <h1><a href="dashboard.html">PSO Staff</a></h1>
-  </div>
-  <!--close-Header-part-->
-
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
+
   <!--sidebar-menu-->
   <?php $page = "member";
   include '../includes/sidebar.php' ?>
   <!--sidebar-menu-->
+
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
-      <h1>Member Entry Form</h1>
+      <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="members.php" class="tip-bottom">Manage Members</a>
+        <a href="#" class="current">Add Members</a>
+      </div>
+
     </div>
+    <h1 class="text-center">Member Entry Form <i class="fas fa-pencil-alt"></i></h1>
     <div class="container-fluid">
-      <hr>
       <div class="row-fluid">
         <div class="span6">
           <div class="widget-box">
-            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
               <h5>Personal-info</h5>
             </div>
             <div class="widget-content nopadding">
@@ -64,7 +63,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="control-group">
                   <label class="control-label">Full Name :</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="fullname" placeholder="First name" />
+                    <input type="text" class="span11" name="fullname" placeholder="Fullname" />
                   </div>
                 </div>
                 <div class="control-group">
@@ -81,9 +80,12 @@ if (!isset($_SESSION['user_id'])) {
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label">Gender :</label>
+                  <label class="control-label">Account Status :</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="gender" placeholder="Male or Female" />
+                    <select name="gender" required="required" id="select">
+                      <option value="Male" selected="selected">Active</option>
+                      <option value="Female">Inactive</option>
+                    </select>
                   </div>
                 </div>
                 <div class="control-group">
@@ -94,9 +96,7 @@ if (!isset($_SESSION['user_id'])) {
                   </div>
                 </div>
 
-
             </div>
-
 
             <div class="widget-content nopadding">
               <div class="form-horizontal">
@@ -108,10 +108,10 @@ if (!isset($_SESSION['user_id'])) {
                     <label for="normal" class="control-label">Plans: </label>
                     <div class="controls">
                       <select name="plan" required="required" id="select">
-                        <option value="30" selected="selected">One Month</option>
-                        <option value="90">Three Month</option>
-                        <option value="180">Six Month</option>
-                        <option value="365">One Year</option>
+                        <option value="1" selected="selected">One Month</option>
+                        <option value="3">Three Month</option>
+                        <option value="6">Six Month</option>
+                        <option value="12">One Year</option>
 
                       </select>
                     </div>
@@ -125,19 +125,14 @@ if (!isset($_SESSION['user_id'])) {
 
               </div>
 
-
-
             </div>
           </div>
 
-
         </div>
-
-
 
         <div class="span6">
           <div class="widget-box">
-            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
               <h5>Contact Details</h5>
             </div>
             <div class="widget-content nopadding">
@@ -145,7 +140,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="control-group">
                   <label for="normal" class="control-label">Contact Number</label>
                   <div class="controls">
-                    <input type="number" id="mask-phone" name="contact" class="span8 mask text">
+                    <input type="number" id="mask-phone" name="contact" placeholder="9876543210" class="span8 mask text">
                     <span class="help-block blue span8">(999) 999-9999</span>
                   </div>
                 </div>
@@ -157,7 +152,7 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
               </div>
 
-              <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+              <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
                 <h5>Service Details</h5>
               </div>
               <div class="widget-content nopadding">
@@ -169,13 +164,13 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="controls">
                       <label>
                         <input type="radio" value="Fitness" name="services" />
-                        Fitness</label>
+                        Fitness <small>- $55 per month</small></label>
                       <label>
                         <input type="radio" value="Sauna" name="services" />
-                        Sauna</label>
+                        Sauna <small>- $35 per month</small></label>
                       <label>
                         <input type="radio" value="Cardio" name="services" />
-                        Cardio</label>
+                        Cardio <small>- $40 per month</small></label>
                     </div>
                   </div>
 
@@ -184,12 +179,10 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="controls">
                       <div class="input-append">
                         <span class="add-on">$</span>
-                        <input type="number" placeholder="500" name="amount" class="span11">
+                        <input type="number" placeholder="50" name="amount" class="span11">
                       </div>
                     </div>
                   </div>
-
-
 
                   <div class="form-actions text-center">
                     <button type="submit" class="btn btn-success">Submit Member Details</button>
@@ -197,8 +190,6 @@ if (!isset($_SESSION['user_id'])) {
                   </form>
 
                 </div>
-
-
 
               </div>
 
@@ -211,7 +202,6 @@ if (!isset($_SESSION['user_id'])) {
 
     </div>
   </div>
-
 
   <!--end-main-container-part-->
 
