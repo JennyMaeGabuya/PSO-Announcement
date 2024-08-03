@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 03, 2024 at 11:15 AM
+-- Generation Time: Aug 03, 2024 at 12:56 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`user_id`, `username`, `password`, `name`, `gender`, `email`, `address`, `co_number`, `profile_picture`, `dor`) VALUES
-(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Jenny Mae', 'Female', 'admin@gmail.com', 'Lipa City, Batangas', 9123456789, 'IMG_20240723_215500_534.jpg', '2024-08-03');
+(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Jenny Mae', 'Female', 'admin@gmail.com', 'Lipa City', 9123456789, 'IMG_20240723_215500_534.jpg', '2024-08-03');
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ INSERT INTO `equipment` (`id`, `name`, `amount`, `quantity`, `vendor`, `descript
 (5, 'Dumbell - Adjustable', 102, 26, 'Uptown Suppliers', 'Material: Steel, Rubber Plastic, Concrete', '7 Cedarstone Drive', '9875552100', '2020-03-29'),
 (6, 'Multi Bench Press Machine', 219, 2, 'DnS Suppliers', '6 In 1 Multi Bench With Incline, Flat, Decline Ben', '7 Cedarstone Drive', '7410001010', '2020-04-05'),
 (7, 'Demo', 265, 5, 'Demo', 'This is a demo test.', '77 Demo Lane', '8524445452', '2020-04-03'),
-(10, 'RowWarrior Fitness Rowing Mach', 5616, 12, 'Roww Stores', 'HIGHEST QUALITY: This best of class air rowing mac', '52 Weekley Street', '7412585555', '2021-06-12');
+(10, 'RowWarrior Fitness Rowing Mach', 67392, 12, 'Roww Stores', 'HIGHEST QUALITY: This best of class air rowing mac', '52 Weekley Street', '7412580000', '2021-06-12');
 
 -- --------------------------------------------------------
 
@@ -173,9 +173,8 @@ CREATE TABLE IF NOT EXISTS `members` (
 --
 
 INSERT INTO `members` (`user_id`, `fullname`, `username`, `password`, `gender`, `dor`, `services`, `amount`, `paid_date`, `p_year`, `plan`, `address`, `contact`, `status`, `attendance_count`, `ini_weight`, `curr_weight`, `ini_bodytype`, `curr_bodytype`, `progress_date`, `reminder`) VALUES
-(6, 'Harry Denn', 'harry', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2024-05-27', '', 148500, '2022-06-02', 2021, '30', '64 Mulberry Lane', '8545878545', 'Active', 0, 54, 62, 'Slim', 'Buffed', '2020-04-22', 1),
 (8, 'Charles Anderson', 'charles', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2020-01-02', 'Fitness', 55, '2020-04-01', 2020, '3', '99 Heron Way', '8520258520', 'Active', 0, 92, 85, 'Fat', 'Bulked', '2020-04-22', 1),
-(11, 'Justin Schexnayder', 'justin', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2019-01-25', 'Cardio', 35, '2020-03-31', 2020, '3', '14 Blair Court', '7535752220', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
+(11, 'Justin Schexnayder', 'justin', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2019-01-25', 'Cardio', 35, '2020-03-31', 2020, '3', '14 Blair Court', '7535752220', 'Active', 0, 0, 0, '', '', '0000-00-00', 1),
 (14, 'Ryan Crowl', 'ryan', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '2019-07-13', 'Fitness', 55, '2024-03-29', 2020, '1', '34 Twin Oaks Drive', '1578880010', 'Active', 0, 59, 63, 'Slim', 'Slim', '2020-04-23', 0),
 (16, 'TrialsChanged', 'trials', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2020-04-01', 'Fitness', 0, '2021-06-12', 2021, '0', '4 Demo Lane', '741111110', 'Expired', 26, 50, 61, 'Slim', 'Slim', '2021-06-11', 1),
 (17, 'Karen McGray', 'karen', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2020-04-02', 'Cardio', 120, '2022-05-31', 2020, '3', '23 Rubaiyat Road', '7441002540', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
@@ -192,7 +191,7 @@ INSERT INTO `members` (`user_id`, `fullname`, `username`, `password`, `gender`, 
 (29, 'Kathy J. Glennon', 'kathy', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2022-06-02', 'Fitness', 0, '2024-03-22', 0, '0', '87 Harry Place', '7896587458', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
 (30, 'ryan', 'ryan', '10c7ccc7a4f0aff03c915c485565b9da', 'Male', '2023-04-30', 'Cardio', 500, '2024-03-29', 0, '1', 'Cuenca', '0912345678', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
 (31, 'jen', 'jen', 'b18ea44550b68d0d012bd9017c4a864a', 'Male', '2020-01-22', 'Sauna', 35, '2024-04-02', 0, '1', 'Lipa', '0921892817', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
-(32, 'Maloi', 'maloi', '27dcb4f27958b0880d0e3f9e389f4ebf', 'Male', '2024-08-03', 'Cardio', 6000, '2024-08-03', 2024, '12', 'Lemery, B atangas', '9123232432', 'Active', 0, 0, 0, '', '', '0000-00-00', 0);
+(32, 'Maloi', 'maloi', '27dcb4f27958b0880d0e3f9e389f4ebf', 'Male', '2024-08-03', 'Sauna', 2147483647, '2024-08-03', 2024, '30', 'Lemery, B atangas', '9123232432', 'Active', 0, 0, 0, '', '', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -260,7 +259,8 @@ CREATE TABLE IF NOT EXISTS `staffs` (
   `address` varchar(20) NOT NULL,
   `designation` varchar(20) NOT NULL,
   `gender` varchar(10) NOT NULL,
-  `contact` int NOT NULL,
+  `contact` bigint NOT NULL,
+  `dor` date NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -268,12 +268,12 @@ CREATE TABLE IF NOT EXISTS `staffs` (
 -- Dumping data for table `staffs`
 --
 
-INSERT INTO `staffs` (`user_id`, `username`, `password`, `email`, `fullname`, `address`, `designation`, `gender`, `contact`) VALUES
-(1, 'bruno', 'cac29d7a34687eb14b37068ee4708e7b', 'brunoden@mail.com', 'Bruno Den', '26 Morris Street', 'Cashier', 'Male', 852028120),
-(2, 'michelle', 'cac29d7a34687eb14b37068ee4708e7b', 'michelle@mail.com', 'Michelle R. Lane', '61 Stone Lane', 'Trainer', 'Female', 2147483647),
-(3, 'james', 'cac29d7a34687eb14b37068ee4708e7b', 'jamesb@mail.com', 'James Brown', '12 Deer Ridge Drive', 'Trainer', 'Male', 2147483647),
-(4, 'bruce', 'cac29d7a34687eb14b37068ee4708e7b', 'bruce@mail.com', 'Bruce H. Klaus', '68 Lake Floyd Circle', 'Manager', 'Male', 1458887788),
-(5, 'jella', '00e24a10cba8b9f05da22d325d433938', 'katarinamarieann1@gmail.com', 'jella', 'Lipa', 'Cashier', 'Female', 2147483647);
+INSERT INTO `staffs` (`user_id`, `username`, `password`, `email`, `fullname`, `address`, `designation`, `gender`, `contact`, `dor`) VALUES
+(1, 'bruno', 'cac29d7a34687eb14b37068ee4708e7b', 'brunoden@mail.com', 'Bruno Den', '26 Morris Street', 'Cashier', 'Male', 2147483647, '2024-05-06'),
+(2, 'michelle', 'cac29d7a34687eb14b37068ee4708e7b', 'michelle@mail.com', 'Michelle R. Lane', '61 Stone Lane', 'Trainer', 'Female', 2147483647, '2024-08-02'),
+(3, 'james', 'cac29d7a34687eb14b37068ee4708e7b', 'jamesb@mail.com', 'James Brown', '12 Deer Ridge Drive', 'Trainer', 'Male', 2147483647, '2024-07-09'),
+(4, 'bruce', 'cac29d7a34687eb14b37068ee4708e7b', 'bruce@mail.com', 'Bruce H. Klaus', '68 Lake Floyd Circle', 'Manager', 'Male', 1458887788, '2024-06-11'),
+(5, 'jella', '00e24a10cba8b9f05da22d325d433938', 'katarinamarieann1@gmail.com', 'jella', 'Lipa', 'Cashier', 'Female', 9631234567, '2024-08-03');
 
 -- --------------------------------------------------------
 
