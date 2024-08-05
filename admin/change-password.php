@@ -170,76 +170,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/matrix.js"></script>
-    <script src="../js/excanvas.min.js"></script>
     <script src="../js/jquery.ui.custom.js"></script>
-    <script src="../js/jquery.flot.min.js"></script>
-    <script src="../js/jquery.flot.resize.min.js"></script>
-    <script src="../js/jquery.peity.min.js"></script>
-    <script src="../js/fullcalendar.min.js"></script>
-    <script src="../js/matrix.dashboard.js"></script>
-    <script src="../js/jquery.gritter.min.js"></script>
-    <script src="../js/matrix.interface.js"></script>
-    <script src="../js/matrix.chat.js"></script>
     <script src="../js/jquery.validate.js"></script>
-    <script src="../js/matrix.form_validation.js"></script>
-    <script src="../js/jquery.wizard.js"></script>
-    <script src="../js/jquery.uniform.js"></script>
-    <script src="../js/select2.min.js"></script>
-    <script src="../js/matrix.popover.js"></script>
-    <script src="../js/jquery.dataTables.min.js"></script>
-    <script src="../js/matrix.tables.js"></script>
 
-    <!-- Tooltip Initialization -->
     <script>
         $(document).ready(function() {
-            // Initialize tooltips
             $('[data-toggle="tooltip"]').tooltip();
-        });
 
-        <?php if (isset($_SESSION['alert'])) : ?>
-            <?php if ($_SESSION['alert'] == 'success') : ?>
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Your password has been successfully changed.',
-                    icon: 'success',
-                    confirmButtonText: 'OK',
-                    customClass: {
-                        container: 'custom-alert'
-                    }
-                });
-            <?php elseif ($_SESSION['alert'] == 'mismatch') : ?>
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'New password and confirm password do not match.',
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                    customClass: {
-                        container: 'custom-alert'
-                    }
-                });
-            <?php elseif ($_SESSION['alert'] == 'incorrect') : ?>
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Your current password is incorrect.',
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                    customClass: {
-                        container: 'custom-alert'
-                    }
-                });
-            <?php elseif ($_SESSION['alert'] == 'invalid') : ?>
-                Swal.fire({
-                    title: 'Alert!',
-                    text: 'New password must be at least 8 characters long.',
-                    icon: 'warning',
-                    confirmButtonText: 'OK',
-                    customClass: {
-                        container: 'custom-alert'
-                    }
-                });
+            <?php if (isset($_SESSION['alert'])) : ?>
+                <?php if ($_SESSION['alert'] == 'success') : ?>
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your password has been successfully changed.',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        customClass: {
+                            container: 'custom-alert'
+                        }
+                    });
+                <?php elseif ($_SESSION['alert'] == 'mismatch') : ?>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'New password and confirm password do not match.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        customClass: {
+                            container: 'custom-alert'
+                        }
+                    });
+                <?php elseif ($_SESSION['alert'] == 'incorrect') : ?>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Your current password is incorrect.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        customClass: {
+                            container: 'custom-alert'
+                        }
+                    });
+                <?php elseif ($_SESSION['alert'] == 'invalid') : ?>
+                    Swal.fire({
+                        title: 'Alert!',
+                        text: 'New password must be at least 8 characters long.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                        customClass: {
+                            container: 'custom-alert'
+                        }
+                    });
+                <?php else : ?>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An unknown error occurred.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        customClass: {
+                            container: 'custom-alert'
+                        }
+                    });
+                <?php endif; ?>
+                <?php unset($_SESSION['alert']); ?>
             <?php endif; ?>
-            <?php unset($_SESSION['alert']); ?>
-        <?php endif; ?>
+        });
     </script>
 </body>
 

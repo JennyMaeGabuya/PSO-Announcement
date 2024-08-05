@@ -41,8 +41,9 @@ if (!isset($_SESSION['user_id'])) {
             width: 100%;
         }
 
-        .span3 .widget-box .widget-content .form-group button {
-            align-self: flex-start;
+        .span3 .widget-box .widget-content .form-group .button-group {
+            display: flex;
+            gap: 25px;
         }
     </style>
 </head>
@@ -63,6 +64,7 @@ if (!isset($_SESSION['user_id'])) {
                 <a href="#" class="current">Announcements</a>
             </div>
         </div>
+
         <div class="container-fluid">
             <h1 class="text-center">Announcements <i class='fas fa-bullhorn'></i></h1>
             <hr>
@@ -77,6 +79,7 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
                     </div>
                 </div>
+
                 <div class="span3">
                     <div class="widget-box">
                         <div class="widget-title">
@@ -91,13 +94,62 @@ if (!isset($_SESSION['user_id'])) {
                                 <label for="end_date">End Date:</label>
                                 <input type="date" id="end_date" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <button id="filter_button" class="btn btn-primary">Filter</button>
+                            <div class="form-group button-group">
+                                <button id="filter_button" class="btn btn-primary" style="margin-bottom: 5px;">Filter</button>
+                                <button id="clear_button" class="btn btn-secondary">Clear</button>
                             </div>
+
+                            <script>
+                                document.getElementById('clear_button').addEventListener('click', function() {
+                                    document.getElementById('start_date').value = '';
+                                    document.getElementById('end_date').value = '';
+
+                                    // Trigger AJAX request to reload all announcements
+                                    loadAllAnnouncements();
+                                });
+
+                                document.getElementById('filter_button').addEventListener('click', function() {
+                                    var startDate = document.getElementById('start_date').value;
+                                    var endDate = document.getElementById('end_date').value;
+
+                                    if (startDate && endDate) {
+                                        // Make AJAX request to fetch filtered announcements
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.open('POST', 'fetch_announcements.php', true);
+                                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                        xhr.onreadystatechange = function() {
+                                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                                document.getElementById('announcement_table').innerHTML = xhr.responseText;
+                                            }
+                                        };
+                                        xhr.send('start_date=' + startDate + '&end_date=' + endDate);
+                                    } else {
+                                        alert('Please select both start and end dates.');
+                                    }
+                                });
+
+                                // Function to load all announcements
+                                function loadAllAnnouncements() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('GET', 'fetch_announcements.php', true);
+                                    xhr.onreadystatechange = function() {
+                                        if (xhr.readyState == 4 && xhr.status == 200) {
+                                            document.getElementById('announcement_table').innerHTML = xhr.responseText;
+                                        }
+                                    };
+                                    xhr.send();
+                                }
+
+                                // Load all announcements on initial page load
+                                window.onload = function() {
+                                    loadAllAnnouncements();
+                                };
+                            </script>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 
@@ -106,8 +158,7 @@ if (!isset($_SESSION['user_id'])) {
     <!--Footer-part-->
 
     <?php
-    include '../includes/footer.php';
-    ?>
+    include '../includes/footer.php'; ?>
 
     <!--end-Footer-part-->
 
@@ -132,40 +183,6 @@ if (!isset($_SESSION['user_id'])) {
     <script src="../js/matrix.popover.js"></script>
     <script src="../js/jquery.dataTables.min.js"></script>
     <script src="../js/matrix.tables.js"></script>
-
-    <script type="text/javascript">
-        document.getElementById('filter_button').addEventListener('click', function() {
-            var startDate = document.getElementById('start_date').value;
-            var endDate = document.getElementById('end_date').value;
-
-            if (startDate && endDate) {
-                // Make AJAX request to fetch filtered announcements
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'fetch_announcements.php', true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        document.getElementById('announcement_table').innerHTML = xhr.responseText;
-                    }
-                };
-                xhr.send('start_date=' + startDate + '&end_date=' + endDate);
-            } else {
-                alert('Please select both start and end dates.');
-            }
-        });
-
-        // Load all announcements on initial page load
-        window.onload = function() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'fetch_announcements.php', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById('announcement_table').innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        };
-    </script>
 </body>
 
 </html>

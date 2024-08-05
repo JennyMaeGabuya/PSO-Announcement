@@ -73,6 +73,8 @@ if (!isset($_SESSION['user_id'])) {
           <thead>
             <tr>
               <th>#</th>
+              <th>To</th>
+              <th>Subject</th>
               <th>Date</th>
               <th>Message</th>
               <th>Action</th>
@@ -89,10 +91,12 @@ if (!isset($_SESSION['user_id'])) {
                 $message = strlen($row['message']) > 15 ? $message . "..." : $message;
 
                 echo "<tr>
-            <td><div class='text-center'>" . $cnt . "</div></td>
-            <td><div class='text-center'>" . $row['date'] . "</div></td>
-            <td><div class='text-center'>" . $message . "</div></td>
-            <td><div class='text-center'><a href='actions/remove-announcement.php?id=" . $row['id'] . "' style='color:#F66;' ><i class='fas fa-trash'></i> Remove</a></div></td></tr>";
+              <td><div class='text-center'>" . $cnt . "</div></td>
+              <td><div class='text-center'>" . $row['toWho'] . "</div></td>
+              <td><div class='text-center'>" . $row['subject'] . "</div></td>
+              <td><div class='text-center'>" . $row['date'] . "</div></td>
+              <td><div class='text-center'>" . $message . "</div></td>
+              <td><div class='text-center'><a href='actions/remove-announcement.php?id=" . $row['id'] . "' style='color:#F66;' ><i class='fas fa-trash'></i> Remove</a></div></td></tr>";
                 $cnt--; // Decrease the count for the next row
               }
 

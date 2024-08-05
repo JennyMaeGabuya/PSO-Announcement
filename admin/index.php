@@ -379,7 +379,7 @@ $result5 = mysqli_query($con, $qry);
 
                   // Start the div for user-thumb
                   echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
-                  echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='http://localhost/gym%20system/img/demo/alert.png'> ";
+                  echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/icons/announcement.png'> ";
                   echo "</div>"; // Close the user-thumb div
 
                   // Start the div for announcement content

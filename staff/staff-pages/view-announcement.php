@@ -72,10 +72,15 @@ if (!$query) {
 
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a><a href="#" class="current">Announcements</a> </div>
-            <h1 class="text-center">Announcements <i class="fas fa-bullhorn"></i></h1>
+            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+                <a href="staff-announcement.php">Announcements</a>
+                <a href="#" class="current">View Announcement</a>
+            </div>
         </div>
+
         <div class="container-fluid">
+            <h1 class="text-center">Announcements <i class="fas fa-bullhorn"></i></h1>
+            <hr>
             <div class='widget-box'>
                 <div class='widget-content' style="font-size: 14px;;">
                     <?php

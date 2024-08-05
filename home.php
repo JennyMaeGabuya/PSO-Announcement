@@ -6,13 +6,13 @@ include('dbcon.php');
 $error_message = "";
 
 if (isset($_POST['login'])) {
-    $username = isset($_POST['username']) ? mysqli_real_escape_string($con, $_POST['username']) : '';
+    $email = isset($_POST['email']) ? mysqli_real_escape_string($con, $_POST['email']) : '';
     $password = isset($_POST['password']) ? mysqli_real_escape_string($con, $_POST['password']) : '';
 
-    if (!empty($username) && !empty($password)) { // Check if username and password are not empty
+    if (!empty($email) && !empty($password)) { // Check if email and password are not empty
         $password = md5($password);
 
-        $query = mysqli_query($con, "SELECT * FROM admin WHERE password='$password' and username='$username'");
+        $query = mysqli_query($con, "SELECT * FROM admin WHERE password='$password' and email='$email'");
         $row = mysqli_fetch_array($query);
         $num_row = mysqli_num_rows($query);
 
@@ -23,16 +23,16 @@ if (isset($_POST['login'])) {
         } else {
             // Set error message
             $error_message = "<div class='alert alert-danger alert-dismissible text-center' role='alert' style='font-size: 16px;'>
-                Invalid Username and/or Password
+                Invalid Email and/or Password
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>
             </div>";
         }
     } else {
-        // Handle case where username or password is empty
+        // Handle case where email or password is empty
         $error_message = "<div class='alert alert-danger alert-dismissible text-center' role='alert' style='font-size: 16px;'>
-            Username and/or Password cannot be empty
+            Email and/or Password cannot be empty
             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
             </button>
@@ -279,8 +279,8 @@ if (isset($_POST['login'])) {
                     <div class="control-group" style="margin-top: 30px;">
                         <div class="controls">
                             <div class="main_input_box">
-                                <label for="username">Email</label>
-                                <input type="text" name="username" required onfocus="handleFocus(this)" onblur="handleBlur(this)" />
+                                <label for="email">Email</label>
+                                <input type="email" name="email" required onfocus="handleFocus(this)" onblur="handleBlur(this)" />
                             </div>
                         </div>
                     </div>

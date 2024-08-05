@@ -20,6 +20,7 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../css/matrix-media.css" />
   <link href="../font-awesome/css/fontawesome.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <link href="../font-awesome/css/all.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
@@ -27,19 +28,9 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <!--Header-part-->
-
-  <!--close-Header-part-->
-
   <!--top-Header-menu-->
   <?php include 'includes/topheader.php' ?>
   <!--close-top-Header-menu-->
-  <!--start-top-serch-->
-  <!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-  </div> -->
-  <!--close-top-serch-->
 
   <!--sidebar-menu-->
   <?php $page = 'announcement';
@@ -53,7 +44,7 @@ if (!isset($_SESSION['user_id'])) {
         <a href="announcement.php" class="current">Announcements</a>
       </div>
     </div>
-    
+
     <div class="container-fluid">
       <h1 class="text-center">Announcement <i class="fas fa-bullhorn"></i></h1>
       <hr>
@@ -63,15 +54,27 @@ if (!isset($_SESSION['user_id'])) {
           <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
             <h5>Make Announcements</h5>
           </div>
+
           <div class="widget-content">
             <div class="control-group">
-              <form action="post-announcement.php" method="POST">
+              <form id="announcement-form" action="post-announcement.php" method="POST">
                 <div class="controls">
-                  <textarea class="span12" name="message" rows="6" placeholder="Enter text ..."></textarea>
+                  <select name="target_audience" class="span12" required>
+                    <option value="" disabled selected>Announcement for...</option>
+                    <option value="All">All</option>
+                    <option value="User">User</option>
+                    <option value="Staff">Staff</option>
+                  </select>
+                </div>
+                <div class="controls">
+                  <input type="text" class="span12" name="subject" placeholder="Subject" required>
+                </div>
+                <div class="controls">
+                  <textarea class="span12" name="message" rows="6" placeholder="Enter message ..." required></textarea>
                 </div>
                 <div class="controls">
                   <h5><label for="Announce Date">Applied Date:
-                      <input type="date" name="date"></h5> </label>
+                      <input type="date" name="date" required></h5></label>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-info">Publish Now</button>
@@ -79,22 +82,19 @@ if (!isset($_SESSION['user_id'])) {
               </form>
             </div>
           </div>
+
         </div>
       </div>
-
-
     </div>
-  </div>
 
+  </div>
+  </div>
 
   <!--end-main-container-part-->
 
   <!--Footer-part-->
 
-  <?php
-  include 'includes/footer.php';
-  ?>
-
+  <?php include 'includes/footer.php'; ?>
   <!--end-Footer-part-->
 
   <script src="../js/excanvas.min.js"></script>
@@ -117,33 +117,65 @@ if (!isset($_SESSION['user_id'])) {
   <script src="../js/wysihtml5-0.3.0.js"></script>
   <script src="../js/bootstrap-wysihtml5.js"></script>
 
-  <script type="text/javascript">
-    // This function is called from the pop-up menus to transfer to
-    // a different page. Ignore if the value returned is a null string:
-    function goPage(newURL) {
-
-      // if url is empty, skip the menu dividers and reset the menu selection to default
-      if (newURL != "") {
-
-        // if url is "-", it is this page -- reset the menu:
-        if (newURL == "-") {
-          resetMenu();
-        }
-        // else, send page to designated URL            
-        else {
-          document.location.href = newURL;
-        }
-      }
-    }
-
-    // resets the menu selection upon entry to this page:
-    function resetMenu() {
-      document.gomenu.selector.selectedIndex = 2;
-    }
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-    $('.textarea_editor').wysihtml5();
+    document.getElementById('announcement-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting immediately
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to publish this announcement?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, publish it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Create a FormData object
+          const formData = new FormData(this);
+
+          // Send the form data using Fetch API
+          fetch(this.action, {
+              method: 'POST',
+              body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.status === 'success') {
+                Swal.fire({
+                  title: 'Published!',
+                  text: 'Your announcement has been published successfully.',
+                  icon: 'success',
+                  confirmButtonText: 'OK'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = 'index.php';
+                  }
+                });
+              } else {
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'An error occurred. Please try again.',
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+                });
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error); // Log error to the console for debugging
+              Swal.fire({
+                title: 'Error!',
+                text: 'An unexpected error occurred. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
+            });
+        }
+      });
+    });
   </script>
+
 </body>
 
 </html>

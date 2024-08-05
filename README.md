@@ -1,9 +1,10 @@
 ito na yun
 
 **Admin Login Details**
+#Use Email instead
 
-Username: admin
-Password: admin
+Email: admin@gmail.com
+Password: jennymae
 
 **Staff Login Details**
 
