@@ -1,17 +1,17 @@
 ito na yun
 
 # Admin Login Details
-## Use Email instead
+**Use Email instead**
 
 Email: admin@gmail.com
 Password: jennymae
 
-# Staff Login Details**
+# Staff Login Details
 
 Username: jella
 Password: jella
 
-# User Login Details**
+# User Login Details
 
 Username: ryan
 Password: ryan
