@@ -191,7 +191,7 @@ if (isset($_SESSION['fullname'])) {
                   }
                   ?>
 
-                  <a href="reminders.php"><button class="btn btn-warning btn-mini">View All</button></a>
+                  <a href="customer-reminder.php"><button class="btn btn-warning btn-mini">View All</button></a>
                 </li>
               </ul>
             </div>
@@ -247,7 +247,7 @@ if (isset($_SESSION['fullname'])) {
                   }
                   ?>
 
-                  <a href="announcements.php"><button class="btn btn-warning btn-mini">View All</button></a>
+                  <a href="announcement.php"><button class="btn btn-warning btn-mini">View All</button></a>
                 </li>
               </ul>
             </div>
