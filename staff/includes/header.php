@@ -57,6 +57,13 @@ if (isset($_SESSION['fullname'])) {
     margin-bottom: 20px;
   }
 
+  #content #content-header {
+    border: 2px solid #ddd;
+    padding: 5px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+  }
+
   .logo-small {
     display: none;
   }

@@ -36,14 +36,6 @@ $result5 = mysqli_query($con, $qry);
       border: 1px solid #FFD700;
     }
 
-    #content #content-header {
-      border: 2px solid #ddd;
-      padding: 10px;
-      background-color: #f5f5f5;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
-
     .zoom-img {
       transition: transform 0.3s ease;
     }

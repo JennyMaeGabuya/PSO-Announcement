@@ -51,7 +51,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <div class="container-fluid">
-      <h1>Product Entry Form</h1>
+      <h1>Product Entry Form <i class="fas fa-pencil-alt"></i> </h1>
       <hr>
       <div class="row-fluid">
         <div class="span6">

@@ -35,8 +35,9 @@
 
   #content #content-header {
     border: 2px solid #ddd;
-    padding: 10px;
+    padding: 5px;
     background-color: #f5f5f5;
+    border-radius: 5px;
   }
 
   @media (max-width: 768px) {
