@@ -4,6 +4,18 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
 }
+
+include "dbcon.php";
+
+// Check if a search query is submitted
+$search = '';
+if (isset($_POST['search'])) {
+  $search = mysqli_real_escape_string($con, $_POST['search']);
+}
+
+// Construct the SQL query with search functionality
+$qry = "SELECT * FROM members WHERE fullname LIKE '%$search%' ORDER BY dor DESC";
+$result = mysqli_query($con, $qry);
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +34,51 @@ if (!isset($_SESSION['user_id'])) {
   <link href="../font-awesome/css/all.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+  <style>
+    #custom-search-form {
+      margin: 0;
+      margin-top: 5px;
+      padding-right: 10px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #custom-search-form .search-container {
+      position: relative;
+      display: flex;
+    }
+
+    #custom-search-form .search-query {
+      padding: 5px 10px;
+      padding-right: 30px;
+      /* Adds space for the button */
+      margin-bottom: 0;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      width: 150px;
+      /* Adjust width as needed */
+    }
+
+    #custom-search-form .search-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      border: none;
+      background-color: #007bff;
+      /* Change to the desired background color */
+      color: white;
+      /* Text color */
+      border-radius: 0 3px 3px 0;
+      /* Rounded corners on the right side */
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    #custom-search-form .search-button i {
+      margin: 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -48,6 +105,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <div class="container-fluid">
       <h1 class="text-center">Remove Members <i class="fas fa-trash"></i></h1>
+
       <div class="row-fluid">
         <div class="span12">
 
@@ -55,15 +113,19 @@ if (!isset($_SESSION['user_id'])) {
             <div class='widget-title'>
               <span class='icon'><i class='fas fa-th'></i></span>
               <h5>Member table</h5>
+              <!-- Search Form -->
+              <form id="custom-search-form" role="search" method="POST" action="">
+                <div class="search-container">
+                  <input type="text" class="search-query" placeholder="Search" name="search"
+                    value="<?php echo htmlspecialchars($search); ?>" required>
+                  <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                </div>
+              </form>
             </div>
             <div class='widget-content nopadding'>
 
               <?php
-              include "dbcon.php";
               // Select members and order by date of registration in descending order
-              $qry = "SELECT * FROM members ORDER BY dor DESC";
-              $result = mysqli_query($con, $qry);
-
               if ($result) {
                 $total_members = mysqli_num_rows($result); // Get the total number of members
                 $cnt = $total_members;
