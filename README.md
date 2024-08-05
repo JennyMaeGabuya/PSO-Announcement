@@ -1,7 +1,7 @@
 ito na yun
 
 **Admin Login Details**
-#Use Email instead
+# Use Email instead
 
 Email: admin@gmail.com
 Password: jennymae
