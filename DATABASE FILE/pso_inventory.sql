@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 03, 2024 at 02:47 PM
+-- Generation Time: Aug 05, 2024 at 02:00 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `user_id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `gender` text NOT NULL,
   `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
@@ -40,14 +40,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `profile_picture` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `dor` date NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`user_id`, `username`, `password`, `name`, `gender`, `email`, `address`, `co_number`, `profile_picture`, `dor`) VALUES
-(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Jenny Mae', 'Female', 'admin@gmail.com', 'Lipa City', 9123456789, 'IMG_20240723_215500_534.jpg', '2024-08-03');
+(1, 'admin', '18b274ba81464e5e74ed2d061fb6d8da', 'Jenny Mae Gabuya', 'Female', 'admin@gmail.com', 'Lip City, Batangas', 9123456789, 'IMG_20240723_215500_534.jpg', '2024-08-05');
 
 -- --------------------------------------------------------
 
@@ -58,37 +58,28 @@ INSERT INTO `admin` (`user_id`, `username`, `password`, `name`, `gender`, `email
 DROP TABLE IF EXISTS `announcements`;
 CREATE TABLE IF NOT EXISTS `announcements` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `message` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `toWho` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` varchar(1000) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `date` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `announcements`
 --
 
-INSERT INTO `announcements` (`id`, `message`, `date`) VALUES
-(9, 'Renovation Going On...', '2020-04-03 16:00:00'),
-(10, 'This is a demo announcement from admin', '2022-06-02 16:00:00'),
-(13, 'test to sawa', '2024-03-22 16:00:00'),
-(14, 'talaga naman ay', '2024-03-14 16:00:00'),
-(17, 'hello po, Good Friday', '2024-03-28 16:00:00'),
-(18, 'hello ryan', '2024-04-01 16:00:00'),
-(19, 'hello Jella', '2024-03-24 16:00:00'),
-(20, 'rrer', '2024-04-01 16:00:00'),
-(21, 'Hello everyone!', '2024-05-26 16:00:00'),
-(22, 'sasasas', '2024-05-26 16:00:00'),
-(23, 'asasasa', '2024-05-26 16:00:00'),
-(24, 'asasasas', '2024-05-26 16:00:00'),
-(25, 'testing ngga po', '2024-05-27 12:00:26'),
-(26, 'testing ulit, HAHAHHA', '0000-00-00 00:00:00'),
-(27, 'ttgfghfghj', '0000-00-00 00:00:00'),
-(28, 'asasas', '2024-05-27 12:04:03'),
-(29, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ', '2024-05-27 12:50:36'),
-(30, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mollis aliquam ut porttitor leo a diam. Tellus integer feugiat scelerisque varius morbi. Duis ut diam quam nulla porttitor massa id', '2024-05-27 12:51:38'),
-(32, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas diam in arcu cursus euismod quis viverra. In nisl nisi scelerisque eu ultrices vitae auctor. Laoreet sit amet cursus sit. V', '2024-05-27 13:03:38'),
-(33, 'send foods,,', '2024-08-03 13:00:12'),
-(34, 'sdsdsd', '2024-08-03 13:00:25');
+INSERT INTO `announcements` (`id`, `toWho`, `subject`, `message`, `date`) VALUES
+(9, 'User', 'New Office Supplies Now Available—Check Out the Restock!', 'Renovation Going On...', '2024-08-05 12:13:54'),
+(10, 'Staff', 'Updated Inventory: Essential Office Supplies Restocked', 'This is a demo announcement from admin', '2024-08-05 12:14:06'),
+(29, 'User', 'Get Your New Office Supplies—Restock Complete', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ', '2024-08-05 12:15:08'),
+(30, 'User', 'Stock of Office Supplies—Visit the Supply Room Today', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mollis aliquam ut porttitor leo a diam. Tellus integer feugiat scelerisque varius morbi. Duis ut diam quam nulla porttitor massa id', '2024-08-05 12:15:13'),
+(32, 'Staff', 'Office Supply Room Update: New Items Added!', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas diam in arcu cursus euismod quis viverra. In nisl nisi scelerisque eu ultrices vitae auctor. Laoreet sit amet cursus sit. V', '2024-08-05 12:14:20'),
+(33, 'User', 'Get Your New Office Supplies—Restock Complete', 'send foods,,', '2024-08-05 12:15:38'),
+(35, 'Staff', 'Office Supply Room Update: New Items Added!', 'We are pleased to announce that our office supply room has been restocked with a variety of new items to ensure you have everything you need to work efficiently and comfortably. The following supplies are now available:\r\n\r\nWriting ', '2024-08-05 12:15:31'),
+(36, 'User', 'Exciting News: Office Supplies Have Been Refreshed and Restocked', 'We are excited to inform you that the office supply room has been refreshed and restocked with a variety of new items to support your daily work needs. Here’s what’s now available:\r\n\r\nWriting Tools: A fresh selection of pens, pencils, markers, and highlighters.\r\nPaper Supplies: Notebooks, sticky notes, printer paper, and legal pads.\r\nOrganizational Items: Folders, binders, file organizers, and desk trays.\r\nTech Accessories: USB drives, chargers, and mouse pads.\r\nMiscellaneous Supplies: Staplers, tape dispensers, scissors, and paper clips.\r\n\r\nPlease feel free to visit the supply room during office hours to pick up any items you need. If you have specific requirements or notice anything missing, don’t hesitate to contact the office manager, and we’ll do our best to accommodate your needs.', '2024-08-05 12:18:26'),
+(37, 'Staff', 'Upcoming Audit Day: Preparation and Schedule', 'We want to inform you that our annual audit day is scheduled for [Date]. This audit is an important part of our efforts to ensure that all processes and records are accurate and up-to-date.\r\n\r\nPreparation Steps:\r\n\r\nDocumentation: Please ensure that all relevant documents and records are organized and accessible. This includes financial reports, inventory logs, and any other pertinent files.\r\nClean Up: Clear your workspaces and ensure that all electronic and physical files are properly filed.\r\nReview: Review any recent changes or updates in your department that may be relevant to the audit.\r\nIf you have any questions or need assistance in preparing for the audit, please contact [Audit Coordinator\'s Name] at [Contact Information].\r\n\r\nThank you for your cooperation and attention to this important process.', '2024-08-05 12:30:17'),
+(41, 'User', 'testing ulit', 'hahasss', '2024-08-05 12:45:58');
 
 -- --------------------------------------------------------
 
@@ -170,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `members` (
   `progress_date` date NOT NULL,
   `reminder` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `members`
@@ -179,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `members` (
 INSERT INTO `members` (`user_id`, `fullname`, `username`, `email`, `password`, `gender`, `dor`, `profile_picture`, `services`, `amount`, `paid_date`, `p_year`, `plan`, `address`, `contact`, `status`, `attendance_count`, `ini_weight`, `curr_weight`, `ini_bodytype`, `curr_bodytype`, `progress_date`, `reminder`) VALUES
 (30, 'Ryan Ceasar Ramos', 'ryan', 'ryan@gmail.com', '10c7ccc7a4f0aff03c915c485565b9da', 'Male', '2023-04-30', 'bsu_img.jpg', 'Cardio', 500, '2024-03-29', 0, '1', 'Cuenca', '2121323243', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
 (31, 'jen', 'jen', '', 'b18ea44550b68d0d012bd9017c4a864a', 'Male', '2020-01-22', '', 'Sauna', 35, '2024-04-02', 0, '1', 'Lipa', '0921892817', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
-(32, 'Maloi', 'maloi', 'maloi@gmail.com', '27dcb4f27958b0880d0e3f9e389f4ebf', 'Male', '2024-08-03', '', 'Sauna', 2147483647, '2024-08-03', 2024, '30', 'Lemery, B atangas', '9123232432', 'Active', 0, 0, 0, '', '', '0000-00-00', 0);
+(32, 'Maloi', 'maloi', 'maloi@gmail.com', '27dcb4f27958b0880d0e3f9e389f4ebf', 'Male', '2024-08-03', '', 'Cardio', 325, '2024-08-03', 2024, '365', 'Lemery, Batangas', '9123232432', 'Active', 0, 0, 0, '', '', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -261,7 +252,7 @@ INSERT INTO `staffs` (`user_id`, `username`, `password`, `email`, `fullname`, `a
 (2, 'michelle', 'cac29d7a34687eb14b37068ee4708e7b', 'michelle@mail.com', 'Michelle R. Lane', '61 Stone Lane', 'Trainer', 'Female', 2147483647, '2024-08-02'),
 (3, 'james', 'cac29d7a34687eb14b37068ee4708e7b', 'jamesb@mail.com', 'James Brown', '12 Deer Ridge Drive', 'Trainer', 'Male', 2147483647, '2024-07-09'),
 (4, 'bruce', 'cac29d7a34687eb14b37068ee4708e7b', 'bruce@mail.com', 'Bruce H. Klaus', '68 Lake Floyd Circle', 'Manager', 'Male', 1458887788, '2024-06-11'),
-(5, 'jella', '00e24a10cba8b9f05da22d325d433938', 'katarinamarieann1@gmail.com', 'jella', 'Lipa', 'Cashier', 'Female', 9631234567, '2024-08-03');
+(5, 'jella', '00e24a10cba8b9f05da22d325d433938', 'katarinamarieann1@gmail.com', 'Jelladane Peloramas', 'Lipa', 'Cashier', 'Female', 9631234567, '2024-08-03');
 
 -- --------------------------------------------------------
 
