@@ -1,4 +1,4 @@
-ito na yun
+ito na yun, **be responsible**
 
 # Admin Login Details
 **Use Email instead**
