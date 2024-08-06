@@ -94,8 +94,7 @@ if (!isset($_SESSION['user_id'])) {
                 <td><div class='text-center'>" . $row['vendor'] . "</div></td>
                 <td><div class='text-center'>" . $row['contact'] . "</div></td>
                 <td><div class='text-center'>" . $row['date'] . "</div></td>
-                <td><div class='text-center'><a href='actions/delete-equipment.php?id=" . $row['id'] . "' style='color:#F66;'><i class='icon icon-trash'></i> Remove</a></div></td>
-                
+                <td><div class='text-center'><a href='actions/delete-equipment.php?id=" . $row['id'] . "' style='color:#F66;'><i class='fas fa-trash'></i> Remove</a></div></td>
               </tbody>";
                 $cnt++;
               }

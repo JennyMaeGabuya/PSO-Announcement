@@ -141,6 +141,7 @@ if (!isset($_SESSION['user_id'])) {
                     <th>Amount</th>
                     <th>Choosen Service</th>
                     <th>Plan</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>";
@@ -157,6 +158,7 @@ if (!isset($_SESSION['user_id'])) {
                   <td><div class='text-center'>$" . $row['amount'] . "</div></td>
                   <td><div class='text-center'>" . $row['services'] . "</div></td>
                   <td><div class='text-center'>" . $row['plan'] . " Days</div></td>
+                  <td><div class='text-center'><a href='edit-memberform.php?id=" . $row['user_id'] . "'><i class='icon icon-pencil'></i> Edit</a></div></td>
                   </tr>";
                   $cnt--;
                 }
