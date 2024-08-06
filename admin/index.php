@@ -111,8 +111,8 @@ $result5 = mysqli_query($con, $qry);
         while ($data = mysqli_fetch_array($res)) {
           $services = $data['services'];
           $number = $data['number'];
-        ?>['<?php echo $services; ?>', <?php echo $number; ?>],
-        <?php
+          ?>['<?php echo $services; ?>', <?php echo $number; ?>],
+          <?php
         }
         ?>
       ]);
@@ -152,7 +152,7 @@ $result5 = mysqli_query($con, $qry);
 
     function drawStuff() {
       var data = new google.visualization.arrayToDataTable([
-        ['Terms', 'Total Amount', ],
+        ['Terms', 'Total Amount',],
 
         <?php
         $query1 = "SELECT gender, SUM(amount) as numberone FROM members; ";
@@ -162,8 +162,8 @@ $result5 = mysqli_query($con, $qry);
           $services = 'Earnings';
           $numberone = $data['numberone'];
           // $numbertwo=$data['numbertwo'];
-        ?>['<?php echo $services; ?>', <?php echo $numberone; ?>, ],
-        <?php
+          ?>['<?php echo $services; ?>', <?php echo $numberone; ?>, ],
+          <?php
         }
         ?>
 
@@ -174,8 +174,8 @@ $result5 = mysqli_query($con, $qry);
           $expenses = 'Expenses';
           $numbert = $data['numbert'];
 
-        ?>['<?php echo $expenses; ?>', <?php echo $numbert; ?>, ],
-        <?php
+          ?>['<?php echo $expenses; ?>', <?php echo $numbert; ?>, ],
+          <?php
         }
         ?>
 
@@ -280,7 +280,8 @@ $result5 = mysqli_query($con, $qry);
   <div id="content">
     <!--breadcrumbs-->
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="You're right here" class="tip-bottom"><i class="fa fa-home"></i> Home</a></div>
+      <div id="breadcrumb"> <a href="index.php" title="You're right here" class="tip-bottom"><i class="fa fa-home"></i>
+          Home</a></div>
     </div>
     <!--End-breadcrumbs-->
 
@@ -288,10 +289,19 @@ $result5 = mysqli_query($con, $qry);
     <div class="container-fluid">
       <div class="quick-actions_homepage">
         <ul class="quick-actions">
-          <li class="bg_ls span"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include 'actions/dashboard-activecount.php' ?></span> Active Offices </a> </li>
-          <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Registered Offices</a> </li>
-          <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-cog"></i></i><span class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Request for Relocation </a> </li>
-          <li class="bg_lb span2"> <a href="announcement.php" style="font-size: 16px;"> <i class="fas fa-bullhorn"></i><span class="label label-important"><?php include 'actions/count-announcements.php' ?></span>Announcements </a> </li>
+          <li class="bg_ls span"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span
+                class="label label-important"><?php include 'actions/dashboard-activecount.php' ?></span> Active Offices
+            </a> </li>
+          <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span
+                class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Registered Offices</a>
+          </li>
+          <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-cog"></i></i><span
+                class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Request for Relocation
+            </a> </li>
+          <li class="bg_lb span2"> <a href="announcement.php" style="font-size: 16px;"> <i
+                class="fas fa-bullhorn"></i><span
+                class="label label-important"><?php include 'actions/count-announcements.php' ?></span>Announcements
+            </a> </li>
 
 
           <!-- <li class="bg_ls span2"> <a href="buttons.html"> <i class="fas fa-tint"></i> Buttons</a> </li>
@@ -307,7 +317,8 @@ $result5 = mysqli_query($con, $qry);
       <div class="row-fluid">
         <div class="span6">
           <div class="widget-box">
-            <div class="widget-title bg_ly" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
+            <div class="widget-title bg_ly" href="#collapseG2"><span class="icon"><i
+                  class="fas fa-chevron-down"></i></span>
               <h5>Active and Inactive Accounts: Overview</h5>
             </div>
             <div class="widget-content nopadding collapse in" id="collapseG2">
@@ -322,7 +333,8 @@ $result5 = mysqli_query($con, $qry);
 
         <div class="span6">
           <div class="widget-box">
-            <div class="widget-title bg_ly" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
+            <div class="widget-title bg_ly" href="#collapseG2"><span class="icon"><i
+                  class="fas fa-chevron-down"></i></span>
               <h5>Useful Life Statuses: Overview</h5>
             </div>
             <div class="widget-content nopadding collapse in" id="collapseG2">
@@ -348,7 +360,6 @@ $result5 = mysqli_query($con, $qry);
                 <h5>Property and Supply Office Announcements</h5>
               </div>
               <div class="widget-content nopadding collapse in" id="collapseG2">
-
                 <?php
                 include "../dbcon.php";
 
@@ -369,7 +380,7 @@ $result5 = mysqli_query($con, $qry);
 
                   // Start the div with the article-post class
                   echo "<div class='article-post $class'>"; // Add the class here
-
+                
                   // Check if this is the highlighted announcement
                   $messageStyle = ($class == 'highlight') ? 'font-weight: bold;' : '';
 
@@ -381,21 +392,20 @@ $result5 = mysqli_query($con, $qry);
                   echo "<div class='user-thumb' style='float: left; margin-right: 10px;'>"; // Adjust styling here
                   echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/icons/announcement.png'> ";
                   echo "</div>"; // Close the user-thumb div
-
+                
                   // Start the div for announcement content
                   echo "<div style='overflow: hidden;'>"; // Adjust styling here
                   echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
-                  echo "<p><a href='#' style='$messageStyle'>" . $message . "</a> </p>";
+                  echo "<p><a href='view-announcement.php?id=" . $row['id'] . "' style='$messageStyle'>" . $message . "</a> </p>";
                   echo "</div>"; // Close the announcement content div
-
+                
                   echo "</div>"; // Close the article-post div
                 }
                 ?>
-
-                <a href="manage-announcement.php"><button class="btn btn-warning btn-mini" style="margin: 10px;">View All</button></a>
+                <a href="manage-announcement.php"><button class="btn btn-warning btn-mini" style="margin: 10px;">View
+                    All</button></a>
                 </li>
                 </ul>
-
               </div>
             </div>
           </div>
@@ -416,15 +426,15 @@ $result5 = mysqli_query($con, $qry);
 
                     while ($row = mysqli_fetch_array($result)) { ?>
                       <li class='clearfix'>
-                        <div class='txt'> <?php echo $row["task_desc"] ?> <?php if ($row["task_status"] == "Pending") {
-                                                                            echo '<span class="by label label-info">Pending</span>';
-                                                                          } else {
-                                                                            echo '<span class="by label label-success">In Progress</span>';
-                                                                          } ?></div>
+                        <div class='txt'> <?php echo $row["task_desc"] ?>   <?php if ($row["task_status"] == "Pending") {
+                                echo '<span class="by label label-info">Pending</span>';
+                              } else {
+                                echo '<span class="by label label-success">In Progress</span>';
+                              } ?></div>
                       <?php }
                     echo "</li>";
                     echo "</ul>";
-                      ?>
+                    ?>
                 </div>
               </div>
             </div>
