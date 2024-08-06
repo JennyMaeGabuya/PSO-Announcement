@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 05, 2024 at 02:00 PM
+-- Generation Time: Aug 06, 2024 at 11:57 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`user_id`, `username`, `password`, `name`, `gender`, `email`, `address`, `co_number`, `profile_picture`, `dor`) VALUES
-(1, 'admin', '18b274ba81464e5e74ed2d061fb6d8da', 'Jenny Mae Gabuya', 'Female', 'admin@gmail.com', 'Lip City, Batangas', 9123456789, 'IMG_20240723_215500_534.jpg', '2024-08-05');
+(1, 'admin', '18b274ba81464e5e74ed2d061fb6d8da', 'Jenny Mae Gabuya', 'Female', 'admin@gmail.com', 'Lip City, Batangas', 91234567892, 'IMG_20240723_215500_534.jpg', '2024-08-05');
 
 -- --------------------------------------------------------
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `message` varchar(1000) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `date` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `announcements`
@@ -79,7 +79,8 @@ INSERT INTO `announcements` (`id`, `toWho`, `subject`, `message`, `date`) VALUES
 (35, 'Staff', 'Office Supply Room Update: New Items Added!', 'We are pleased to announce that our office supply room has been restocked with a variety of new items to ensure you have everything you need to work efficiently and comfortably. The following supplies are now available:\r\n\r\nWriting ', '2024-08-05 12:15:31'),
 (36, 'User', 'Exciting News: Office Supplies Have Been Refreshed and Restocked', 'We are excited to inform you that the office supply room has been refreshed and restocked with a variety of new items to support your daily work needs. Here’s what’s now available:\r\n\r\nWriting Tools: A fresh selection of pens, pencils, markers, and highlighters.\r\nPaper Supplies: Notebooks, sticky notes, printer paper, and legal pads.\r\nOrganizational Items: Folders, binders, file organizers, and desk trays.\r\nTech Accessories: USB drives, chargers, and mouse pads.\r\nMiscellaneous Supplies: Staplers, tape dispensers, scissors, and paper clips.\r\n\r\nPlease feel free to visit the supply room during office hours to pick up any items you need. If you have specific requirements or notice anything missing, don’t hesitate to contact the office manager, and we’ll do our best to accommodate your needs.', '2024-08-05 12:18:26'),
 (37, 'Staff', 'Upcoming Audit Day: Preparation and Schedule', 'We want to inform you that our annual audit day is scheduled for [Date]. This audit is an important part of our efforts to ensure that all processes and records are accurate and up-to-date.\r\n\r\nPreparation Steps:\r\n\r\nDocumentation: Please ensure that all relevant documents and records are organized and accessible. This includes financial reports, inventory logs, and any other pertinent files.\r\nClean Up: Clear your workspaces and ensure that all electronic and physical files are properly filed.\r\nReview: Review any recent changes or updates in your department that may be relevant to the audit.\r\nIf you have any questions or need assistance in preparing for the audit, please contact [Audit Coordinator\'s Name] at [Contact Information].\r\n\r\nThank you for your cooperation and attention to this important process.', '2024-08-05 12:30:17'),
-(41, 'User', 'testing ulit', 'hahasss', '2024-08-05 12:45:58');
+(41, 'User', 'testing ulit', 'hahasss', '2024-08-05 12:45:58'),
+(42, 'User', 'testing sa truncate', 'testing sa truncate \r\n\r\nWe want to inform you that our annual audit day is scheduled for [Date]. This audit is an important part of our efforts to ensure that all processes and records are accurate and up-to-date. Preparation Steps: Documentation: Please ensure that all relevant documents and records are organized and accessible. This includes financial reports, inventory logs, and any other pertinent files. Clean Up: Clear your workspaces and ensure that all electronic and physical files are properly filed. Review: Review any recent changes or updates in your department that may be relevant to the audit. If you have any questions or need assistance in preparing for the audit, please contact [Audit Coordinator\'s Name] at [Contact Information]. Thank you for your cooperation and attention to this important process.', '2024-08-06 02:39:25');
 
 -- --------------------------------------------------------
 
@@ -236,6 +237,7 @@ CREATE TABLE IF NOT EXISTS `staffs` (
   `email` varchar(50) NOT NULL,
   `fullname` varchar(50) NOT NULL,
   `address` varchar(20) NOT NULL,
+  `profile_picture` varchar(255) DEFAULT NULL,
   `designation` varchar(20) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `contact` bigint NOT NULL,
@@ -247,12 +249,12 @@ CREATE TABLE IF NOT EXISTS `staffs` (
 -- Dumping data for table `staffs`
 --
 
-INSERT INTO `staffs` (`user_id`, `username`, `password`, `email`, `fullname`, `address`, `designation`, `gender`, `contact`, `dor`) VALUES
-(1, 'bruno', 'cac29d7a34687eb14b37068ee4708e7b', 'brunoden@mail.com', 'Bruno Den', '26 Morris Street', 'Cashier', 'Male', 2147483647, '2024-05-06'),
-(2, 'michelle', 'cac29d7a34687eb14b37068ee4708e7b', 'michelle@mail.com', 'Michelle R. Lane', '61 Stone Lane', 'Trainer', 'Female', 2147483647, '2024-08-02'),
-(3, 'james', 'cac29d7a34687eb14b37068ee4708e7b', 'jamesb@mail.com', 'James Brown', '12 Deer Ridge Drive', 'Trainer', 'Male', 2147483647, '2024-07-09'),
-(4, 'bruce', 'cac29d7a34687eb14b37068ee4708e7b', 'bruce@mail.com', 'Bruce H. Klaus', '68 Lake Floyd Circle', 'Manager', 'Male', 1458887788, '2024-06-11'),
-(5, 'jella', '00e24a10cba8b9f05da22d325d433938', 'katarinamarieann1@gmail.com', 'Jelladane Peloramas', 'Lipa', 'Cashier', 'Female', 9631234567, '2024-08-03');
+INSERT INTO `staffs` (`user_id`, `username`, `password`, `email`, `fullname`, `address`, `profile_picture`, `designation`, `gender`, `contact`, `dor`) VALUES
+(1, 'bruno', 'cac29d7a34687eb14b37068ee4708e7b', 'brunoden@mail.com', 'Bruno Den', '26 Morris Street', NULL, 'Cashier', 'Male', 2147483647, '2024-05-06'),
+(2, 'michelle', 'cac29d7a34687eb14b37068ee4708e7b', 'michelle@mail.com', 'Michelle R. Lane', '61 Stone Lane', NULL, 'Trainer', 'Female', 2147483647, '2024-08-02'),
+(3, 'james', 'cac29d7a34687eb14b37068ee4708e7b', 'jamesb@mail.com', 'James Brown', '12 Deer Ridge Drive', NULL, 'Trainer', 'Male', 2147483647, '2024-07-09'),
+(4, 'bruce', 'cac29d7a34687eb14b37068ee4708e7b', 'bruce@mail.com', 'Bruce H. Klaus', '68 Lake Floyd Circle', NULL, 'Manager', 'Male', 1458887788, '2024-06-11'),
+(5, 'jella', '00e24a10cba8b9f05da22d325d433938', 'jella@gmail.com', 'Jelladane Peloramas', 'Lipa', 'bsu_logo.png', 'Cashier', 'Female', 96312345672, '2024-08-03');
 
 -- --------------------------------------------------------
 
