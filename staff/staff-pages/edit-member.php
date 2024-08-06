@@ -1,6 +1,6 @@
 <?php
 session_start();
-//the isset function to check username is already loged in and stored on the session
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
 }
@@ -22,51 +22,106 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+  <style>
+    /* Align the search form to the right side of the table header */
+    .widget-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #custom-search-form {
+      display: flex;
+      align-items: center;
+    }
+
+    #custom-search-form .search-container {
+      display: flex;
+    }
+
+    #custom-search-form .search-query {
+      padding: 5px 10px;
+      margin-left: 10px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      width: 150px;
+      background-color: white;
+      color: black;
+      margin-right: 25px;
+ 
+    }
+
+    #custom-search-form .search-button {
+      position: absolute;
+      top: 3px;
+      right: 10px;
+      height: 17%;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 0 3px 3px 0;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    #custom-search-form .search-button i {
+      margin: 0;
+    }
+  </style>
 </head>
 
 <body>
-
   <!--top-Header-menu-->
   <?php include '../includes/header.php' ?>
   <!--close-top-Header-menu-->
 
-  <!--start-top-serch-->
-  <!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-  <!--close-top-serch-->
-
   <!--sidebar-menu-->
   <?php $page = "member";
   include '../includes/sidebar.php' ?>
-
   <!--sidebar-menu-->
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="members.php" class="tip-bottom">Registered Members</a>
-        <a href="#" class="current">Update Account</a>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="remove-member.php" class="current">Remove Account</a>
       </div>
     </div>
+
     <div class="container-fluid">
-      <h1 class="text-center">Registered Members List <i class="icon icon-group"></i></h1>
+      <h1 class="text-center">Remove Accounts <i class="icon icon-group"></i></h1>
       <hr>
       <div class="row-fluid">
         <div class="span12">
 
           <div class='widget-box'>
-            <div class='widget-title'> <span class='icon'> <i class='icon-th'></i> </span>
-              <h5>Member table</h5>
+            <div class='widget-title'>
+              <div class='widget-header'>
+                <h5>Accounts Table</h5>
+                <!-- Search form placed here -->
+                <div id="custom-search-form">
+                  <form method="GET" action="remove-member.php">
+                    <div class="search-container">
+                      <input type="text" name="search" placeholder="Search " class="search-query" />
+                      <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
             <div class='widget-content nopadding'>
 
               <?php
               include "dbcon.php";
 
-              // Select members and order by date of registration in descending order
-              $qry = "SELECT * FROM members ORDER BY dor DESC";
+              // Check if there's a search input
+              $search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
+
+              // Select members, filter by search input if present, and order by date of registration in descending order
+              $qry = "SELECT * FROM members";
+              if ($search) {
+                $qry .= " WHERE fullname LIKE '%$search%' OR username LIKE '%$search%' OR gender LIKE '%$search%' OR contact LIKE '%$search%' OR dor LIKE '%$search%' OR address LIKE '%$search%' OR services LIKE '%$search%' OR plan LIKE '%$search%'";
+              }
+              $qry .= " ORDER BY dor DESC";
               $result = mysqli_query($conn, $qry);
 
               if ($result) {
@@ -86,10 +141,8 @@ if (!isset($_SESSION['user_id'])) {
                     <th>Amount</th>
                     <th>Choosen Service</th>
                     <th>Plan</th>
-                    <th>Action</th>
                   </tr>
                 </thead>
-
                 <tbody>";
 
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -104,7 +157,6 @@ if (!isset($_SESSION['user_id'])) {
                   <td><div class='text-center'>$" . $row['amount'] . "</div></td>
                   <td><div class='text-center'>" . $row['services'] . "</div></td>
                   <td><div class='text-center'>" . $row['plan'] . " Days</div></td>
-                  <td><div class='text-center'><a href='edit-memberform.php?id=" . $row['user_id'] . "'><i class='icon icon-pencil'></i> Edit</a></div></td>
                   </tr>";
                   $cnt--;
                 }
@@ -127,11 +179,7 @@ if (!isset($_SESSION['user_id'])) {
   <!--end-main-container-part-->
 
   <!--Footer-part-->
-
-  <?php
-  include 'staff/includes/footer.php';
-  ?>
-
+  <?php include '../includes/footer.php'; ?>
   <!--end-Footer-part-->
 
   <script src="../js/excanvas.min.js"></script>
@@ -160,16 +208,13 @@ if (!isset($_SESSION['user_id'])) {
     // This function is called from the pop-up menus to transfer to
     // a different page. Ignore if the value returned is a null string:
     function goPage(newURL) {
-
       // if url is empty, skip the menu dividers and reset the menu selection to default
       if (newURL != "") {
-
         // if url is "-", it is this page -- reset the menu:
         if (newURL == "-") {
           resetMenu();
-        }
-        // else, send page to designated URL            
-        else {
+        } else {
+          // else, send page to designated URL
           document.location.href = newURL;
         }
       }
