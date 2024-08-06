@@ -5,12 +5,12 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-include 'dbcon.php';
+include '../dbcon.php';
 
 // Use the logged-in user's ID
 $id = $_SESSION['user_id'];
 
-$qry = "SELECT * FROM admin WHERE user_id=?";
+$qry = "SELECT * FROM staffs WHERE user_id=?";
 $stmt = mysqli_prepare($con, $qry);
 mysqli_stmt_bind_param($stmt, 'i', $id);
 mysqli_stmt_execute($stmt);
@@ -29,7 +29,7 @@ mysqli_stmt_close($stmt);
 <html lang="en">
 
 <head>
-    <title>PSO Admin</title>
+    <title>PSO Staff</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -40,6 +40,7 @@ mysqli_stmt_close($stmt);
     <link href="../font-awesome/css/fontawesome.css" rel="stylesheet" />
     <link href="../font-awesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/jquery.gritter.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     <style>
         #wrapper {
@@ -62,23 +63,23 @@ mysqli_stmt_close($stmt);
 <body>
     <div id="wrapper">
         <!-- Header -->
-        <?php include 'includes/topheader.php'; ?>
+        <?php include '../includes/header.php'; ?>
 
         <!-- Sidebar -->
-        <?php $page = 'admin-profile';
-        include 'includes/sidebar.php'; ?>
+        <?php $page = 'staff-profile';
+        include '../includes/sidebar.php'; ?>
 
         <!-- Main content -->
         <div id="content">
             <div id="content-header">
                 <div id="breadcrumb">
                     <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
-                    <a href="admin-profile.php" class="tip-bottom">My Profile</a>
+                    <a href="staff-profile.php" class="tip-bottom">My Profile</a>
                     <a href="#" class="current">Edit Profile</a>
                 </div>
                 <h1>Edit Profile Details</h1>
             </div>
-            <form action="edit-admin-profile.php" method="POST" enctype="multipart/form-data">
+            <form action="edit-staff-profile.php" method="POST" enctype="multipart/form-data">
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $fullname = $_POST['fullname'];
@@ -94,11 +95,11 @@ mysqli_stmt_close($stmt);
 
                     if (isset($_FILES['profile']['name']) && $_FILES['profile']['name'] != '') {
                         $profile_picture = $_FILES['profile']['name'];
-                        $target = "profile_image/" . basename($profile_picture);
+                        $target = "../img/profile_picture/" . basename($profile_picture);
                         move_uploaded_file($_FILES['profile']['tmp_name'], $target);
                     }
 
-                    $qry = "UPDATE admin SET name=?, username=?, gender=?, dor=?, email=?, co_number=?, address=?, profile_picture=? WHERE user_id=?";
+                    $qry = "UPDATE staffs SET fullname=?, username=?, gender=?, dor=?, email=?, contact=?, address=?, profile_picture=? WHERE user_id=?";
                     $stmt = mysqli_prepare($con, $qry);
 
                     if ($stmt) {
@@ -117,7 +118,7 @@ mysqli_stmt_close($stmt);
                                                     <h1>Success</h1>
                                                     <h3>Profile details have been updated!</h3>
                                                     <p>The requested details are updated. Please click the button to go back.</p>
-                                                    <a class='btn btn-inverse btn-big' href='admin-profile.php'>Go Back</a>
+                                                    <a class='btn btn-inverse btn-big' href='staff-profile.php'>Go Back</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,7 +138,7 @@ mysqli_stmt_close($stmt);
                                                     <h1 style='color:maroon;'>Error</h1>
                                                     <h3>Error occurred while updating your details</h3>
                                                     <p>Please Try Again</p>
-                                                    <a class='btn btn-warning btn-big' href='edit-admin-profile.php'>Go Back</a>
+                                                    <a class='btn btn-warning btn-big' href='edit-staff-profile.php'>Go Back</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,7 +160,7 @@ mysqli_stmt_close($stmt);
 
     <!-- Footer -->
     <div id="footer">
-        <?php include 'includes/footer.php'; ?>
+        <?php include '../includes/footer.php'; ?>
     </div>
 
     <!-- Scripts -->
