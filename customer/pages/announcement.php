@@ -90,7 +90,8 @@ if (!isset($_SESSION['user_id'])) {
 
                   <?php
                   include "dbcon.php";
-                  $qry = "SELECT * FROM announcements ORDER BY date DESC";
+                  $qry = "SELECT * FROM announcements WHERE (toWho = 'User' OR toWho = 'All') ORDER BY date DESC";
+
                   $result = mysqli_query($con, $qry);
                   $first_row = true;
 

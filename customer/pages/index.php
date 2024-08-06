@@ -199,7 +199,7 @@ if (isset($_SESSION['fullname'])) {
                   $one_week_ago = date('Y-m-d', strtotime('-1 week'));
 
                   // Retrieve the announcements from the last week
-                  $qry = "SELECT * FROM announcements WHERE date >= '$one_week_ago' ORDER BY date DESC";
+                  $qry = "SELECT * FROM announcements WHERE  date >= '$one_week_ago' AND (toWho = 'User' OR toWho = 'All') ORDER BY date DESC";
                   $result = mysqli_query($con, $qry);
 
                   $count = 0; // Initialize count variable
