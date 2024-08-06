@@ -32,7 +32,6 @@ $userid = $_SESSION['user_id'];
 <body>
 
   <!--Header-part-->
-
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
@@ -66,9 +65,9 @@ $userid = $_SESSION['user_id'];
         <div class="span12">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
-              <h5>Request for Relocation of Product or Supply</h5>
+              <h5>Request for Relocation of Property or Supply</h5>
             </div>
-            
+
             <div class="widget-content nopadding">
               <form id="form-wizard" class="form-horizontal" action="add-to-do.php" method="POST">
                 <div id="form-wizard-1" class="step">
@@ -81,7 +80,7 @@ $userid = $_SESSION['user_id'];
                   </div>
 
                   <div class="control-group">
-                    <label class="control-label">Enter where the product will be relocated :</label>
+                    <label class="control-label">Enter where the property will be relocated :</label>
                     <div class="controls">
                       <input type="text" class="span11" name="task_desc" placeholder="To Library . . ." />
                     </div>
@@ -115,13 +114,13 @@ $userid = $_SESSION['user_id'];
                     <input id="add" class="btn btn-success" type="submit" value="Submit" />
                     <div id="status"></div>
                   </div>
+
                   <div id="submitted"></div>
               </form>
+
             </div><!--end of widget-content -->
           </div><!--end of widget box-->
         </div><!--end of span 12 -->
-
-
 
       </div><!-- End of row-fluid -->
     </div><!-- End of container-fluid -->

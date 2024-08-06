@@ -97,7 +97,7 @@ if (!isset($_SESSION['user_id'])) {
                   while ($row = mysqli_fetch_array($result)) {
                     // Open a div and apply conditional class for highlighting
                     echo "<div class='" . ($first_row ? 'highlight-announcement' : '') . "'>";
-                    echo "<div class='user-thumb'> <img width='50' height='50' alt='Alert' src='../img/icons/alert.png'> </div>";
+                    echo "<div class='user-thumb'> <img width='50' height='50' alt='Alert' src='../img/icons/announcement.png'> </div>";
                     echo "<div class='article-post'>";
                     echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
                     // Apply conditional class for making text bold
@@ -123,13 +123,6 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Footer-->
   <?php include '../includes/footer.php' ?>
-
-  <style>
-    #footer {
-      color: white;
-    }
-  </style>
-
   <!--end-Footer-part-->
 
   <script src="../js/excanvas.min.js"></script>
@@ -139,8 +132,7 @@ if (!isset($_SESSION['user_id'])) {
   <script src="../js/jquery.flot.min.js"></script>
   <script src="../js/jquery.flot.resize.min.js"></script>
   <script src="../js/jquery.peity.min.js"></script>
-  <script src="../js/full
-<!--calendar.min.js"></script>
+  <!-- <script src="../js/full/calendar.min.js"></script> -->
   <script src="../js/matrix.js"></script>
   <script src="../js/matrix.dashboard.js"></script>
   <script src="../js/jquery.gritter.min.js"></script>

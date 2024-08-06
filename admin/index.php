@@ -340,16 +340,16 @@ $result5 = mysqli_query($con, $qry);
 
       <div class="container-fluid" style="margin-top: -20px;">
         <div class="row-fluid">
-          <!-- Product and Supply Announcements -->
+          <!-- Property and Supply Announcements -->
           <div class="span6 custom-container">
             <div class="widget-box">
               <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2">
                 <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                <h5>Product and Supply Office Announcements</h5>
+                <h5>Property and Supply Office Announcements</h5>
               </div>
               <div class="widget-content nopadding collapse in" id="collapseG2">
-                <?php
 
+                <?php
                 include "../dbcon.php";
 
                 // Calculate the date of one week ago
@@ -390,7 +390,6 @@ $result5 = mysqli_query($con, $qry);
 
                   echo "</div>"; // Close the article-post div
                 }
-
                 ?>
 
                 <a href="manage-announcement.php"><button class="btn btn-warning btn-mini" style="margin: 10px;">View All</button></a>
