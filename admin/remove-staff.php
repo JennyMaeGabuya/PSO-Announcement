@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-//the isset function to check username is already loged in and stored on the session
+// The isset function to check if username is already logged in and stored in the session
 if (!isset($_SESSION['user_id'])) {
     header('location:../index.php');
 }
@@ -11,14 +11,14 @@ if (isset($_GET['id'])) {
 
     include 'dbcon.php';
 
-
-    $qry = "delete from staffs where user_id=$id";
+    $qry = "DELETE FROM staffs WHERE user_id = $id";
     $result = mysqli_query($con, $qry);
 
     if ($result) {
-        echo "DELETED";
-        header('Location:staffs.php');
+        // Redirect back with a success parameter
+        header('Location: staffs.php?success=true');
     } else {
-        echo "ERROR!!";
+        // Redirect back with an error parameter
+        header('Location: staffs.php?success=false');
     }
 }

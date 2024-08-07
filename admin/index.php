@@ -289,18 +289,22 @@ $result5 = mysqli_query($con, $qry);
     <div class="container-fluid">
       <div class="quick-actions_homepage">
         <ul class="quick-actions">
-          <li class="bg_ls span"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span
+          <li class="bg_ls span"> <a href="member-status.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span
                 class="label label-important"><?php include 'actions/dashboard-activecount.php' ?></span> Active Offices
             </a> </li>
-          <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span
-                class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Registered Offices</a>
+          <li class="bg_lo span"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span
+                class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Registered Accounts</a>
           </li>
-          <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-cog"></i></i><span
-                class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Request for Relocation
+          <li class="bg_lg span3"> <a href="relocation.php" style="font-size: 16px;"> <i class="fa fa-cog"></i></i><span
+                class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Request for Relocations
             </a> </li>
-          <li class="bg_lb span2"> <a href="announcement.php" style="font-size: 16px;"> <i
+          <li class="bg_lb span2"> <a href="manage-announcement.php" style="font-size: 16px;"> <i
                 class="fas fa-bullhorn"></i><span
-                class="label label-important"><?php include 'actions/count-announcements.php' ?></span>Announcements
+                class="label label-important"><?php include 'actions/count-announcements.php' ?></span> Announcements
+            </a> </li>
+          <li class="bg_ly span"> <a href="payment.php" style="font-size: 16px;"> <i
+                class="fas fa-exclamation-triangle"></i><span
+                class="label label-important"><?php include 'dashboard-usercount.php' ?></span> Remind User
             </a> </li>
 
 
@@ -309,7 +313,6 @@ $result5 = mysqli_query($con, $qry);
         <li class="bg_lb span2"> <a href="interface.html"> <i class="fas fa-pencil"></i>Elements</a> </li> -->
           <!-- <li class="bg_lg"> <a href="calendar.html"> <i class="fas fa-calendar"></i> Calendar</a> </li>
         <li class="bg_lr"> <a href="error404.html"> <i class="fas fa-info-sign"></i> Error</a> </li> -->
-          <!-- Visit codeastro.com for more projects -->
         </ul>
       </div>
       <!--End-Action boxes-->

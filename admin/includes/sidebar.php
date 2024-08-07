@@ -40,6 +40,9 @@
     <li class="<?php if ($page == 'payment') {
                   echo 'active';
                 } ?>"><a href="payment.php"><i class="fas fa-exclamation-triangle"></i> <span>Useful Life In-System Remind</span></a></li>
+    <li class="<?php if ($page == 'relocation') {
+                  echo 'active';
+                } ?>"><a href="relocation.php"><i class="fas fa-cog"></i> <span>Request for Relocation</span></a></li>
     <li class="<?php if ($page == 'announcement') {
                   echo 'active';
                 } ?>"><a href="announcement.php"><i class="fas fa-bullhorn"></i> <span>Announcement</span></a></li>

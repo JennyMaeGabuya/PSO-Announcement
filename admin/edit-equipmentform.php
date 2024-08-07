@@ -57,9 +57,9 @@ if (!isset($_SESSION['user_id'])) {
           <a href="equipment.php" class="tip-bottom">Product List</a>
           <a href="#" class="current">Update Product</a>
         </div>
-        <h1>Product Entry Form</h1>
       </div>
       <div class="container-fluid">
+      <h1 class="text-center">Product Entry Form</h1>
         <hr>
         <div class="row-fluid">
           <div class="span6">

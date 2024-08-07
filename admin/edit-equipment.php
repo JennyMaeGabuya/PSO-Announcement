@@ -48,6 +48,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <div class="container-fluid">
       <h1 class="text-center">Manage Product List <i class="fas fa-keyboard"></i></h1>
+      <hr>
 
       <div class="row-fluid">
         <div class="span12">

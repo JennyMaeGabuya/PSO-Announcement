@@ -99,13 +99,14 @@ $result = mysqli_query($con, $qry);
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb">
-        <a href="#" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
         <a href="#" class="current">Manage Members</a>
       </div>
     </div>
 
     <div class="container-fluid">
       <h1 class="text-center">Registered Members List <i class="fas fa-users"></i></h1>
+      <hr>
 
       <div class="row-fluid">
         <div class="span12">

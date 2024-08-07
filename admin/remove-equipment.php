@@ -49,6 +49,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <div class="container-fluid">
       <h1 class="text-center">Remove Products <i class="fas fa-trash"></i></h1>
+      <hr>
       <div class="row-fluid">
         <div class="span12">
 

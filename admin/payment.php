@@ -21,42 +21,55 @@ if (!isset($_SESSION['user_id'])) {
   <link href="../font-awesome/css/all.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/jquery.min.js"></script>
+
+  <style>
+    .custom-alert .swal2-popup {
+      max-width: 400px !important;
+      width: 330px !important;
+    }
+
+    .custom-alert .swal2-title {
+      font-size: 1.5em;
+    }
+
+    .custom-alert .swal2-html-container {
+      font-size: 1em;
+    }
+  </style>
 </head>
 
 <body>
 
   <!--Header-part-->
-
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
-  <?php include 'includes/topheader.php' ?>
+  <?php include 'includes/topheader.php'; ?>
   <!--close-top-Header-menu-->
-  <!--start-top-serch-->
-  <!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-  <!--close-top-serch-->
 
   <!--sidebar-menu-->
   <?php $page = 'payment';
-  include 'includes/sidebar.php' ?>
+  include 'includes/sidebar.php'; ?>
   <!--sidebar-menu-->
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+      <div id="breadcrumb">
+        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
         <a href="#" class="current">In-system Reminder</a>
       </div>
     </div>
+
     <div class="container-fluid">
       <h1 class="text-center">In-system Reminder <i class="fas fa-exclamation-triangle"></i></h1>
+      <hr>
       <div class="row-fluid">
         <div class="span12">
-
           <div class='widget-box'>
-            <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
+            <div class='widget-title'>
+              <span class='icon'><i class='fas fa-th'></i></span>
               <h5>Reminder Alert Table</h5>
               <form id="custom-search-form" role="search" method="POST" action="search-result.php" class="form-search form-horizontal pull-right">
                 <div class="input-append span12">
@@ -65,83 +78,55 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
               </form>
             </div>
-
             <div class='widget-content nopadding'>
-
-              <!-- <form action="search-result.php" role="search" method="POST">
-            <div id="search">
-            <input type="text" placeholder="Search Here.." name="search"/>
-            <button type="submit" class="tip-bottom" title="Search"><i class="fas fa-search fa-white"></i></button>
-          </div>
-          </form> -->
-
               <?php
-
               include "dbcon.php";
-              $qry = "SELECT * FROM members";
-              $cnt = 1;
-              $result = mysqli_query($conn, $qry);
+              $qry = "SELECT * FROM members ORDER BY user_id DESC";
+              $result = mysqli_query($con, $qry);
 
-              echo "<table class='table table-bordered data-table table-hover'>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Member</th>
-                  <th>Last Payment Date</th>
-                  <th>Amount</th>
-                  <th>Choosen Service</th>
-                  <th>Plan</th>
-                  <th>Action</th>
-                  <th>Remind</th>
-                </tr>
-              </thead>";
+              if ($result) {
+                $remind_mem = mysqli_num_rows($result); // Get the total number of equipment
+                $cnt = $remind_mem;
 
-              while ($row = mysqli_fetch_array($result)) { ?>
+                echo "<table class='table table-bordered data-table table-hover'>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Member</th>
+                                        <th>Last Payment Date</th>
+                                        <th>Amount</th>
+                                        <th>Chosen Service</th>
+                                        <th>Plan</th>
+                                        <th>Action</th>
+                                        <th>Remind</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
 
-                <tbody>
+                while ($row = mysqli_fetch_array($result)) {
+                  echo "
+                                    <tr>
+                                        <td><div class='text-center'>{$cnt}</div></td>
+                                        <td><div class='text-center'>{$row['fullname']}</div></td>
+                                        <td><div class='text-center'>" . ($row['paid_date'] == 0 ? "New Member" : $row['paid_date']) . "</div></td>
+                                        <td><div class='text-center'>$" . $row['amount'] . "</div></td>
+                                        <td><div class='text-center'>{$row['services']}</div></td>
+                                        <td><div class='text-center'>{$row['plan']} Month/s</div></td>
+                                        <td><div class='text-center'><a href='user-payment.php?id={$row['user_id']}'><button class='btn btn-success btn'><i class='fas fa-dollar-sign'></i> Make Payment</button></a></div></td>
+                                        <td><div class='text-center'><button class='btn btn-danger' " . ($row['reminder'] == 1 ? "disabled" : "") . " onclick='sendReminder({$row['user_id']})'><i class='fas fa-exclamation-triangle'></i></button></div></td>
+                                    </tr>";
+                  $cnt--;
+                }
 
-                  <td>
-                    <div class='text-center'><?php echo $cnt; ?></div>
-                  </td>
-                  <td>
-                    <div class='text-center'><?php echo $row['fullname'] ?></div>
-                  </td>
-                  <td>
-                    <div class='text-center'><?php echo ($row['paid_date'] == 0 ? "New Member" : $row['paid_date']) ?></div>
-                  </td>
-
-                  <td>
-                    <div class='text-center'><?php echo '$' . $row['amount'] ?></div>
-                  </td>
-                  <td>
-                    <div class='text-center'><?php echo $row['services'] ?></div>
-                  </td>
-                  <td>
-                    <div class='text-center'><?php echo $row['plan'] . " Month/s" ?></div>
-                  </td>
-                  <td>
-                    <div class='text-center'><a href='user-payment.php?id=<?php echo $row['user_id'] ?>'><button class='btn btn-success btn'><i class='fas fa-dollar-sign'></i> Make Payment</button></a></div>
-                  </td>
-                  <td>
-                    <div class='text-center'>
-                      <a href='sendReminder.php?id=<?php echo $row['user_id'] ?>'>
-                        <button class='btn btn-danger' <?php echo ($row['reminder'] == 1 ? "disabled" : "") ?>>
-                          <i class='fas fa-exclamation-triangle'></i>
-                        </button>
-                      </a>
-                    </div>
-                  </td>
-                </tbody> 
-              <?php $cnt++;
+                echo "</tbody></table>";
+              } else {
+                echo "Error: " . mysqli_error($con);
               }
 
+              mysqli_close($con);
               ?>
-
-              </table>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
@@ -150,11 +135,7 @@ if (!isset($_SESSION['user_id'])) {
   <!--end-main-container-part-->
 
   <!--Footer-part-->
-
-  <?php
-  include 'includes/footer.php';
-  ?>
-
+  <?php include 'includes/footer.php'; ?>
   <!--end-Footer-part-->
 
   <style>
@@ -169,8 +150,6 @@ if (!isset($_SESSION['user_id'])) {
       padding-right: 4px \9;
       padding-left: 3px;
       padding-left: 4px \9;
-      /* IE7-8 doesn't have border-radius, so don't indent the padding */
-
       margin-bottom: 0;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -180,12 +159,10 @@ if (!isset($_SESSION['user_id'])) {
     #custom-search-form button {
       border: 0;
       background: none;
-      /** belows styles are working good */
       padding: 2px 5px;
       margin-top: 2px;
       position: relative;
       left: -28px;
-      /* IE7-8 doesn't have border-radius, so don't indent the padding */
       margin-bottom: 0;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -197,51 +174,49 @@ if (!isset($_SESSION['user_id'])) {
     }
   </style>
 
-
-  <script src="../js/excanvas.min.js"></script>
-  <script src="../js/jquery.min.js"></script>
-  <script src="../js/jquery.ui.custom.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/jquery.flot.min.js"></script>
-  <script src="../js/jquery.flot.resize.min.js"></script>
-  <script src="../js/jquery.peity.min.js"></script>
-  <script src="../js/fullcalendar.min.js"></script>
-  <script src="../js/matrix.js"></script>
-  <script src="../js/matrix.dashboard.js"></script>
-  <script src="../js/jquery.gritter.min.js"></script>
-  <script src="../js/matrix.interface.js"></script>
-  <script src="../js/matrix.chat.js"></script>
-  <script src="../js/jquery.validate.js"></script>
-  <script src="../js/matrix.form_validation.js"></script>
-  <script src="../js/jquery.wizard.js"></script>
-  <script src="../js/jquery.uniform.js"></script>
-  <script src="../js/select2.min.js"></script>
-  <script src="../js/matrix.popover.js"></script>
-  <script src="../js/jquery.dataTables.min.js"></script>
-  <script src="../js/matrix.tables.js"></script>
-
-  <script type="text/javascript">
-    // This function is called from the pop-up menus to transfer to
-    // a different page. Ignore if the value returned is a null string:
-    function goPage(newURL) {
-
-      // if url is empty, skip the menu dividers and reset the menu selection to default
-      if (newURL != "") {
-
-        // if url is "-", it is this page -- reset the menu:
-        if (newURL == "-") {
-          resetMenu();
+  <script>
+    function sendReminder(userId) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You are about to send a reminder!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, send it!',
+        customClass: {
+          container: 'custom-alert'
         }
-        // else, send page to designated URL            
-        else {
-          document.location.href = newURL;
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: 'sendReminder.php',
+            type: 'GET',
+            data: {
+              id: userId
+            },
+            success: function(response) {
+              Swal.fire({
+                title: 'Sent!',
+                text: "Notification has been sent.",
+                icon: 'success',
+                customClass: {
+                  container: 'custom-alert'
+                }
+              }).then(() => {
+                window.location.href = "payment.php";
+              });
+            },
+            error: function() {
+              Swal.fire(
+                'Error!',
+                'Failed to send the notification.',
+                'error'
+              );
+            }
+          });
         }
-      }
-    }
-
-    // resets the menu selection upon entry to this page:
-    function resetMenu() {
-      document.gomenu.selector.selectedIndex = 2;
+      });
     }
   </script>
 </body>

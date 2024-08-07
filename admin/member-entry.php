@@ -44,22 +44,25 @@ if (!isset($_SESSION['user_id'])) {
   <?php $page = 'members-entry';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
+
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
         <a href="#" class="tip-bottom">Manage Members</a>
         <a href="#" class="current">Add Members</a>
       </div>
-
     </div>
-    <h1 class="text-center">Member Entry Form <i class="fas fa-pencil-alt"></i></h1>
+    
     <div class="container-fluid">
+      <h1 class="text-center">Member Entry Form <i class="fas fa-pencil-alt"></i></h1>
+      <hr>
       <div class="row-fluid">
         <div class="span6">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
               <h5>Personal-info</h5>
             </div>
+
             <div class="widget-content nopadding">
               <form action="add-member-req.php" method="POST" class="form-horizontal">
                 <div class="control-group">
@@ -68,12 +71,14 @@ if (!isset($_SESSION['user_id'])) {
                     <input type="text" class="span11" name="fullname" placeholder="Fullname" />
                   </div>
                 </div>
+
                 <div class="control-group">
                   <label class="control-label">Username :</label>
                   <div class="controls">
                     <input type="text" class="span11" name="username" placeholder="Username" />
                   </div>
                 </div>
+
                 <div class="control-group">
                   <label class="control-label">Password :</label>
                   <div class="controls">
@@ -81,6 +86,7 @@ if (!isset($_SESSION['user_id'])) {
                     <span class="help-block">Note: The given information will create an account for this particular member</span>
                   </div>
                 </div>
+
                 <div class="control-group">
                   <label class="control-label">Account Status :</label>
                   <div class="controls">
@@ -90,6 +96,7 @@ if (!isset($_SESSION['user_id'])) {
                     </select>
                   </div>
                 </div>
+
                 <div class="control-group">
                   <label class="control-label">D.O.R :</label>
                   <div class="controls">

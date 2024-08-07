@@ -105,6 +105,7 @@ $result = mysqli_query($con, $qry);
     </div>
     <div class="container-fluid">
       <h1 class="text-center">Remove Members <i class="fas fa-trash"></i></h1>
+      <hr>
 
       <div class="row-fluid">
         <div class="span12">

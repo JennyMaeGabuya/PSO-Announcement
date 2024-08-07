@@ -41,7 +41,6 @@ if (!isset($_SESSION['user_id'])) {
   <!--close-top-serch-->
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'payment';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
@@ -56,11 +55,13 @@ if (!isset($_SESSION['user_id'])) {
 
     <div id="content">
       <div id="content-header">
-        <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="payment.php">Payments</a> <a href="#" class="current">Invoice</a> </div>
-        <h1>Payment Form</h1>
+        <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="payment.php">Payments</a> <a href="#" class="current">Invoice</a> </div>
       </div>
 
-      <div class="container-fluid" style="margin-top:-38px;">
+      <div class="container-fluid">
+      <h1 class="text-center">Payment Form</h1>
+      <hr>
         <div class="row-fluid">
           <div class="span12">
             <div class="widget-box">
@@ -73,7 +74,7 @@ if (!isset($_SESSION['user_id'])) {
                     <table class="">
                       <tbody>
                         <tr>
-                          <td><img src="../img/gym-logo.png" alt="Gym Logo" width="175"></td>
+                          <td><img src="../img/bsu_logo.png" alt="Gym Logo" width="175"></td>
                         </tr>
                         <tr>
                           <td>

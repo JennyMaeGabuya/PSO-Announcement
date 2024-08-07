@@ -105,6 +105,7 @@ $result = mysqli_query($con, $qry);
     </div>
     <div class="container-fluid">
       <h1 class="text-center">Registered Members List <span class="icon"><i class="fas fa-keyboard"></i></span></h1>
+      <hr>
       <div class="row-fluid">
         <div class="span12">
 
