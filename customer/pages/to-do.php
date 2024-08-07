@@ -10,7 +10,6 @@ if (!isset($_SESSION['user_id'])) {
 $userid = $_SESSION['user_id'];
 ?>
 
-<!-- Visit codeastro.com for more projects -->
 <!DOCTYPE html>
 <html lang="en">
 

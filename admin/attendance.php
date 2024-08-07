@@ -30,19 +30,18 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--close-Header-part-->
 
-
   <!--top-Header-menu-->
   <?php include 'includes/topheader.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
-  <!-- Visit codeastro.com for more projects -->
+
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = "attendance";
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
@@ -151,7 +150,7 @@ if (!isset($_SESSION['user_id'])) {
   <?php
   include 'includes/footer.php';
   ?>
-  
+
   <!--end-Footer-part-->
 
   <script src="../js/jquery.min.js"></script>

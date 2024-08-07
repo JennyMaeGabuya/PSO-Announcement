@@ -24,6 +24,21 @@ if (!isset($_SESSION['user_id'])) {
   <link href="../font-awesome/css/all.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+  <style>
+    .custom-alert .swal2-popup {
+      max-width: 400px !important;
+      width: 330px !important;
+    }
+
+    .custom-alert .swal2-title {
+      font-size: 1.5em;
+    }
+
+    .custom-alert .swal2-html-container {
+      font-size: 1em;
+    }
+  </style>
 </head>
 
 <body>
@@ -129,7 +144,10 @@ if (!isset($_SESSION['user_id'])) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, publish it!'
+        confirmButtonText: 'Yes, publish it!',
+        customClass: {
+          container: 'custom-alert'
+        }
       }).then((result) => {
         if (result.isConfirmed) {
           // Create a FormData object
@@ -147,10 +165,13 @@ if (!isset($_SESSION['user_id'])) {
                   title: 'Published!',
                   text: 'Your announcement has been published successfully.',
                   icon: 'success',
-                  confirmButtonText: 'OK'
+                  confirmButtonText: 'OK',
+                  customClass: {
+                    container: 'custom-alert'
+                  }
                 }).then((result) => {
                   if (result.isConfirmed) {
-                    window.location.href = 'index.php';
+                    window.location.href = 'manage-announcement.php';
                   }
                 });
               } else {
@@ -158,7 +179,10 @@ if (!isset($_SESSION['user_id'])) {
                   title: 'Error!',
                   text: 'An error occurred. Please try again.',
                   icon: 'error',
-                  confirmButtonText: 'OK'
+                  confirmButtonText: 'OK',
+                  customClass: {
+                    container: 'custom-alert'
+                  }
                 });
               }
             })
@@ -168,7 +192,10 @@ if (!isset($_SESSION['user_id'])) {
                 title: 'Error!',
                 text: 'An unexpected error occurred. Please try again.',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
+                customClass: {
+                  container: 'custom-alert'
+                }
               });
             });
         }

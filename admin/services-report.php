@@ -57,21 +57,20 @@ $result = mysqli_query($con, $qry);
 <body>
 
   <!--Header-part-->
-
   <!--close-Header-part-->
 
   <!--top-Header-menu-->
   <?php include 'includes/topheader.php' ?>
   <!--close-top-Header-menu-->
+
   <!--start-top-serch-->
   <!-- <div id="search">
   <input type="hidden" placeholder="Search here..."/>
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
   <!--close-top-serch-->
-  <!-- Visit codeastro.com for more projects -->
+
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'service-repo';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->

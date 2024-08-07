@@ -5,12 +5,12 @@ if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
 }
 ?>
-<!-- Visit codeastro.com for more projects -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Gym System</title>
+  <title>PSO System | User</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -27,15 +27,13 @@ if (!isset($_SESSION['user_id'])) {
 <body>
 
   <!--Header-part-->
-  <div id="header">
-    <h1><a href="index.php">Perfect Gym System</a></h1>
-  </div>
   <!--close-Header-part-->
 
 
   <!--top-Header-menu-->
   <?php include '../includes/topheader.php' ?>
   <!--close-top-Header-menu-->
+
   <!--sidebar-menu-->
   <?php $page = "todo";
   include '../includes/sidebar.php' ?>

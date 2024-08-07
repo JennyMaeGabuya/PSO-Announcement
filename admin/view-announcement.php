@@ -78,7 +78,8 @@ if ($id) {
     <!-- close-Header-part -->
 
     <!-- Sidebar-menu -->
-    <?php $page = 'staff-management'; include 'includes/sidebar.php'; ?>
+    <?php $page = 'announcement';
+    include 'includes/sidebar.php'; ?>
     <!-- close-sidebar-menu -->
     <div id="content">
         <div id="content-header">
