@@ -1,6 +1,6 @@
 <?php
 session_start();
-//the isset function to check username is already loged in and stored on the session
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
 }
@@ -22,105 +22,105 @@ if (!isset($_SESSION['user_id'])) {
   <link href="../font-awesome/css/all.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    .custom-alert .swal2-popup {
+      max-width: 400px !important;
+      width: 330px !important;
+    }
+
+    .custom-alert .swal2-title {
+      font-size: 1.5em;
+    }
+
+    .custom-alert .swal2-html-container {
+      font-size: 1em;
+    }
+  </style>
 </head>
 
 <body>
-
-  <!--Header-part-->
-
-  <!--close-Header-part-->
-
   <!--top-Header-menu-->
   <?php include 'includes/topheader.php' ?>
-  <!--close-top-Header-menu-->
-  <!--start-top-serch-->
-  <!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-  <!--close-top-serch-->
 
   <!--sidebar-menu-->
   <?php $page = "announcement";
   include 'includes/sidebar.php' ?>
-  <!--sidebar-menu-->
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+      <div id="breadcrumb">
+        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
         <a href="announcement.php">Announcements</a>
         <a href="#" class="current">Manage Announcements</a>
       </div>
     </div>
+
     <div class="container-fluid">
       <h1 class="text-center">Manage Announcement <i class="fas fa-bullhorn"></i></h1>
       <hr>
       <div class="row-fluid">
         <div class="span12">
-
           <div class='widget-box'>
-            <div class='widget-title'> <span class='icon'> <i class='fas fa-bullhorn'></i> </span>
+            <div class='widget-title'>
+              <span class='icon'><i class='fas fa-bullhorn'></i></span>
               <h5 style="color: black;">Announcement Table</h5>
             </div>
             <div class='widget-content nopadding'>
 
               <?php
               include "dbcon.php";
-              $qry = "SELECT * FROM announcements ORDER BY id DESC"; // Fetch data in descending order of id
+              $qry = "SELECT * FROM announcements ORDER BY id DESC";
               $result = mysqli_query($conn, $qry);
 
               echo "<table class='table table-bordered table-hover'>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>To</th>
-              <th>Subject</th>
-              <th>Date</th>
-              <th>Message</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>";
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>To</th>
+                          <th>Subject</th>
+                          <th>Date</th>
+                          <th>Message</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>";
 
-              $totalRows = mysqli_num_rows($result); // Get the total number of rows
-              $cnt = $totalRows; // Start with the total number of rows
+              $totalRows = mysqli_num_rows($result);
+              $cnt = $totalRows;
 
               while ($row = mysqli_fetch_array($result)) {
-                // Truncate the message to the first 15 words
                 $message = implode(' ', array_slice(explode(' ', $row['message']), 0, 15));
                 $message = strlen($row['message']) > 15 ? $message . "..." : $message;
 
                 echo "<tr>
-              <td><div class='text-center'>" . $cnt . "</div></td>
-              <td><div class='text-center'>" . $row['toWho'] . "</div></td>
-              <td><div class='text-center'>" . $row['subject'] . "</div></td>
-              <td><div class='text-center'>" . $row['date'] . "</div></td>
-              <td><div class='text-center'>" . $message . "</div></td>
-              <td><div class='text-center'><a href='actions/remove-announcement.php?id=" . $row['id'] . "' style='color:#F66;' ><i class='fas fa-trash'></i> Remove</a></div></td></tr>";
-                $cnt--; // Decrease the count for the next row
+                        <td><div class='text-center'>" . $cnt . "</div></td>
+                        <td><div class='text-center'>" . $row['toWho'] . "</div></td>
+                        <td><div class='text-center'>" . $row['subject'] . "</div></td>
+                        <td><div class='text-center'>" . $row['date'] . "</div></td>
+                        <td><div class='text-center'>" . $message . "</div></td>
+                        <td><div class='text-center'>
+                            <a href='actions/view-announcement.php?id=" . $row['id'] . "' title='View' style='color:#0080FF;'><i class='fas fa-eye'></i> View</a>
+                            &nbsp; | &nbsp;
+                            <a href='#' onclick='confirmDelete(" . $row['id'] . ")' title='Remove' style='color:#F66;'><i class='fas fa-trash'></i> Remove</a>
+                          </div></td>
+                      </tr>";
+                $cnt--;
               }
 
-              echo "</tbody>
-      </table>";
+              echo "</tbody></table>";
               ?>
 
-              </table>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 
-  <!--end-main-container-part-->
-
   <!--Footer-part-->
-
-  <?php
-  include 'includes/footer.php';
-  ?>
-
+  <?php include 'includes/footer.php'; ?>
   <!--end-Footer-part-->
 
   <script src="../js/excanvas.min.js"></script>
@@ -146,28 +146,37 @@ if (!isset($_SESSION['user_id'])) {
   <script src="../js/matrix.tables.js"></script>
 
   <script type="text/javascript">
-    // This function is called from the pop-up menus to transfer to
-    // a different page. Ignore if the value returned is a null string:
-    function goPage(newURL) {
-
-      // if url is empty, skip the menu dividers and reset the menu selection to default
-      if (newURL != "") {
-
-        // if url is "-", it is this page -- reset the menu:
-        if (newURL == "-") {
-          resetMenu();
+    function confirmDelete(id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        customClass: {
+          container: 'custom-alert'
         }
-        // else, send page to designated URL            
-        else {
-          document.location.href = newURL;
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'actions/remove-announcement.php?id=' + id;
         }
-      }
+      })
     }
 
-    // resets the menu selection upon entry to this page:
-    function resetMenu() {
-      document.gomenu.selector.selectedIndex = 2;
-    }
+    // Check if the success parameter is present in the URL
+    <?php if (isset($_GET['success']) && $_GET['success'] == 'true') : ?>
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'The announcement has been deleted.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        customClass: {
+          container: 'custom-alert'
+        }
+      });
+    <?php endif; ?>
   </script>
 </body>
 

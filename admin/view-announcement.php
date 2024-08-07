@@ -113,7 +113,7 @@ if ($id) {
                         echo "No announcement found or ID is not set!";
                     }
                     ?>
-                    <a class="btn btn-primary btn-sm" href="index.php" role="button" style="margin: 10px; margin-left: 220px; margin-bottom: 2px; margin-top: 15px; font-size: 15px">Back</a>
+                    <a class="btn btn-primary btn-sm" href="manage-announcement.php" role="button" style="margin: 10px; margin-left: 220px; margin-bottom: 2px; margin-top: 15px; font-size: 15px">Back</a>
                 </div>
             </div>
 
