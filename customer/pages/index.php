@@ -162,7 +162,7 @@ if (isset($_SESSION['fullname'])) {
 
                     // Start the div for user-thumb
                     echo "<div class='user-thumb'>";
-                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/icons/alert.png'> ";
+                    echo "<img class='img-responsive zoom-img' width='50' height='50' alt='Alert' src='../img/icons/reminder.png'> ";
                     echo "</div>"; // Close the user-thumb div
 
                     // Start the div for reminder content

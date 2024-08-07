@@ -131,7 +131,7 @@ $row = mysqli_fetch_array($result);
                                     <div class="control-group">
                                         <label class="control-label">Gender :</label>
                                         <div class="controls">
-                                            <select name="gender" required="required" id="select">
+                                            <select name="gender" class="span11"  required="required" id="select">
                                                 <option value="Male" <?php echo $row['gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
                                                 <option value="Female" <?php echo $row['gender'] == 'Female' ? 'selected' : ''; ?>>Female</option>
                                                 <option value="Other" <?php echo $row['gender'] == 'Other' ? 'selected' : ''; ?>>Other</option>
