@@ -82,7 +82,7 @@ if (!isset($_SESSION['user_id'])) {
                           <th>Subject</th>
                           <th>Date</th>
                           <th>Message</th>
-                          <th>Action</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>";
@@ -101,7 +101,7 @@ if (!isset($_SESSION['user_id'])) {
                         <td><div class='text-center'>" . $row['date'] . "</div></td>
                         <td><div class='text-center'>" . $message . "</div></td>
                         <td><div class='text-center'>
-                            <a href='actions/view-announcement.php?id=" . $row['id'] . "' title='View' style='color:#0080FF;'><i class='fas fa-eye'></i> View</a>
+                            <a href='view-announcement.php?id=" . $row['id'] . "' title='View' style='color:#0080FF;'><i class='fas fa-eye'></i> View</a>
                             &nbsp; | &nbsp;
                             <a href='#' onclick='confirmDelete(" . $row['id'] . ")' title='Remove' style='color:#F66;'><i class='fas fa-trash'></i> Remove</a>
                           </div></td>
