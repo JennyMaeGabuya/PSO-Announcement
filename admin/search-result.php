@@ -20,6 +20,22 @@ if (!isset($_SESSION['user_id'])) {
   <link href="../font-awesome/css/fontawesome.css" rel="stylesheet" />
   <link href="../font-awesome/css/all.css" rel="stylesheet" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    .custom-alert .swal2-popup {
+      max-width: 400px !important;
+      width: 330px !important;
+    }
+
+    .custom-alert .swal2-title {
+      font-size: 1.5em;
+    }
+
+    .custom-alert .swal2-html-container {
+      font-size: 1em;
+    }
+  </style>
 </head>
 
 <body>
@@ -33,17 +49,20 @@ if (!isset($_SESSION['user_id'])) {
 
 
   <!--sidebar-menu-->
-  <br><br>
   <?php $page = 'payment';
   include 'includes/sidebar.php' ?>
   <!--sidebar-menu-->
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="payment.php">Payments</a> <a href="#" class="current">Search Results</a> </div>
-      <h1 class="text-center">Registered Member's Payment <i class="fas fa-group"></i></h1>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
+        <a href="payment.php">Payments</a>
+        <a href="#" class="current">Search Results</a>
+      </div>
     </div>
+
     <div class="container-fluid">
+      <h1 class="text-center">Registered Member's Payment <i class="fas fa-group"></i></h1>
       <hr>
       <div class="row-fluid">
         <div class="span12">
@@ -88,6 +107,7 @@ if (!isset($_SESSION['user_id'])) {
             <th>Choosen Service</th>
             <th>Plan</th>
             <th>Action</th>
+            <th>Remind</th>
           </tr>
         </thead>";
 
@@ -102,7 +122,8 @@ if (!isset($_SESSION['user_id'])) {
                 <td><div class='text-center'>" . $row['services'] . "</div></td>
                 <td><div class='text-center'>" . $row['plan'] . " Days</div></td>
                 <td><div class='text-center'><a href='user-payment.php?id=" . $row['user_id'] . "'><button class='btn btn-success btn'><i class='fas fa-dollar-sign'></i> Make Payment</button></a></div></td>
-                
+                <td><div class='text-center'><button class='btn btn-danger' " . ($row['reminder'] == 1 ? "disabled" : "") . " onclick='sendReminder({$row['user_id']})'><i class='fas fa-exclamation-triangle'></i></button></div></td>
+                                    
               </tbody>";
                   $cnt++;
                 }
@@ -212,6 +233,52 @@ if (!isset($_SESSION['user_id'])) {
     // resets the menu selection upon entry to this page:
     function resetMenu() {
       document.gomenu.selector.selectedIndex = 2;
+    }
+  </script>
+
+<script>
+    function sendReminder(userId) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You are about to send a reminder!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, send it!',
+        customClass: {
+          container: 'custom-alert'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: 'sendReminder.php',
+            type: 'GET',
+            data: {
+              id: userId
+            },
+            success: function(response) {
+              Swal.fire({
+                title: 'Sent!',
+                text: "Notification has been sent.",
+                icon: 'success',
+                customClass: {
+                  container: 'custom-alert'
+                }
+              }).then(() => {
+                window.location.href = "payment.php";
+              });
+            },
+            error: function() {
+              Swal.fire(
+                'Error!',
+                'Failed to send the notification.',
+                'error'
+              );
+            }
+          });
+        }
+      });
     }
   </script>
 </body>
