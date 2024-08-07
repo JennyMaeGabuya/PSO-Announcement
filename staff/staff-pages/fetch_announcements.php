@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include "dbcon.php";
 
-$qry = "SELECT * FROM announcements ORDER BY id DESC"; // Fetch data in descending order of id
+$qry = "SELECT * FROM announcements WHERE (toWho = 'Staff' OR toWho = 'All') ORDER BY id DESC"; // Fetch data in descending order of id
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $start_date = $_POST['start_date'];
