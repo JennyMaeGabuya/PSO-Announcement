@@ -6,33 +6,32 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-include "../dbcon.php";
-$id = isset($_GET['id']) ? intval($_GET['id']) : null; // Ensure $id is an integer
+include "dbcon.php";
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-if ($id) {
-    $query = mysqli_query($con, "SELECT * FROM announcements WHERE id = $id");
-
-    if (!$query) {
-        die("Error: " . mysqli_error($con));
-    }
-
-    // Check if any rows are returned
-    if (mysqli_num_rows($query) === 0) {
-        $announcement = null;
-    } else {
-        $announcement = mysqli_fetch_array($query, MYSQLI_ASSOC); // Fetch as associative array
-    }
-} else {
-    $announcement = null;
+// Check if the ID is valid
+if ($id === null) {
+    die("Error: Invalid announcement ID.");
 }
-?>
 
+// Fetch the announcement from the database
+$query = mysqli_query($con, "SELECT * FROM announcements WHERE id = $id");
+
+// Check if the query was successful
+if (!$query) {
+    die("Error: " . mysqli_error($con));
+}
+
+// Fetch the announcement details
+$announcement = mysqli_fetch_assoc($query);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>PSO Staff</title>
+    <title>PSO User</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -95,10 +94,11 @@ if ($id) {
     <?php $page = 'announcement'; ?>
     <?php include '../includes/sidebar.php'; ?>
     <!-- close-sidebar-menu -->
+
     <div id="content">
         <div id="content-header">
             <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
-                <a href="manage-announcement.php">Announcements</a>
+                <a href="announcement.php">Announcements</a>
                 <a href="#" class="current">View Announcement</a>
             </div>
         </div>
@@ -116,6 +116,10 @@ if ($id) {
                             <td>" . htmlentities($announcement['id']) . "</td>
                         </tr>";
                         echo "<tr>
+                            <th>Subject</th>
+                            <td>" . (isset($announcement['subject']) ? htmlentities($announcement['subject']) : 'No subject') . "</td>
+                        </tr>";
+                        echo "<tr>
                             <th>Message</th>
                             <td>" . (isset($announcement['message']) ? htmlentities($announcement['message']) : 'No message') . "</td>
                         </tr>";
@@ -128,7 +132,7 @@ if ($id) {
                         echo "No announcement found or ID is not set!";
                     }
                     ?>
-                    <a class="btn btn-primary btn-sm" href="manage-announcement.php" role="button" style="margin: 10px; margin-left: 220px; margin-bottom: 2px; margin-top: 15px; font-size: 15px">Back</a>
+                    <a class="btn btn-primary btn-sm" href="announcement.php" role="button" style="margin: 10px; margin-left: 220px; margin-bottom: 2px; margin-top: 15px; font-size: 15px">Back</a>
                 </div>
             </div>
 

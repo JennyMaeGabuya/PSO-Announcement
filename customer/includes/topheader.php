@@ -25,7 +25,7 @@ if (isset($_SESSION['fullname'])) {
 
 <div id="header">
   <img class="logo-large" src="../img/header_logo.png" alt="Logo" style="width: 200px; height: 80px;">
-  <img class="logo-small" src="../img/header_logo.png" alt="Small Logo" style="width: 135px; height: 55px;">
+  <img class="logo-small" src="../img/header_logo.png" alt="Small Logo" style="width: 120px; height: 40px;">
 </div>
 
 <div id="user-nav" class="navbar navbar-inverse">

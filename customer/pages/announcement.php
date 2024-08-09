@@ -1,6 +1,6 @@
 <?php
 session_start();
-//the isset function to check username is already loged in and stored on the session
+// the isset function to check username is already logged in and stored on the session
 if (!isset($_SESSION['user_id'])) {
   header('location:../index.php');
   exit(); // Add exit to stop script execution after redirecting
@@ -25,106 +25,154 @@ if (!isset($_SESSION['user_id'])) {
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
   <style>
-    .highlight-announcement {
-      background-color: #FFFF99;
-      border: 1px solid #FFD700;
-      padding: 10px;
-      font-size: 18px;
+    .span3 .widget-box .widget-content .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      margin-right: 12px;
     }
 
-    .bold-text {
-      font-weight: bold;
+    .span3 .widget-box .widget-content .form-group label {
+      margin-bottom: 5px;
     }
 
-    .user-thumb {
-      background-color: transparent;
+    .span3 .widget-box .widget-content .form-group input {
+      width: 100%;
+    }
+
+    .span3 .widget-box .widget-content .form-group .button-group {
+      display: flex;
+      gap: 25px;
+    }
+
+    .loader {
+      display: none;
+      margin-left: 10px;
+      width: 20px;
+      height: 20px;
+      border: 4px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 4px solid #3498db;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
   </style>
-
 </head>
 
 <body>
 
-  <!--Header-part-->
-
-  <!--close-Header-part-->
-
-  <!--top-Header-menu-->
+  <!-- Header -->
   <?php include '../includes/topheader.php' ?>
-  <!--close-top-Header-menu-->
 
-  <!--sidebar-menu-->
+  <!--Sidebar-->
   <?php $page = "announcement";
   include '../includes/sidebar.php' ?>
   <!--sidebar-menu-->
 
-  <!--main-container-part-->
   <div id="content">
-    <!--breadcrumbs-->
     <div id="content-header">
-      <div id="breadcrumb">
-        <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon icon-home"></i> Home</a>
+      <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
         <a href="#" class="current">Announcements</a>
       </div>
     </div>
-    <!--End-breadcrumbs-->
 
-    <!--Action boxes-->
     <div class="container-fluid">
-      <h1 class="text-center">Annoucements <i class="fas fa-bullhorn"></i></h1>
+      <h1 class="text-center">Announcements <i class='fas fa-bullhorn'></i></h1>
       <hr>
-
-      <!--End-Action boxes-->
-
       <div class="row-fluid">
-
-        <div class="span12">
-          <div class="widget-box">
-            <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
-              <h5>Property & Supply Office Announcement</h5>
+        <div class="span9">
+          <div class='widget-box'>
+            <div class='widget-title'> <span class='icon'> <i class='fas fa-bullhorn'></i> </span>
+              <h5 style="color: black;">Announcements Table</h5>
             </div>
-            <div class="widget-content nopadding collapse in" id="collapseG2">
-              <ul class="recent-posts">
-
-                <li>
-
-                  <?php
-                  include "dbcon.php";
-                  $qry = "SELECT * FROM announcements WHERE (toWho = 'User' OR toWho = 'All') ORDER BY date DESC";
-
-                  $result = mysqli_query($con, $qry);
-                  $first_row = true;
-
-                  while ($row = mysqli_fetch_array($result)) {
-                    // Open a div and apply conditional class for highlighting
-                    echo "<div class='" . ($first_row ? 'highlight-announcement' : '') . "'>";
-                    echo "<div class='user-thumb'> <img width='50' height='50' alt='Alert' src='../img/icons/announcement.png'> </div>";
-                    echo "<div class='article-post'>";
-                    echo "<span class='user-info'> By: System Administrator / Date: " . $row['date'] . " </span>";
-                    // Apply conditional class for making text bold
-                    echo "<p><a href='#' class='" . ($first_row ? 'bold-text' : '') . "'>" . $row['message'] . "</a></p>";
-                    echo "</div>"; // Close .article-post
-                    echo "</div>"; // Close .highlight-announcement
-
-                    // Only apply the bold style for the first (newest) announcement
-                    $first_row = false;
-                  }
-                  ?>
-
-                </li>
-
-              </ul>
+            <div class='widget-content nopadding' id="announcement_table">
+              <!-- The announcements table will be dynamically updated here -->
             </div>
           </div>
-        </div><!--end of span 12 -->
-      </div><!-- End of row-fluid -->
-    </div><!-- End of container-fluid -->
-  </div><!-- End of content-ID -->
-  </div><!--end-main-container-part-->
+        </div>
 
-  <!--Footer-->
-  <?php include '../includes/footer.php' ?>
-  <!--end-Footer-part-->
+        <div class="span3">
+          <div class="widget-box">
+            <div class="widget-title">
+              <h5 style="color: black;">Filter Announcements</h5>
+            </div>
+            <div class="widget-content">
+              <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" class="form-control" />
+              </div>
+              <div class="form-group button-group">
+                <button id="filter_button" class="btn btn-primary" style="margin-bottom: 5px;">Filter</button>
+                <div class="loader" id="filter_loader"></div>
+                <button id="clear_button" class="btn btn-secondary">Clear</button>
+              </div>
+
+              <script>
+                document.getElementById('clear_button').addEventListener('click', function() {
+                  document.getElementById('start_date').value = '';
+                  document.getElementById('end_date').value = '';
+
+                  loadAllAnnouncements();
+                });
+
+                document.getElementById('filter_button').addEventListener('click', function() {
+                  var startDate = document.getElementById('start_date').value;
+                  var endDate = document.getElementById('end_date').value;
+
+                  if (startDate && endDate) {
+                    document.getElementById('filter_loader').style.display = 'inline-block';
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'fetch-announcement.php', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onreadystatechange = function() {
+                      if (xhr.readyState == 4 && xhr.status == 200) {
+                        document.getElementById('announcement_table').innerHTML = xhr.responseText;
+                        document.getElementById('filter_loader').style.display = 'none';
+                      }
+                    };
+                    xhr.send('start_date=' + encodeURIComponent(startDate) + '&end_date=' + encodeURIComponent(endDate));
+                  } else {
+                    alert('Please select both start and end dates.');
+                  }
+                });
+
+                function loadAllAnnouncements() {
+                  var xhr = new XMLHttpRequest();
+                  xhr.open('GET', 'fetch-announcement.php', true);
+                  xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                      document.getElementById('announcement_table').innerHTML = xhr.responseText;
+                    }
+                  };
+                  xhr.send();
+                }
+
+                window.onload = function() {
+                  loadAllAnnouncements();
+                };
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <?php include '../includes/footer.php'; ?>
 
   <script src="../js/excanvas.min.js"></script>
   <script src="../js/jquery.min.js"></script>
@@ -133,7 +181,7 @@ if (!isset($_SESSION['user_id'])) {
   <script src="../js/jquery.flot.min.js"></script>
   <script src="../js/jquery.flot.resize.min.js"></script>
   <script src="../js/jquery.peity.min.js"></script>
-  <!-- <script src="../js/full/calendar.min.js"></script> -->
+  <script src="../js/fullcalendar.min.js"></script>
   <script src="../js/matrix.js"></script>
   <script src="../js/matrix.dashboard.js"></script>
   <script src="../js/jquery.gritter.min.js"></script>
@@ -147,29 +195,6 @@ if (!isset($_SESSION['user_id'])) {
   <script src="../js/matrix.popover.js"></script>
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/matrix.tables.js"></script>
-
-  <script type="text/javascript">
-    // This function is called from the pop-up menus to transfer to
-    // a different page. Ignore if the value returned is a null string:
-    function goPage(newURL) {
-      // if url is empty, skip the menu dividers and reset the menu selection to default
-      if (newURL != "") {
-        // if url is "-", it is this page -- reset the menu:
-        if (newURL == "-") {
-          resetMenu();
-        }
-        // else, send page to designated URL            
-        else {
-          document.location.href = newURL;
-        }
-      }
-    }
-
-    // resets the menu selection upon entry to this page:
-    function resetMenu() {
-      document.gomenu.selector.selectedIndex = 2;
-    }
-  </script>
 </body>
 
 </html>

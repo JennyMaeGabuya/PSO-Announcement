@@ -9,41 +9,54 @@ if (!isset($_SESSION['user_id'])) {
 // Include the database connection file
 include '../dbcon.php'; // Ensure the path is correct
 
-// Base query for fetching announcements
-$qry = "SELECT * FROM announcements WHERE (toWho = 'User' OR toWho = 'All') ORDER BY id DESC";
+// Base query to filter by 'User' or 'All'
+$qry = "SELECT * FROM announcements WHERE (toWho = 'User' OR toWho = 'All')";
 
-// Apply date filter if POST request
+// Check if filtering by date range
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
-    $qry = "SELECT * FROM announcements WHERE date BETWEEN '$start_date' AND '$end_date' ORDER BY id DESC";
+    if ($start_date && $end_date) {
+        // Add date filter to the query
+        $qry .= " AND date BETWEEN '$start_date' AND '$end_date'";
+    }
 }
 
-// Execute the query
-$result = mysqli_query($conn, $qry);
+// Order by the most recent announcements
+$qry .= " ORDER BY id DESC";
 
-// Check if query execution was successful
-if (!$result) {
-    die("Error: " . mysqli_error($conn));
-}
+$result = mysqli_query($con, $qry);
 
-// Output the table rows
-$cnt = 1; // Initialize the counter for the table rows
+// Output the table structure
+echo "<table class='table table-bordered table-hover announcement-table'>
+        <thead>
+            <tr>
+                <th style='font-size: 13px;'><div class='text-center'>#</th>
+                <th style='font-size: 13px;'><div class='text-center'>Date</th>
+                <th style='font-size: 13px;'><div class='text-center'>Subject</th>
+                <th style='font-size: 13px;'><div class='text-center'>Message</th>
+                <th style='font-size: 13px;'><div class='text-center'>Action</th>
+            </tr>
+        </thead>
+        <tbody>";
+
+$totalRows = mysqli_num_rows($result); // Get the total number of rows
+$cnt = $totalRows; // Start with the total number of rows
+
 while ($row = mysqli_fetch_array($result)) {
-    // Truncate the message to the first 25 characters (adjust as needed)
-    $message = substr($row['message'], 0, 25);
-    $message = strlen($row['message']) > 25 ? $message . "..." : $message;
+    // Truncate the message to the first 15 words
+    $message = implode(' ', array_slice(explode(' ', $row['message']), 0, 15));
+    $message = strlen($row['message']) > 15 ? $message . "..." : $message;
 
-    // Generate table row with "View" button and icon
     echo "<tr>
             <td style='font-weight: bold; font-size: 13px;'><div class='text-center'>" . $cnt . "</div></td>
             <td style='font-size: 13px;'><div class='text-center'>" . $row['date'] . "</div></td>
+            <td style='font-size: 13px;'><div class='text-center'>" . $row['subject'] . "</div></td>
             <td style='font-size: 13px;'><div class='text-center'>" . $message . "</div></td>
-            <td style='font-size: 13px;'><div class='text-center'><a href='view-announcement.php?id=" . $row['id'] . "' class='btn-view'><i class='fas fa-eye'></i></a></div></td>
+            <td style='font-size: 13px;'><div class='text-center'><a href='view-announcement.php?id=" . $row['id'] . "' style='color:#0080FF;' ><i class='fas fa-eye'></i> View</a></div></td>
           </tr>";
-
-    $cnt++; // Increment the counter for the next row
+    $cnt--; // Decrease the count for the next row
 }
 
-mysqli_close($conn); // Close the database connection
-?>
+echo "</tbody>
+      </table>";

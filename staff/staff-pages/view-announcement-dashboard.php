@@ -92,6 +92,10 @@ if (!$query) {
                                 <td>" . htmlentities($row['id']) . "</td>
                             </tr>";
                             echo "<tr>
+                                <th>Subject</th>
+                                <td>" . htmlentities($row['subject']) . "</td>
+                            </tr>";
+                            echo "<tr>
                                 <th>Message</th>
                                 <td>" . htmlentities($row['message']) . "</td>
                             </tr>";
