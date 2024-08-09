@@ -228,7 +228,7 @@ if (isset($_SESSION['fullname'])) {
                                 echo "</div>"; // Close the article-post div
                             }
                             ?>
-                            <a href="manage-announcement.php"><button class="btn btn-warning btn-mini" style="margin: 10px;">View All</button></a>
+                            <a href="announcement.php"><button class="btn btn-warning btn-mini" style="margin: 10px;">View All</button></a>
                         </div>
                     </div>
                 </div> <!-- End of Property and Supply Announcements Section -->
